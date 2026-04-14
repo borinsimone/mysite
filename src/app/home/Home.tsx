@@ -1,6 +1,8 @@
+  'use client';
 import React from 'react';
 import styles from './home.module.scss';
 import DarkVeil from '../components/bg/DarkVeil';
+import BorderGlow from '../components/borderGlow/BorderGlow';
 function Home() {
   return (
     <div className={styles.home}>
@@ -15,10 +17,10 @@ function Home() {
 
       <div className={styles.content}>
         <p className={styles.kicker}>
-          Hello, my name is <span>Simone Borin</span>
+          Ciao! io sono <span>Simone Borin</span>
         </p>
         <h1>
-          I&apos;m a <span>Freelance Developer</span>
+          Sono uno <span>Sviluppatore Freelance</span>
         </h1>
         <p className={styles.lead}>
           Progetto e sviluppo siti web moderni per freelance, startup e piccole
@@ -41,9 +43,18 @@ function Home() {
           className={styles.cornerTop}
           aria-hidden='true'
         />
-        <div className={styles.image}>
+        <BorderGlow
+          className={styles.image}
+          glowColor='348 100 58'
+          backgroundColor='#090c13'
+          borderRadius={4}
+          glowIntensity={3.5}
+          glowRadius={80}
+          coneSpread={55}
+          edgeSensitivity={60}
+        >
           <span>SB</span>
-        </div>
+        </BorderGlow>
         <div
           className={styles.cornerBottom}
           aria-hidden='true'
