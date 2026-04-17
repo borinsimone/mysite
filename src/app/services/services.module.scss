@@ -1,38 +1,3 @@
-// ─── accent colour tokens ────────────────────────────────────────────────────
-$accents: (
-  'red': (
-    #ff2d55,
-    rgba(255, 45, 85, 0.18),
-    rgba(255, 45, 85, 0.08),
-  ),
-  'blue': (
-    #4d8cff,
-    rgba(77, 140, 255, 0.18),
-    rgba(77, 140, 255, 0.08),
-  ),
-  'purple': (
-    #b565f5,
-    rgba(181, 101, 245, 0.18),
-    rgba(181, 101, 245, 0.08),
-  ),
-  'green': (
-    #2de0a5,
-    rgba(45, 224, 165, 0.18),
-    rgba(45, 224, 165, 0.08),
-  ),
-  'orange': (
-    #ff7a29,
-    rgba(255, 122, 41, 0.18),
-    rgba(255, 122, 41, 0.08),
-  ),
-  'teal': (
-    #1fc8db,
-    rgba(31, 200, 219, 0.18),
-    rgba(31, 200, 219, 0.08),
-  ),
-);
-
-// ─── section ─────────────────────────────────────────────────────────────────
 .services {
   position: relative;
   min-height: 100dvh;
@@ -61,7 +26,6 @@ $accents: (
   }
 }
 
-// ─── header ──────────────────────────────────────────────────────────────────
 .header {
   max-width: 860px;
 }
@@ -80,13 +44,6 @@ $accents: (
   line-height: 1.08;
   letter-spacing: -0.02em;
   color: #f7f8fc;
-}
-
-// ─── cards grid ──────────────────────────────────────────────────────────────
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
 }
 
 .bentoWrap {
@@ -137,6 +94,19 @@ $accents: (
     line-height: 1.5;
     color: #b9c0d0;
     opacity: 1;
+    overflow: visible;
+    text-overflow: clip;
+    display: block;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+  }
+
+  :global(.magic-bento-card__title) {
+    overflow: visible;
+    text-overflow: clip;
+    display: block;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
   }
 
   :global(.magic-bento-card--border-glow::after) {
@@ -144,90 +114,6 @@ $accents: (
   }
 }
 
-.card {
-  position: relative;
-  border-radius: 18px;
-  padding: 28px 26px 24px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  //   background: linear-gradient(
-  //     160deg,
-  //     rgba(255, 255, 255, 0.04),
-  //     rgba(255, 255, 255, 0.01)
-  //   );
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  overflow: hidden;
-}
-
-// ─── icon ────────────────────────────────────────────────────────────────────
-.iconWrap {
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-
-  svg {
-    width: 22px;
-    height: 22px;
-  }
-}
-
-// ─── text ────────────────────────────────────────────────────────────────────
-.card h3 {
-  font-size: 19px;
-  font-weight: 700;
-  color: #f0f3fb;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-}
-
-.card p {
-  font-size: 15.5px;
-  line-height: 1.65;
-  color: #a8b0c4;
-  flex: 1;
-}
-
-// ─── tags ────────────────────────────────────────────────────────────────────
-.tags {
-  list-style: none;
-  padding: 0;
-  margin: 4px 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-
-  li {
-    padding: 4px 10px;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #c8cedb;
-  }
-}
-
-// ─── per-accent overrides ─────────────────────────────────────────────────────
-@each $name, $vals in $accents {
-  $color: nth($vals, 1);
-  $glow: nth($vals, 2);
-  $bg: nth($vals, 3);
-
-  .accent-#{$name} {
-    .iconWrap {
-      background: $bg;
-      color: $color;
-    }
-  }
-}
-
-// ─── bottom CTA ──────────────────────────────────────────────────────────────
 .cta {
   margin-top: 8px;
   border-radius: 18px;
@@ -268,15 +154,10 @@ $accents: (
   }
 }
 
-// ─── responsive ──────────────────────────────────────────────────────────────
 @media (max-width: 1100px) {
   .services {
     padding: 72px 40px 64px;
     gap: 40px;
-  }
-
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .bentoWrap {
@@ -302,10 +183,6 @@ $accents: (
 
   .kicker {
     font-size: 14px;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
   }
 
   .bentoWrap {

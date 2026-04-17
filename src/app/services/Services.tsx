@@ -62,6 +62,7 @@ function Services() {
         <MagicBento
           items={services}
           layout='uniform'
+          textAutoHide={false}
           enableStars
           enableSpotlight
           enableBorderGlow

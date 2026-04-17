@@ -9,7 +9,10 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <Sidebar />
-      <div className={styles['section-container']}>
+      <div
+        id='main-scroll-container'
+        className={styles['section-container']}
+      >
         <HomePage />
         <About />
         <Services />

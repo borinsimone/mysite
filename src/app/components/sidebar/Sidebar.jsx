@@ -86,6 +86,10 @@ const navLinks = [
   { name: 'contact', Icon: ContactIcon, href: '#contact' },
 ];
 
+const getScrollContainer = () =>
+  document.getElementById('main-scroll-container') ??
+  document.querySelector('[class*="section-container"]');
+
 function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('home');
@@ -149,7 +153,7 @@ function Sidebar() {
   }, [activeLink, isOpen]);
 
   useEffect(() => {
-    const container = document.querySelector('[class*="section-container"]');
+    const container = getScrollContainer();
     if (!container) {
       return;
     }
@@ -211,8 +215,8 @@ function Sidebar() {
       return;
     }
 
-    const target = document.querySelector(href);
-    const container = document.querySelector('[class*="section-container"]');
+    const target = document.getElementById(href.slice(1));
+    const container = getScrollContainer();
     if (!target || !container) {
       setIsOpen(false);
       return;
@@ -225,19 +229,44 @@ function Sidebar() {
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
     ).matches;
+    const isMobile = window.matchMedia('(max-width: 860px)').matches;
     const targetTop =
       target.getBoundingClientRect().top -
       container.getBoundingClientRect().top +
       container.scrollTop;
 
+    const finalTop = Math.max(0, targetTop - 4);
+
     if (prefersReducedMotion) {
-      container.scrollTop = targetTop;
+      container.scrollTop = finalTop;
+      window.history.replaceState(null, '', href);
+      return;
+    }
+
+    if (isMobile) {
+      // Wait a frame so the menu state settles, then perform native scroll.
+      window.requestAnimationFrame(() => {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest',
+        });
+
+        // Fallback for browsers that don't reliably animate container scroll.
+        window.setTimeout(() => {
+          const delta = Math.abs(container.scrollTop - finalTop);
+          if (delta > 6) {
+            container.scrollTo({ top: finalTop, behavior: 'smooth' });
+          }
+        }, 80);
+      });
+
       window.history.replaceState(null, '', href);
       return;
     }
 
     const start = container.scrollTop;
-    const distance = targetTop - start;
+    const distance = finalTop - start;
     const duration = 900;
     const startTime = performance.now();
     const easeInOutCubic = (t) =>
@@ -291,7 +320,9 @@ function Sidebar() {
             className='corner cornerTop'
             aria-hidden='true'
           />
-          <div className='logo'>Atlas</div>
+          <div className='logo'>
+            Borin <span>project</span>
+          </div>
           <span
             className='corner cornerBottom'
             aria-hidden='true'
@@ -311,13 +342,15 @@ function Sidebar() {
               '--active-opacity': indicatorStyle.opacity,
             }}
           >
-            <span
+            <li
               className='activeRailTrail'
               aria-hidden='true'
+              role='presentation'
             />
-            <span
+            <li
               className='activeRail'
               aria-hidden='true'
+              role='presentation'
             />
             {navLinks.map((link) => (
               <li

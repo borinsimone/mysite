@@ -1,5 +1,10 @@
 .menuToggle {
   display: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  &:focus {
+    outline: none;
+  }
 }
 
 .sidebarBackdrop {
@@ -43,6 +48,17 @@
     letter-spacing: 2px;
     color: #f3f5f8;
     font-family: Georgia, 'Times New Roman', serif;
+    span {
+      display: inline-block;
+      margin-left: 6px;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: #ff6f8f;
+      font-family: 'Brush Script MT', 'Segoe Script', cursive;
+      font-weight: 500;
+      text-transform: lowercase;
+      vertical-align: middle;
+    }
   }
 
   .corner {
@@ -85,6 +101,7 @@
     margin: 0;
 
     .activeRail {
+      list-style: none;
       position: absolute;
       left: -2px;
       top: var(--active-top, 0);
@@ -109,6 +126,7 @@
     }
 
     .activeRailTrail {
+      list-style: none;
       position: absolute;
       left: -1px;
       top: var(--active-top, 0);
@@ -228,7 +246,7 @@
     justify-content: center;
     position: fixed;
     top: 20px;
-    right: 20px;
+    right: 10px;
     width: 52px;
     height: 52px;
 
@@ -270,6 +288,14 @@
 
     .logo {
       font-size: 30px;
+      position: relative;
+      span {
+        font-size: 18px;
+        font-family: 'Brush Script MT', 'Segoe Script', cursive;
+        position: absolute;
+        bottom: -16px;
+        right: 0;
+      }
     }
 
     .nav {
