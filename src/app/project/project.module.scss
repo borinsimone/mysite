@@ -1,0 +1,253 @@
+.project {
+  position: relative;
+  min-height: 100dvh;
+  padding: 88px 72px 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  color: #eef2fb;
+  background-color: #090c13;
+  background:
+    radial-gradient(
+      circle at 88% 18%,
+      rgba(255, 45, 85, 0.1) 0,
+      rgba(255, 45, 85, 0) 36%
+    ),
+    radial-gradient(
+      circle at 8% 74%,
+      rgba(79, 126, 255, 0.08) 0,
+      rgba(79, 126, 255, 0) 35%
+    ),
+    linear-gradient(180deg, #090c13 0%, #0a0d14 44%, #0b0d14 100%);
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.header {
+  max-width: 860px;
+}
+
+.kicker {
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #ff5576;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.header h2 {
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #f7f8fc;
+  margin-bottom: 14px;
+}
+
+.sub {
+  font-size: 18px;
+  line-height: 1.62;
+  color: #a8b0c4;
+  max-width: 62ch;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: rgba(255, 255, 255, 0.04);
+  color: #b5bdcd;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.active {
+  color: #fff;
+  border-color: rgba(255, 45, 85, 0.45);
+  background: rgba(255, 45, 85, 0.13);
+}
+
+.masonryWrap {
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.01)
+    ),
+    rgba(12, 15, 24, 0.65);
+  padding: 12px;
+  height: min(72vh, 860px);
+  min-height: 520px;
+}
+
+.caseStudies {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.caseCard {
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.01)
+    ),
+    rgba(12, 15, 24, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  h3 {
+    color: #f3f6fb;
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+}
+
+.caseCategory {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #ff6a89;
+  font-weight: 700;
+}
+
+.caseSummary {
+  color: #b5bdcd;
+  font-size: 15px;
+  line-height: 1.58;
+}
+
+.caseResult {
+  color: #4ee2a6;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.caseStack {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 2px 0 0;
+  padding: 0;
+
+  li {
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    color: #d4dae8;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+}
+
+.footer {
+  border-radius: 16px;
+  padding: 22px 24px;
+  border: 1px solid rgba(255, 45, 85, 0.28);
+  background: rgba(255, 45, 85, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  p {
+    font-size: 17px;
+    color: #f2f4fa;
+    line-height: 1.5;
+  }
+
+  a {
+    flex-shrink: 0;
+    width: fit-content;
+    padding: 11px 18px;
+    border-radius: 999px;
+    background: linear-gradient(120deg, #ff3e61, #e91346);
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    box-shadow: 0 10px 22px rgba(233, 19, 70, 0.34);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 26px rgba(233, 19, 70, 0.42);
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .project {
+    padding: 72px 40px 68px;
+  }
+
+  .masonryWrap {
+    min-height: 460px;
+    height: min(66vh, 720px);
+  }
+
+  .caseStudies {
+    grid-template-columns: 1fr;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 860px) {
+  .project {
+    padding: 64px 24px 52px;
+    gap: 24px;
+  }
+
+  .kicker {
+    font-size: 14px;
+  }
+
+  .sub {
+    font-size: 16px;
+  }
+
+  .masonryWrap {
+    min-height: 420px;
+    height: 62vh;
+    padding: 8px;
+  }
+
+  .caseCard h3 {
+    font-size: 18px;
+  }
+
+  .footer p {
+    font-size: 16px;
+  }
+
+  .footer a {
+    width: 100%;
+    text-align: center;
+  }
+}

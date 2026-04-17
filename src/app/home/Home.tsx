@@ -5,7 +5,10 @@ import DarkVeil from '../components/bg/DarkVeil';
 import BorderGlow from '../components/borderGlow/BorderGlow';
 function Home() {
   return (
-    <div className={styles.home}>
+    <div
+      className={styles.home}
+      id='home'
+    >
       <DarkVeil
         hueShift={0}
         noiseIntensity={0}
