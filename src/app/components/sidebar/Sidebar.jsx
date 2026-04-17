@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './sidebar.scss';
 import { Divide as Hamburger } from 'hamburger-react';
 
@@ -78,16 +78,26 @@ const ContactIcon = () => (
   </svg>
 );
 
+const navLinks = [
+  { name: 'home', Icon: HomeIcon, href: '#home' },
+  { name: 'about', Icon: AboutIcon, href: '#about' },
+  { name: 'services', Icon: ServicesIcon, href: '#services' },
+  { name: 'portfolio', Icon: PortfolioIcon, href: '#portfolio' },
+  { name: 'contact', Icon: ContactIcon, href: '#contact' },
+];
+
 function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
-
-  const links = [
-    { name: 'home', Icon: HomeIcon, href: '#home', active: true },
-    { name: 'about', Icon: AboutIcon, href: '#about' },
-    { name: 'services', Icon: ServicesIcon, href: '#services' },
-    { name: 'portfolio', Icon: PortfolioIcon, href: '#portfolio' },
-    { name: 'contact', Icon: ContactIcon, href: '#contact' },
-  ];
+  const [activeLink, setActiveLink] = useState('home');
+  const [indicatorStyle, setIndicatorStyle] = useState({
+    top: 0,
+    height: 0,
+    opacity: 0,
+  });
+  const animationRef = useRef(null);
+  const spyFrameRef = useRef(null);
+  const linksRef = useRef(null);
+  const linkRefs = useRef({});
 
   useEffect(() => {
     const onResize = () => {
@@ -99,6 +109,158 @@ function Sidebar() {
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
+
+  useEffect(() => {
+    return () => {
+      if (animationRef.current) {
+        window.cancelAnimationFrame(animationRef.current);
+      }
+
+      if (spyFrameRef.current) {
+        window.cancelAnimationFrame(spyFrameRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const updateIndicator = () => {
+      const activeItem = linkRefs.current[activeLink];
+      const list = linksRef.current;
+
+      if (!activeItem || !list) {
+        return;
+      }
+
+      const itemHeight = activeItem.offsetHeight;
+      const railHeight = Math.max(22, Math.round(itemHeight * 0.62));
+      const top = activeItem.offsetTop + (itemHeight - railHeight) / 2;
+
+      setIndicatorStyle({
+        top,
+        height: railHeight,
+        opacity: 1,
+      });
+    };
+
+    updateIndicator();
+    window.addEventListener('resize', updateIndicator);
+
+    return () => window.removeEventListener('resize', updateIndicator);
+  }, [activeLink, isOpen]);
+
+  useEffect(() => {
+    const container = document.querySelector('[class*="section-container"]');
+    if (!container) {
+      return;
+    }
+
+    const sections = navLinks
+      .map((link) => {
+        const id = link.href.slice(1);
+        const element = document.getElementById(id);
+        return element ? { id, element } : null;
+      })
+      .filter(Boolean);
+
+    if (!sections.length) {
+      return;
+    }
+
+    const updateActiveLink = () => {
+      const marker = container.scrollTop + container.clientHeight * 0.35;
+      let current = sections[0].id;
+
+      for (const section of sections) {
+        if (section.element.offsetTop <= marker) {
+          current = section.id;
+        } else {
+          break;
+        }
+      }
+
+      setActiveLink((prev) => (prev === current ? prev : current));
+    };
+
+    const onScroll = () => {
+      if (spyFrameRef.current) {
+        return;
+      }
+
+      spyFrameRef.current = window.requestAnimationFrame(() => {
+        updateActiveLink();
+        spyFrameRef.current = null;
+      });
+    };
+
+    updateActiveLink();
+    container.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+
+    return () => {
+      container.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (spyFrameRef.current) {
+        window.cancelAnimationFrame(spyFrameRef.current);
+      }
+    };
+  }, []);
+
+  const handleNavClick = (event, href) => {
+    if (!href?.startsWith('#')) {
+      setIsOpen(false);
+      return;
+    }
+
+    const target = document.querySelector(href);
+    const container = document.querySelector('[class*="section-container"]');
+    if (!target || !container) {
+      setIsOpen(false);
+      return;
+    }
+
+    event.preventDefault();
+    setIsOpen(false);
+    setActiveLink(href.slice(1));
+
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+    const targetTop =
+      target.getBoundingClientRect().top -
+      container.getBoundingClientRect().top +
+      container.scrollTop;
+
+    if (prefersReducedMotion) {
+      container.scrollTop = targetTop;
+      window.history.replaceState(null, '', href);
+      return;
+    }
+
+    const start = container.scrollTop;
+    const distance = targetTop - start;
+    const duration = 900;
+    const startTime = performance.now();
+    const easeInOutCubic = (t) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    if (animationRef.current) {
+      window.cancelAnimationFrame(animationRef.current);
+    }
+
+    const step = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      container.scrollTop = start + distance * easeInOutCubic(progress);
+
+      if (progress < 1) {
+        animationRef.current = window.requestAnimationFrame(step);
+      } else {
+        window.history.replaceState(null, '', href);
+      }
+    };
+
+    animationRef.current = window.requestAnimationFrame(step);
+  };
 
   return (
     <>
@@ -140,15 +302,37 @@ function Sidebar() {
           className='nav'
           aria-label='Main navigation'
         >
-          <ul className='links'>
-            {links.map((link) => (
+          <ul
+            className='links'
+            ref={linksRef}
+            style={{
+              '--active-top': `${indicatorStyle.top}px`,
+              '--active-height': `${indicatorStyle.height}px`,
+              '--active-opacity': indicatorStyle.opacity,
+            }}
+          >
+            <span
+              className='activeRailTrail'
+              aria-hidden='true'
+            />
+            <span
+              className='activeRail'
+              aria-hidden='true'
+            />
+            {navLinks.map((link) => (
               <li
                 key={link.name}
-                className={`link ${link.active ? 'active' : ''}`}
+                className={`link ${activeLink === link.name ? 'active' : ''}`}
+                ref={(element) => {
+                  if (element) {
+                    linkRefs.current[link.name] = element;
+                  }
+                }}
               >
                 <a
                   href={link.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(event) => handleNavClick(event, link.href)}
+                  aria-current={activeLink === link.name ? 'page' : undefined}
                 >
                   <span
                     className='icon'

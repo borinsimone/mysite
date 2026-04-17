@@ -89,6 +89,61 @@ $accents: (
   gap: 20px;
 }
 
+.bentoWrap {
+  width: 100%;
+
+  :global(.card-grid) {
+    max-width: 100%;
+    width: 100%;
+    padding: 0;
+    gap: 14px;
+    font-size: 1rem;
+  }
+
+  :global(.magic-bento-card) {
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(
+        160deg,
+        rgba(255, 255, 255, 0.04),
+        rgba(255, 255, 255, 0.01)
+      ),
+      rgba(12, 15, 24, 0.9) !important;
+    min-height: 180px;
+    aspect-ratio: 16 / 9;
+    padding: 1.2rem;
+  }
+
+  :global(.magic-bento-card__label) {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: #ff7f99;
+  }
+
+  :global(.magic-bento-card__title) {
+    font-size: 22px;
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    color: #f4f6fb;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  :global(.magic-bento-card__description) {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #b9c0d0;
+    opacity: 1;
+  }
+
+  :global(.magic-bento-card--border-glow::after) {
+    padding: 2px;
+  }
+}
+
 .card {
   position: relative;
   border-radius: 18px;
@@ -223,6 +278,20 @@ $accents: (
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .bentoWrap {
+    :global(.card-grid) {
+      gap: 12px;
+    }
+
+    :global(.magic-bento-card) {
+      min-height: 170px;
+    }
+
+    :global(.magic-bento-card__title) {
+      font-size: 20px;
+    }
+  }
 }
 
 @media (max-width: 860px) {
@@ -237,6 +306,21 @@ $accents: (
 
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .bentoWrap {
+    :global(.card-grid) {
+      width: 100%;
+      margin: 0;
+    }
+
+    :global(.magic-bento-card) {
+      min-height: 160px;
+    }
+
+    :global(.magic-bento-card__title) {
+      font-size: 18px;
+    }
   }
 
   .cta {
