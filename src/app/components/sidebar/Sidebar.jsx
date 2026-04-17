@@ -3,87 +3,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './sidebar.scss';
 import { Divide as Hamburger } from 'hamburger-react';
-
-const iconProps = {
-  viewBox: '0 0 24 24',
-  fill: 'none',
-  stroke: 'currentColor',
-  strokeWidth: 1.8,
-  strokeLinecap: 'round',
-  strokeLinejoin: 'round',
-  'aria-hidden': true,
-};
-
-const HomeIcon = () => (
-  <svg {...iconProps}>
-    <path d='M3 11.5 12 4l9 7.5' />
-    <path d='M5.5 10.5V20h13V10.5' />
-  </svg>
-);
-
-const AboutIcon = () => (
-  <svg {...iconProps}>
-    <circle
-      cx='12'
-      cy='12'
-      r='9'
-    />
-    <path d='M12 10v6' />
-    <path d='M12 7.5h.01' />
-  </svg>
-);
-
-const ServicesIcon = () => (
-  <svg {...iconProps}>
-    <path d='M12 2.5v3' />
-    <path d='m16.95 4.55-2.1 2.1' />
-    <path d='M21.5 12h-3' />
-    <path d='m16.95 19.45-2.1-2.1' />
-    <path d='M12 21.5v-3' />
-    <path d='m7.05 19.45 2.1-2.1' />
-    <path d='M2.5 12h3' />
-    <path d='m7.05 4.55 2.1 2.1' />
-    <circle
-      cx='12'
-      cy='12'
-      r='3.5'
-    />
-  </svg>
-);
-
-const PortfolioIcon = () => (
-  <svg {...iconProps}>
-    <rect
-      x='3.5'
-      y='6.5'
-      width='17'
-      height='12'
-      rx='2'
-    />
-    <path d='M9 6.5V5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 5v1.5' />
-    <path d='M3.5 11.5h17' />
-  </svg>
-);
-
-const ContactIcon = () => (
-  <svg {...iconProps}>
-    <rect
-      x='3.5'
-      y='5.5'
-      width='17'
-      height='13'
-      rx='2'
-    />
-    <path d='m4.5 7 7.5 6 7.5-6' />
-  </svg>
-);
+import GooeyNav from '../menu/GooeyNav';
 
 const navLinks = [
-  { name: 'home', Icon: HomeIcon, href: '#home' },
-  { name: 'about', Icon: AboutIcon, href: '#about' },
-  { name: 'services', Icon: ServicesIcon, href: '#services' },
-  { name: 'portfolio', Icon: PortfolioIcon, href: '#portfolio' },
-  { name: 'contact', Icon: ContactIcon, href: '#contact' },
+  { name: 'home', label: 'Home', href: '#home' },
+  { name: 'about', label: 'About', href: '#about' },
+  { name: 'services', label: 'Services', href: '#services' },
+  { name: 'portfolio', label: 'Portfolio', href: '#portfolio' },
+  { name: 'contact', label: 'Contact', href: '#contact' },
 ];
 
 const getScrollContainer = () =>
@@ -93,15 +20,37 @@ const getScrollContainer = () =>
 function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('home');
-  const [indicatorStyle, setIndicatorStyle] = useState({
+  const [pillStyle, setPillStyle] = useState({
     top: 0,
     height: 0,
     opacity: 0,
   });
   const animationRef = useRef(null);
   const spyFrameRef = useRef(null);
-  const linksRef = useRef(null);
-  const linkRefs = useRef({});
+  const navUnlockTimeoutRef = useRef(null);
+  const gooeyShellRef = useRef(null);
+  const navLockRef = useRef({
+    active: false,
+    targetId: null,
+  });
+
+  const lockSpy = (targetId) => {
+    navLockRef.current = { active: true, targetId };
+
+    if (navUnlockTimeoutRef.current) {
+      window.clearTimeout(navUnlockTimeoutRef.current);
+      navUnlockTimeoutRef.current = null;
+    }
+  };
+
+  const unlockSpy = () => {
+    navLockRef.current = { active: false, targetId: null };
+
+    if (navUnlockTimeoutRef.current) {
+      window.clearTimeout(navUnlockTimeoutRef.current);
+      navUnlockTimeoutRef.current = null;
+    }
+  };
 
   useEffect(() => {
     const onResize = () => {
@@ -115,6 +64,40 @@ function Sidebar() {
   }, []);
 
   useEffect(() => {
+    const updatePill = () => {
+      const shell = gooeyShellRef.current;
+      if (!shell) {
+        return;
+      }
+
+      const activeItem = shell.querySelector(
+        '.sidebarGooeyNav nav ul li.active',
+      );
+      if (!activeItem) {
+        setPillStyle((prev) => ({ ...prev, opacity: 0 }));
+        return;
+      }
+
+      const shellRect = shell.getBoundingClientRect();
+      const itemRect = activeItem.getBoundingClientRect();
+      const top = itemRect.top - shellRect.top;
+
+      setPillStyle({
+        top,
+        height: itemRect.height,
+        opacity: 1,
+      });
+    };
+
+    updatePill();
+    window.addEventListener('resize', updatePill);
+
+    return () => {
+      window.removeEventListener('resize', updatePill);
+    };
+  }, [activeLink, isOpen]);
+
+  useEffect(() => {
     return () => {
       if (animationRef.current) {
         window.cancelAnimationFrame(animationRef.current);
@@ -123,34 +106,12 @@ function Sidebar() {
       if (spyFrameRef.current) {
         window.cancelAnimationFrame(spyFrameRef.current);
       }
+
+      if (navUnlockTimeoutRef.current) {
+        window.clearTimeout(navUnlockTimeoutRef.current);
+      }
     };
   }, []);
-
-  useEffect(() => {
-    const updateIndicator = () => {
-      const activeItem = linkRefs.current[activeLink];
-      const list = linksRef.current;
-
-      if (!activeItem || !list) {
-        return;
-      }
-
-      const itemHeight = activeItem.offsetHeight;
-      const railHeight = Math.max(22, Math.round(itemHeight * 0.62));
-      const top = activeItem.offsetTop + (itemHeight - railHeight) / 2;
-
-      setIndicatorStyle({
-        top,
-        height: railHeight,
-        opacity: 1,
-      });
-    };
-
-    updateIndicator();
-    window.addEventListener('resize', updateIndicator);
-
-    return () => window.removeEventListener('resize', updateIndicator);
-  }, [activeLink, isOpen]);
 
   useEffect(() => {
     const container = getScrollContainer();
@@ -171,6 +132,10 @@ function Sidebar() {
     }
 
     const updateActiveLink = () => {
+      if (navLockRef.current.active) {
+        return;
+      }
+
       const marker = container.scrollTop + container.clientHeight * 0.35;
       let current = sections[0].id;
 
@@ -209,7 +174,7 @@ function Sidebar() {
     };
   }, []);
 
-  const handleNavClick = (event, href) => {
+  const handleNavClick = (href) => {
     if (!href?.startsWith('#')) {
       setIsOpen(false);
       return;
@@ -222,9 +187,10 @@ function Sidebar() {
       return;
     }
 
-    event.preventDefault();
     setIsOpen(false);
-    setActiveLink(href.slice(1));
+    const targetId = href.slice(1);
+    lockSpy(targetId);
+    setActiveLink(targetId);
 
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
@@ -239,6 +205,7 @@ function Sidebar() {
 
     if (prefersReducedMotion) {
       container.scrollTop = finalTop;
+      unlockSpy();
       window.history.replaceState(null, '', href);
       return;
     }
@@ -260,6 +227,10 @@ function Sidebar() {
           }
         }, 80);
       });
+
+      navUnlockTimeoutRef.current = window.setTimeout(() => {
+        unlockSpy();
+      }, 520);
 
       window.history.replaceState(null, '', href);
       return;
@@ -284,6 +255,7 @@ function Sidebar() {
       if (progress < 1) {
         animationRef.current = window.requestAnimationFrame(step);
       } else {
+        unlockSpy();
         window.history.replaceState(null, '', href);
       }
     };
@@ -333,51 +305,37 @@ function Sidebar() {
           className='nav'
           aria-label='Main navigation'
         >
-          <ul
-            className='links'
-            ref={linksRef}
+          <div
+            className='sidebarGooeyShell'
+            ref={gooeyShellRef}
             style={{
-              '--active-top': `${indicatorStyle.top}px`,
-              '--active-height': `${indicatorStyle.height}px`,
-              '--active-opacity': indicatorStyle.opacity,
+              '--pill-top': `${pillStyle.top}px`,
+              '--pill-height': `${pillStyle.height}px`,
+              '--pill-opacity': pillStyle.opacity,
             }}
           >
-            <li
-              className='activeRailTrail'
+            <span
+              className='sidebarActivePill'
               aria-hidden='true'
-              role='presentation'
             />
-            <li
-              className='activeRail'
-              aria-hidden='true'
-              role='presentation'
+            <GooeyNav
+              className='sidebarGooeyNav'
+              vertical
+              items={navLinks.map((link) => ({
+                label: link.label,
+                href: link.href,
+              }))}
+              activeHref={`#${activeLink}`}
+              initialActiveIndex={0}
+              animationTime={560}
+              particleCount={10}
+              particleDistances={[56, 8]}
+              particleR={64}
+              timeVariance={190}
+              colors={[1, 2, 3, 4]}
+              onItemClick={(_event, item) => handleNavClick(item.href)}
             />
-            {navLinks.map((link) => (
-              <li
-                key={link.name}
-                className={`link ${activeLink === link.name ? 'active' : ''}`}
-                ref={(element) => {
-                  if (element) {
-                    linkRefs.current[link.name] = element;
-                  }
-                }}
-              >
-                <a
-                  href={link.href}
-                  onClick={(event) => handleNavClick(event, link.href)}
-                  aria-current={activeLink === link.name ? 'page' : undefined}
-                >
-                  <span
-                    className='icon'
-                    aria-hidden='true'
-                  >
-                    <link.Icon />
-                  </span>
-                  <span className='name'>{link.name}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
+          </div>
         </nav>
       </aside>
     </>
