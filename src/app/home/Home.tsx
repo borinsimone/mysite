@@ -18,7 +18,11 @@ function Home() {
         warpAmount={0}
       />
 
-      <div className={styles.content}>
+      <div
+        className={styles.content}
+        data-reveal='true'
+        style={{ ['--reveal-delay' as string]: '0ms' }}
+      >
         <p className={styles.kicker}>
           Ciao! io sono <span>Simone Borin</span>
         </p>
@@ -41,7 +45,11 @@ function Home() {
         </div>
       </div>
 
-      <div className={styles.imageWrap}>
+      <div
+        className={styles.imageWrap}
+        data-reveal='true'
+        style={{ ['--reveal-delay' as string]: '120ms' }}
+      >
         <div
           className={styles.cornerTop}
           aria-hidden='true'

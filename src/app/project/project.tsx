@@ -117,7 +117,11 @@ function Project() {
       id='portfolio'
       className={styles.project}
     >
-      <div className={styles.header}>
+      <div
+        className={styles.header}
+        data-reveal='true'
+        style={{ ['--reveal-delay' as string]: '0ms' }}
+      >
         <p className={styles.kicker}>Projects</p>
         <h2>Una selezione di lavori reali</h2>
         <p className={styles.sub}>
@@ -130,6 +134,8 @@ function Project() {
       <div
         className={styles.filters}
         aria-label='Filtri portfolio'
+        data-reveal='true'
+        style={{ ['--reveal-delay' as string]: '70ms' }}
       >
         {filters.map((filter, index) => (
           <button
@@ -142,7 +148,11 @@ function Project() {
         ))}
       </div>
 
-      <div className={styles.masonryWrap}>
+      <div
+        className={styles.masonryWrap}
+        data-reveal='true'
+        style={{ ['--reveal-delay' as string]: '130ms' }}
+      >
         <Masonry
           items={items}
           animateFrom='bottom'
@@ -153,7 +163,11 @@ function Project() {
         />
       </div>
 
-      <div className={styles.caseStudies}>
+      <div
+        className={styles.caseStudies}
+        data-reveal='true'
+        style={{ ['--reveal-delay' as string]: '200ms' }}
+      >
         {projects.slice(0, 4).map((project) => (
           <article
             key={project.id}
@@ -172,7 +186,11 @@ function Project() {
         ))}
       </div>
 
-      <div className={styles.footer}>
+      <div
+        className={styles.footer}
+        data-reveal='true'
+        style={{ ['--reveal-delay' as string]: '270ms' }}
+      >
         <p>Vuoi vedere il case study completo di un progetto simile al tuo?</p>
         <a href='mailto:hello@simone.dev?subject=Portfolio%20request'>
           Richiedi portfolio completo

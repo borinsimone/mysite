@@ -1,0 +1,496 @@
+PORTFOLIO PROJECT IDEAS - READY TO DEVELOP
+Version: 1.0
+Goal: avere una vetrina completa da freelance con progetti credibili, misurabili e vendibili.
+
+====================================================================
+COME USARE QUESTO FILE
+====================================================================
+- Ogni progetto e pensato per essere sviluppato in 1-3 settimane.
+- Ogni scheda contiene: problema, target, MVP, extra, stack, dati, API, KPI, roadmap.
+- Puoi pubblicare ogni progetto con:
+  1) Demo live
+  2) Repo (o screenshot codice se NDA)
+  3) Case study con risultati numerici
+
+====================================================================
+PROGETTO 1 - LANDING PAGE AD ALTA CONVERSIONE
+====================================================================
+Nome portfolio:
+Conversion Landing for Local Service
+
+Problema da risolvere:
+Piccole attivita locali hanno traffico ma pochi contatti qualificati.
+
+Target utente:
+- Professionisti locali (studio medico, avvocato, consulente)
+- Utente che arriva da Google o ads e deve contattare in pochi secondi
+
+MVP (ready to build):
+- Hero con value proposition chiara
+- Sezione servizi breve e orientata a benefici
+- Testimonials / proof
+- FAQ
+- CTA primaria sempre visibile
+- Form contatto con validazione
+- Tracking eventi (CTA click, form submit)
+- Performance base (Lighthouse > 90)
+
+Extra (fase 2):
+- A/B test su headline
+- Sticky CTA mobile
+- Calendly embed
+- Heatmap (Hotjar o equivalente)
+
+Stack consigliato:
+- Next.js, TypeScript, SCSS Modules
+- Form: React Hook Form + Zod
+- Analytics: GA4 + eventi custom
+
+Data model minimo:
+- leads(id, name, email, phone, service_interest, source, created_at)
+
+API endpoints:
+- POST /api/leads
+- GET /api/leads (admin)
+
+KPI da mostrare nel case study:
+- Conversion rate form
+- CTR CTA principale
+- Tempo medio sulla pagina
+
+Roadmap sviluppo:
+- Giorno 1-2: wireframe + copy structure
+- Giorno 3-4: build UI responsive
+- Giorno 5: tracking + form backend
+- Giorno 6: ottimizzazione performance
+- Giorno 7: QA e deploy
+
+Definition of done:
+- Mobile perfetto
+- Eventi tracciati correttamente
+- Form con feedback error/success
+- Punteggio Lighthouse >= 90
+
+====================================================================
+PROGETTO 2 - SITO CORPORATE MULTI-PAGINA + BLOG
+====================================================================
+Nome portfolio:
+Corporate Website + Content Hub
+
+Problema da risolvere:
+Azienda con identita debole, contenuti dispersi, scarsa visibilita organica.
+
+Target utente:
+- Decision maker aziendale
+- Potenziali clienti in fase valutazione
+
+MVP:
+- Home, Servizi, Chi siamo, Contatti
+- Pagina servizio template dinamico
+- Blog con categorie e tag
+- SEO on-page completa (title, meta, schema base)
+- CMS headless per contenuti
+
+Extra:
+- Risorse scaricabili (lead magnet)
+- Ricerca interna contenuti
+- Newsletter integration
+
+Stack:
+- Next.js App Router
+- CMS: Sanity/Contentful/Strapi
+- ISR o static generation
+
+Data model:
+- pages(slug, title, seo_title, seo_description, body)
+- posts(slug, title, excerpt, content, category, tags, published_at)
+
+API / integrazioni:
+- CMS content API
+- GET /api/sitemap
+
+KPI case study:
+- +% traffico organico dopo 30-60 giorni
+- +% pagine indicizzate
+- tempo medio sessione
+
+Roadmap:
+- Settimana 1: design system + templates
+- Settimana 2: integrazione CMS + SEO + deploy
+
+Definition of done:
+- Editor puo pubblicare senza dev
+- Sitemap e robots validi
+- Template pagine riutilizzabili
+
+====================================================================
+PROGETTO 3 - WEB APP GESTIONALE CRUD CON RUOLI
+====================================================================
+Nome portfolio:
+Client & Orders Manager
+
+Problema da risolvere:
+Gestione manuale clienti/ordini su fogli e chat, alto rischio errore.
+
+Target utente:
+- Team operativo piccolo (2-10 persone)
+
+MVP:
+- Login/logout
+- Ruoli (admin, operator)
+- CRUD clienti
+- CRUD ordini con stato (nuovo, in lavorazione, chiuso)
+- Ricerca, filtri, ordinamento
+- Storico modifiche base
+
+Extra:
+- Export CSV/PDF
+- Commenti interni per ordine
+- Notifiche email su cambio stato
+
+Stack:
+- Next.js + TypeScript
+- DB: PostgreSQL
+- ORM: Prisma
+- Auth: NextAuth/Auth.js
+
+Data model:
+- users(id, name, email, role)
+- clients(id, name, email, phone, company)
+- orders(id, client_id, amount, status, assigned_to, created_at)
+- order_logs(id, order_id, action, user_id, created_at)
+
+API endpoints:
+- /api/auth/*
+- /api/clients (GET/POST)
+- /api/clients/:id (GET/PATCH/DELETE)
+- /api/orders (GET/POST)
+- /api/orders/:id (GET/PATCH/DELETE)
+
+KPI case study:
+- riduzione tempo gestione pratiche
+- riduzione errori inserimento
+- tempo medio per trovare ordine
+
+Roadmap:
+- Settimana 1: auth, schema DB, CRUD clienti
+- Settimana 2: CRUD ordini, filtri, ruoli, audit
+
+Definition of done:
+- Permessi rispettati
+- Nessun dato sensibile esposto client-side
+- Flussi CRUD completi e testati
+
+====================================================================
+PROGETTO 4 - DASHBOARD KPI REAL-TIME
+====================================================================
+Nome portfolio:
+Operations KPI Dashboard
+
+Problema:
+Dati presenti ma non leggibili in tempo reale, decisioni lente.
+
+Target:
+- Founder, operations manager, team lead
+
+MVP:
+- KPI cards (oggi/7 giorni/30 giorni)
+- Grafico trend
+- Grafico breakdown per categoria
+- Filtri data range
+- Auto refresh ogni 30-60s
+
+Extra:
+- Alert soglie KPI
+- Drill-down su tabella dettagli
+- Confronto periodo precedente
+
+Stack:
+- Next.js
+- Recharts/ECharts
+- PostgreSQL + query aggregate
+- opzionale: Supabase realtime
+
+Data model:
+- events(id, type, value, category, created_at)
+- targets(id, metric, threshold, period)
+
+API:
+- GET /api/kpi/summary?range=7d
+- GET /api/kpi/trend?range=30d
+- GET /api/kpi/breakdown?range=30d
+
+KPI case study:
+- tempo decisionale ridotto
+- adozione dashboard interna
+- accuratezza reporting
+
+Roadmap:
+- Giorno 1-2: schema e seed dati
+- Giorno 3-4: API aggregate
+- Giorno 5-6: UI dashboard
+- Giorno 7: polishing + deploy
+
+Definition of done:
+- Filtri rapidi e coerenti
+- Query performanti
+- Grafici leggibili su mobile
+
+====================================================================
+PROGETTO 5 - AI ASSISTANT UTILE (SUPPORTO/TICKET)
+====================================================================
+Nome portfolio:
+AI Support Copilot
+
+Problema:
+Richieste ripetitive consumano tempo del team supporto.
+
+Target:
+- SaaS piccoli/medi con supporto email/chat
+
+MVP:
+- Input utente
+- Recupero FAQ/documentazione rilevante
+- Risposta AI con citazioni fonte
+- Escalation a umano quando confidenza bassa
+- Log prompt/response
+
+Extra:
+- Classificazione automatica priorita ticket
+- Traduzione multilingua
+- Analytics su quality score
+
+Stack:
+- Next.js
+- OpenAI API
+- Vector store (pgvector o servizio esterno)
+- Queue per job asincroni
+
+Data model:
+- docs(id, title, content, embedding)
+- tickets(id, message, category, priority, status)
+- ai_logs(id, prompt, response, confidence, created_at)
+
+API:
+- POST /api/ai/answer
+- POST /api/tickets/classify
+
+KPI case study:
+- riduzione first response time
+- % ticket risolti senza intervento umano
+- soddisfazione utente
+
+Roadmap:
+- Settimana 1: ingestion docs + retrieval
+- Settimana 2: UI + fallback + logging
+
+Definition of done:
+- Risposte tracciabili e controllabili
+- Fallback solido su errore API
+- Prompt versionati
+
+====================================================================
+PROGETTO 6 - AUTOMAZIONE WORKFLOW END-TO-END
+====================================================================
+Nome portfolio:
+Lead Automation Pipeline
+
+Problema:
+Lead raccolti manualmente e follow-up incoerente.
+
+Target:
+- Freelance/agenzie con lead generation da sito
+
+MVP:
+- Form sito -> webhook
+- Salvataggio lead su DB/CRM
+- Email automatica di conferma
+- Task interno creato automaticamente
+- Dashboard minima stato lead
+
+Extra:
+- Scoring lead
+- Reminder follow-up automatico
+- Slack/Telegram notifications
+
+Stack:
+- Next.js
+- n8n/Make/Zapier (oppure workflow custom)
+- SMTP/Resend
+
+Data model:
+- leads(id, name, email, source, score, status)
+- tasks(id, lead_id, assignee, due_date, status)
+- automation_logs(id, lead_id, step, success, created_at)
+
+API:
+- POST /api/webhooks/lead
+- GET /api/leads/pipeline
+
+KPI case study:
+- tempo medio lead->contatto
+- % lead contattati entro 24h
+- riduzione lead persi
+
+Roadmap:
+- Giorno 1-2: flusso eventi
+- Giorno 3-4: integrazioni email/task
+- Giorno 5: dashboard pipeline
+- Giorno 6-7: hardening e retry logic
+
+Definition of done:
+- Ogni step tracciato
+- Retry su errori temporanei
+- Nessuna perdita silenziosa lead
+
+====================================================================
+PROGETTO 7 - E-COMMERCE O BOOKING FUNNEL
+====================================================================
+Nome portfolio:
+Booking Funnel Optimizer
+
+Problema:
+Drop-off alto nel checkout/prenotazione.
+
+Target:
+- Hotel, studi, consulenti, servizi su appuntamento
+
+MVP:
+- Catalogo/servizi
+- Flusso prenotazione 3 step
+- Riepilogo costi chiaro
+- Conferma finale + email
+- Tracking step funnel
+
+Extra:
+- Coupon/promozioni
+- Recupero prenotazione interrotta
+- Upsell nel riepilogo
+
+Stack:
+- Next.js
+- Stato form multi-step
+- Stripe (se pagamento)
+
+Data model:
+- services(id, name, duration, price)
+- bookings(id, user_data, service_id, slot, status)
+- funnel_events(id, step, action, created_at)
+
+API:
+- POST /api/bookings
+- POST /api/payments/intent (se pagamento)
+
+KPI case study:
+- +% completamento funnel
+- -% abbandono step critico
+- incremento valore medio ordine
+
+Roadmap:
+- Settimana 1: UI funnel + validazioni
+- Settimana 2: integrazione pagamenti/tracking
+
+Definition of done:
+- UX mobile-first
+- Error state chiari
+- Eventi funnel accurati
+
+====================================================================
+PROGETTO 8 - REVAMP LEGACY (PRIMA/DOPO)
+====================================================================
+Nome portfolio:
+Legacy Frontend Revamp
+
+Problema:
+Sito lento, design incoerente, bassa accessibilita.
+
+Target:
+- Aziende con sito datato ma traffico attivo
+
+MVP:
+- Refactor UI componenti principali
+- Riduzione JS bundle
+- Miglioramento Core Web Vitals
+- A11y fixes principali (focus, contrasti, semantic)
+
+Extra:
+- Motion system coerente
+- Token design system
+- test visual regression
+
+Stack:
+- Next.js o React
+- Lighthouse + Web Vitals tracking
+- Playwright/Cypress per smoke test
+
+Metriche prima/dopo (fondamentali):
+- LCP, INP, CLS
+- peso JS totale
+- tempo caricamento pagina
+- punteggio accessibilita
+
+Roadmap:
+- Giorno 1: audit baseline
+- Giorno 2-4: refactor componenti critici
+- Giorno 5: performance pass
+- Giorno 6: a11y pass
+- Giorno 7: report prima/dopo
+
+Definition of done:
+- Miglioramento misurabile su almeno 3 metriche
+- Nessuna regressione funzionale
+- Documentazione tecnica sintetica
+
+====================================================================
+PACCHETTO CASE STUDY PRONTO (TEMPLATE UNICO)
+====================================================================
+Per ogni progetto pubblica questa struttura:
+
+1) Contesto
+- Cliente/tipo business
+- Obiettivo concreto
+
+2) Problema
+- Vincoli e criticita
+
+3) Soluzione
+- Architettura
+- UX/UI scelte
+- Stack e motivazione
+
+4) Implementazione
+- Feature principali
+- Sfide e trade-off
+
+5) Risultati
+- 3-5 KPI con valori
+- Prima vs dopo
+
+6) Learnings
+- Cosa migliorare nella v2
+
+====================================================================
+SUGGERIMENTO PRIORITA (ORDINE DI SVILUPPO)
+====================================================================
+Se vuoi massimizzare impatto portfolio in poco tempo:
+1. Landing conversione
+2. Gestionale CRUD
+3. Dashboard KPI
+4. AI assistant
+5. Revamp legacy
+6. Booking funnel
+7. Corporate + Blog
+8. Automazione lead pipeline
+
+====================================================================
+OBIETTIVO FINALE VETRINA
+====================================================================
+Con questi 8 progetti copri:
+- Marketing sites
+- Applicazioni business
+- Data visualization
+- AI integration
+- Automation
+- Performance + UX + SEO
+
+Risultato: portfolio completo, credibile e vendibile per clienti diversi.

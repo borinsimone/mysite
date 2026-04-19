@@ -100,7 +100,11 @@ function Contact() {
       id='contact'
       className={styles.contact}
     >
-      <div className={styles.header}>
+      <div
+        className={styles.header}
+        data-reveal='true'
+        style={{ ['--reveal-delay' as string]: '0ms' }}
+      >
         <p className={styles.kicker}>Contatti</p>
         <h2>Iniziamo a&nbsp;parlare</h2>
         <p className={styles.sub}>
@@ -109,7 +113,11 @@ function Contact() {
         </p>
       </div>
 
-      <div className={styles.grid}>
+      <div
+        className={styles.grid}
+        data-reveal='true'
+        style={{ ['--reveal-delay' as string]: '100ms' }}
+      >
         {/* ── left col ── */}
         <div className={styles.info}>
           <div className={styles.directBox}>

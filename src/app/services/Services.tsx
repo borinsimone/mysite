@@ -53,12 +53,20 @@ function Services() {
       id='services'
       className={styles.services}
     >
-      <div className={styles.header}>
+      <div
+        className={styles.header}
+        data-reveal='true'
+        style={{ ['--reveal-delay' as string]: '0ms' }}
+      >
         <p className={styles.kicker}>What I do</p>
         <h2>Soluzioni digitali per ogni&nbsp;esigenza</h2>
       </div>
 
-      <div className={styles.bentoWrap}>
+      <div
+        className={styles.bentoWrap}
+        data-reveal='true'
+        style={{ ['--reveal-delay' as string]: '90ms' }}
+      >
         <MagicBento
           items={services}
           layout='uniform'
@@ -75,7 +83,11 @@ function Services() {
         />
       </div>
 
-      <div className={styles.cta}>
+      <div
+        className={styles.cta}
+        data-reveal='true'
+        style={{ ['--reveal-delay' as string]: '170ms' }}
+      >
         <p>Hai un progetto in mente o vuoi sapere come posso aiutarti?</p>
         <a href='mailto:hello@simone.dev'>Parliamone</a>
       </div>

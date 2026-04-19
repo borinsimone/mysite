@@ -7,14 +7,22 @@ function About() {
       id='about'
       className={styles.about}
     >
-      <div className={styles.header}>
+      <div
+        className={styles.header}
+        data-reveal='true'
+        style={{ ['--reveal-delay' as string]: '0ms' }}
+      >
         <p className={styles.kicker}>About me</p>
         <h2>
           Costruisco esperienze digitali affidabili e orientate ai risultati
         </h2>
       </div>
 
-      <div className={styles.grid}>
+      <div
+        className={styles.grid}
+        data-reveal='true'
+        style={{ ['--reveal-delay' as string]: '90ms' }}
+      >
         <article className={styles.story}>
           <p>
             Sono Simone, frontend developer freelance. Mi occupo di progettare
@@ -48,7 +56,11 @@ function About() {
         </aside>
       </div>
 
-      <div className={styles.footer}>
+      <div
+        className={styles.footer}
+        data-reveal='true'
+        style={{ ['--reveal-delay' as string]: '170ms' }}
+      >
         <div className={styles.stack}>
           <h3>Stack preferito</h3>
           <ul>
