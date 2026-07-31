@@ -3,40 +3,33 @@ import styles from './about.module.scss';
 
 function About() {
   return (
-    <section
-      id='about'
-      className={styles.about}
-    >
+    <section id="about" className={styles.about}>
       <div
         className={styles.header}
-        data-reveal='true'
+        data-reveal="true"
         style={{ ['--reveal-delay' as string]: '0ms' }}
       >
-        <p className={styles.kicker}>About me</p>
-        <h2>
-          Costruisco esperienze digitali affidabili e orientate ai risultati
-        </h2>
+        
+        <h2>Costruisco esperienze digitali affidabili e orientate ai risultati</h2>
       </div>
 
       <div
         className={styles.grid}
-        data-reveal='true'
+        data-reveal="true"
         style={{ ['--reveal-delay' as string]: '90ms' }}
       >
         <article className={styles.story}>
           <p>
-            Sono Simone, frontend developer freelance. Mi occupo di progettare
-            interfacce moderne con attenzione a performance, usabilita e
-            manutenibilita del codice.
+            Sono Simone, frontend developer freelance. Mi occupo di progettare interfacce moderne
+            con attenzione a performance, usabilita e manutenibilita del codice.
           </p>
           <p>
-            Lavoro con clienti che vogliono una presenza online professionale:
-            sito vetrina, landing page o dashboard, sempre con un approccio
-            pragmatico e orientato al business.
+            Lavoro con clienti che vogliono una presenza online professionale: sito vetrina, landing
+            page o dashboard, sempre con un approccio pragmatico e orientato al business.
           </p>
           <p>
-            Ogni progetto parte da obiettivi chiari e si chiude con consegne
-            pulite, documentate e pronte per evolvere.
+            Ogni progetto parte da obiettivi chiari e si chiude con consegne pulite, documentate e
+            pronte per evolvere.
           </p>
         </article>
 
@@ -58,7 +51,7 @@ function About() {
 
       <div
         className={styles.footer}
-        data-reveal='true'
+        data-reveal="true"
         style={{ ['--reveal-delay' as string]: '170ms' }}
       >
         <div className={styles.stack}>
@@ -74,7 +67,7 @@ function About() {
 
         <div className={styles.ctaBox}>
           <p>Hai un progetto in mente? Partiamo da una call di 20 minuti.</p>
-          <a href='mailto:hello@simone.dev'>Prenota una call</a>
+          <a href="mailto:hello@simone.dev">Prenota una call</a>
         </div>
       </div>
     </section>

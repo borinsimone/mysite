@@ -57,8 +57,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Simone Borin | Sviluppatore Freelance',
-    description:
-      'Web development, AI/automazioni, SEO, UI/UX, dashboard e gestionali.',
+    description: 'Web development, AI/automazioni, SEO, UI/UX, dashboard e gestionali.',
     creator: '@simoneborin',
   },
   robots: {
@@ -86,10 +85,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang='it'
-      className={`${geistSans.variable} ${geistMono.variable}`}
-    >
+    <html lang="it" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>{children}</body>
     </html>
   );

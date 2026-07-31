@@ -27,11 +27,7 @@
   color: #e9edf5;
   border-right: 1px solid rgba(255, 255, 255, 0.08);
   background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.03),
-      rgba(255, 255, 255, 0) 24%
-    ),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0) 24%),
     linear-gradient(140deg, #191c24 0%, #11131a 64%, #0b0d13 100%);
 
   .brand {
@@ -174,12 +170,7 @@
       width: 4px;
       height: var(--active-height, 0);
       border-radius: 999px;
-      background: linear-gradient(
-        180deg,
-        #ff7390 0%,
-        #ff2d55 55%,
-        #d91342 100%
-      );
+      background: linear-gradient(180deg, #ff7390 0%, #ff2d55 55%, #d91342 100%);
       box-shadow:
         0 0 0 1px rgba(255, 255, 255, 0.12),
         0 0 16px rgba(255, 45, 85, 0.55);

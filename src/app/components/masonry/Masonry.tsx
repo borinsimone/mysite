@@ -1,24 +1,11 @@
-import React, {
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
 import './Masonry.css';
 
-const useMedia = (
-  queries: string[],
-  values: number[],
-  defaultValue: number,
-): number => {
+const useMedia = (queries: string[], values: number[], defaultValue: number): number => {
   const get = () => {
-    if (
-      typeof window === 'undefined' ||
-      typeof window.matchMedia !== 'function'
-    ) {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
       return defaultValue;
     }
 
@@ -29,18 +16,14 @@ const useMedia = (
   const [value, setValue] = useState<number>(get);
 
   useEffect(() => {
-    if (
-      typeof window === 'undefined' ||
-      typeof window.matchMedia !== 'function'
-    ) {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
       return;
     }
 
     const handler = () => setValue(get);
     const mediaQueries = queries.map((q) => window.matchMedia(q));
     mediaQueries.forEach((mq) => mq.addEventListener('change', handler));
-    return () =>
-      mediaQueries.forEach((mq) => mq.removeEventListener('change', handler));
+    return () => mediaQueries.forEach((mq) => mq.removeEventListener('change', handler));
   }, [queries]);
 
   return value;
@@ -114,12 +97,7 @@ const Masonry: React.FC<MasonryProps> = ({
   colorShiftOnHover = false,
 }) => {
   const columns = useMedia(
-    [
-      '(min-width:1500px)',
-      '(min-width:1000px)',
-      '(min-width:600px)',
-      '(min-width:400px)',
-    ],
+    ['(min-width:1500px)', '(min-width:1000px)', '(min-width:600px)', '(min-width:400px)'],
     [5, 4, 3, 2],
     1,
   );
@@ -135,9 +113,7 @@ const Masonry: React.FC<MasonryProps> = ({
 
     if (animateFrom === 'random') {
       const directions = ['top', 'bottom', 'left', 'right'];
-      direction = directions[
-        Math.floor(Math.random() * directions.length)
-      ] as typeof animateFrom;
+      direction = directions[Math.floor(Math.random() * directions.length)] as typeof animateFrom;
     }
 
     switch (direction) {
@@ -274,35 +250,28 @@ const Masonry: React.FC<MasonryProps> = ({
   };
 
   return (
-    <div
-      ref={containerRef}
-      className='list'
-    >
+    <div ref={containerRef} className="list">
       {grid.map((item) => {
         return (
           <div
             key={item.id}
             data-key={item.id}
-            className='item-wrapper'
+            className="item-wrapper"
             onClick={() => window.open(item.url, '_blank', 'noopener')}
             onMouseEnter={(e) => handleMouseEnter(e, item)}
             onMouseLeave={(e) => handleMouseLeave(e, item)}
           >
-            <div
-              className='item-img'
-              style={{ backgroundImage: `url(${item.img})` }}
-            >
+            <div className="item-img" style={{ backgroundImage: `url(${item.img})` }}>
               {colorShiftOnHover && (
                 <div
-                  className='color-overlay'
+                  className="color-overlay"
                   style={{
                     position: 'absolute',
                     top: 0,
                     left: 0,
                     width: '100%',
                     height: '100%',
-                    background:
-                      'linear-gradient(45deg, rgba(255,0,150,0.5), rgba(0,150,255,0.5))',
+                    background: 'linear-gradient(45deg, rgba(255,0,150,0.5), rgba(0,150,255,0.5))',
                     opacity: 0,
                     pointerEvents: 'none',
                     borderRadius: '8px',

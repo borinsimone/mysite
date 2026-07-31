@@ -9,11 +9,7 @@
   color: #eef2fb;
   background-color: #090c13;
   background:
-    radial-gradient(
-      circle at 82% 26%,
-      rgba(255, 45, 85, 0.12) 0,
-      rgba(255, 45, 85, 0) 38%
-    ),
+    radial-gradient(circle at 82% 26%, rgba(255, 45, 85, 0.12) 0, rgba(255, 45, 85, 0) 38%),
     linear-gradient(
       180deg,
       rgba(9, 12, 19, 0) 0%,
@@ -77,11 +73,7 @@
   padding: 28px;
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(
-    170deg,
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0.01)
-  );
+  background: linear-gradient(170deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -104,8 +96,7 @@
   padding: 20px 22px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background:
-    linear-gradient(150deg, rgba(255, 68, 98, 0.12), rgba(255, 68, 98, 0.02)),
-    rgba(17, 20, 30, 0.9);
+    linear-gradient(150deg, rgba(255, 68, 98, 0.12), rgba(255, 68, 98, 0.02)), rgba(17, 20, 30, 0.9);
   display: flex;
   flex-direction: column;
   gap: 4px;

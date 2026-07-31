@@ -8,16 +8,8 @@
   color: #eef2fb;
   background-color: #090c13;
   background:
-    radial-gradient(
-      circle at 10% 70%,
-      rgba(255, 45, 85, 0.09) 0,
-      rgba(255, 45, 85, 0) 40%
-    ),
-    radial-gradient(
-      circle at 90% 10%,
-      rgba(77, 140, 255, 0.07) 0,
-      rgba(77, 140, 255, 0) 40%
-    ),
+    radial-gradient(circle at 10% 70%, rgba(255, 45, 85, 0.09) 0, rgba(255, 45, 85, 0) 40%),
+    radial-gradient(circle at 90% 10%, rgba(77, 140, 255, 0.07) 0, rgba(77, 140, 255, 0) 40%),
     linear-gradient(180deg, #090c13 0%, #0a0d14 45%, #0b0d15 100%);
 
   > * {
@@ -61,11 +53,7 @@
     border-radius: 18px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     background:
-      linear-gradient(
-        160deg,
-        rgba(255, 255, 255, 0.04),
-        rgba(255, 255, 255, 0.01)
-      ),
+      linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
       rgba(12, 15, 24, 0.9) !important;
     min-height: 180px;
     aspect-ratio: 16 / 9;

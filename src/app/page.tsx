@@ -7,16 +7,15 @@ import About from './about/About';
 import Services from './services/Services';
 import Contact from './contact/Contact';
 import Project from './project/project';
+import Navbar from './components/navbar/Navbar';
 export default function Home() {
   return (
     <>
       <IntroSplash />
       <div className={styles.page}>
-        <Sidebar />
-        <div
-          id='main-scroll-container'
-          className={styles['section-container']}
-        >
+        {/* <Sidebar /> */}
+        <Navbar />
+        <div id="main-scroll-container" className={styles['section-container']}>
           <ScrollReveal />
           <HomePage />
           <About />

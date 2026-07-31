@@ -49,13 +49,10 @@ const services = [
 
 function Services() {
   return (
-    <section
-      id='services'
-      className={styles.services}
-    >
+    <section id="services" className={styles.services}>
       <div
         className={styles.header}
-        data-reveal='true'
+        data-reveal="true"
         style={{ ['--reveal-delay' as string]: '0ms' }}
       >
         <p className={styles.kicker}>What I do</p>
@@ -64,12 +61,12 @@ function Services() {
 
       <div
         className={styles.bentoWrap}
-        data-reveal='true'
+        data-reveal="true"
         style={{ ['--reveal-delay' as string]: '90ms' }}
       >
         <MagicBento
           items={services}
-          layout='uniform'
+          layout="uniform"
           textAutoHide={false}
           enableStars
           enableSpotlight
@@ -77,7 +74,7 @@ function Services() {
           enableTilt
           enableMagnetism
           clickEffect
-          glowColor='255, 45, 85'
+          glowColor="255, 45, 85"
           spotlightRadius={280}
           particleCount={10}
         />
@@ -85,11 +82,11 @@ function Services() {
 
       <div
         className={styles.cta}
-        data-reveal='true'
+        data-reveal="true"
         style={{ ['--reveal-delay' as string]: '170ms' }}
       >
         <p>Hai un progetto in mente o vuoi sapere come posso aiutarti?</p>
-        <a href='mailto:hello@simone.dev'>Parliamone</a>
+        <a href="mailto:hello@simone.dev">Parliamone</a>
       </div>
     </section>
   );

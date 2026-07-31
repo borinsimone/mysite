@@ -13,17 +13,14 @@ function IntroSplash() {
       return;
     }
 
-    const seenInSession =
-      window.sessionStorage.getItem(SPLASH_SESSION_KEY) === '1';
+    const seenInSession = window.sessionStorage.getItem(SPLASH_SESSION_KEY) === '1';
 
     if (seenInSession) {
       setPhase('done');
       return;
     }
 
-    const reducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const showDuration = reducedMotion ? 420 : 2200;
     const hideDuration = reducedMotion ? 180 : 620;
@@ -48,15 +45,12 @@ function IntroSplash() {
   }
 
   return (
-    <div
-      className={`${styles.splash} ${phase === 'hide' ? styles.hide : ''}`}
-      aria-hidden='true'
-    >
+    <div className={`${styles.splash} ${phase === 'hide' ? styles.hide : ''}`} aria-hidden="true">
       <div className={styles.grain} />
       <div className={styles.glow} />
       <div className={styles.content}>
         <p className={styles.kicker}>Simone Borin</p>
-        <h1>Il tuo amichevole sviluppatore di quartiere</h1>
+        {/* <h1>Il tuo amichevole sviluppatore di quartiere</h1> */}
         <span className={styles.line} />
       </div>
     </div>

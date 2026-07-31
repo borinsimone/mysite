@@ -204,8 +204,7 @@
 
 @keyframes particle {
   0% {
-    transform: rotate(0deg)
-      translate(calc(var(--start-x)), calc(var(--start-y)));
+    transform: rotate(0deg) translate(calc(var(--start-x)), calc(var(--start-y)));
     opacity: 1;
     animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
   }
@@ -218,8 +217,7 @@
   }
 
   85% {
-    transform: rotate(calc(var(--rotate) * 0.66))
-      translate(calc(var(--end-x)), calc(var(--end-y)));
+    transform: rotate(calc(var(--rotate) * 0.66)) translate(calc(var(--end-x)), calc(var(--end-y)));
     opacity: 1;
   }
 

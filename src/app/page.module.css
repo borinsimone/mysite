@@ -8,7 +8,7 @@
   --button-primary-hover: #383838;
   --button-secondary-hover: #f2f2f2;
   --button-secondary-border: #ebebeb;
-
+  position: relative;
   display: flex;
   flex: 1;
   height: 100dvh;
@@ -146,8 +146,7 @@ a.secondary {
 .section-container {
   flex: 1;
   height: 100dvh;
-  margin-left: 250px;
-  width: calc(100% - 250px);
+
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin;

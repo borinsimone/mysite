@@ -149,11 +149,7 @@ const ParticleCard: React.FC<{
 
     const { width, height } = cardRef.current.getBoundingClientRect();
     memoizedParticles.current = Array.from({ length: particleCount }, () =>
-      createParticleElement(
-        Math.random() * width,
-        Math.random() * height,
-        glowColor,
-      ),
+      createParticleElement(Math.random() * width, Math.random() * height, glowColor),
     );
     particlesInitialized.current = true;
   }, [particleCount, glowColor]);
@@ -448,8 +444,7 @@ const GlobalSpotlight: React.FC<{
         return;
       }
 
-      const { proximity, fadeDistance } =
-        calculateSpotlightValues(spotlightRadius);
+      const { proximity, fadeDistance } = calculateSpotlightValues(spotlightRadius);
       let minDistance = Infinity;
 
       cards.forEach((card) => {
@@ -468,17 +463,10 @@ const GlobalSpotlight: React.FC<{
         if (effectiveDistance <= proximity) {
           glowIntensity = 1;
         } else if (effectiveDistance <= fadeDistance) {
-          glowIntensity =
-            (fadeDistance - effectiveDistance) / (fadeDistance - proximity);
+          glowIntensity = (fadeDistance - effectiveDistance) / (fadeDistance - proximity);
         }
 
-        updateCardGlowProperties(
-          cardElement,
-          e.clientX,
-          e.clientY,
-          glowIntensity,
-          spotlightRadius,
-        );
+        updateCardGlowProperties(cardElement, e.clientX, e.clientY, glowIntensity, spotlightRadius);
       });
 
       gsap.to(spotlightRef.current, {
@@ -546,8 +534,7 @@ const useMobileDetection = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () =>
-      setIsMobile(window.innerWidth <= MOBILE_BREAKPOINT);
+    const checkMobile = () => setIsMobile(window.innerWidth <= MOBILE_BREAKPOINT);
 
     checkMobile();
     window.addEventListener('resize', checkMobile);
@@ -590,10 +577,7 @@ const MagicBento: React.FC<BentoProps> = ({
         />
       )}
 
-      <BentoCardGrid
-        gridRef={gridRef}
-        layout={layout}
-      >
+      <BentoCardGrid gridRef={gridRef} layout={layout}>
         {list.map((card, index) => {
           const baseClassName = `magic-bento-card ${textAutoHide ? 'magic-bento-card--text-autohide' : ''} ${enableBorderGlow ? 'magic-bento-card--border-glow' : ''}`;
           const cardProps = {
@@ -616,14 +600,12 @@ const MagicBento: React.FC<BentoProps> = ({
                 clickEffect={clickEffect}
                 enableMagnetism={enableMagnetism}
               >
-                <div className='magic-bento-card__header'>
-                  <div className='magic-bento-card__label'>{card.label}</div>
+                <div className="magic-bento-card__header">
+                  <div className="magic-bento-card__label">{card.label}</div>
                 </div>
-                <div className='magic-bento-card__content'>
-                  <h2 className='magic-bento-card__title'>{card.title}</h2>
-                  <p className='magic-bento-card__description'>
-                    {card.description}
-                  </p>
+                <div className="magic-bento-card__content">
+                  <h2 className="magic-bento-card__title">{card.title}</h2>
+                  <p className="magic-bento-card__description">{card.description}</p>
                 </div>
               </ParticleCard>
             );
@@ -742,14 +724,12 @@ const MagicBento: React.FC<BentoProps> = ({
                 el.addEventListener('click', handleClick);
               }}
             >
-              <div className='magic-bento-card__header'>
-                <div className='magic-bento-card__label'>{card.label}</div>
+              <div className="magic-bento-card__header">
+                <div className="magic-bento-card__label">{card.label}</div>
               </div>
-              <div className='magic-bento-card__content'>
-                <h2 className='magic-bento-card__title'>{card.title}</h2>
-                <p className='magic-bento-card__description'>
-                  {card.description}
-                </p>
+              <div className="magic-bento-card__content">
+                <h2 className="magic-bento-card__title">{card.title}</h2>
+                <p className="magic-bento-card__description">{card.description}</p>
               </div>
             </div>
           );

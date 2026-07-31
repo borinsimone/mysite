@@ -70,9 +70,7 @@ function Sidebar() {
         return;
       }
 
-      const activeItem = shell.querySelector(
-        '.sidebarGooeyNav nav ul li.active',
-      );
+      const activeItem = shell.querySelector('.sidebarGooeyNav nav ul li.active');
       if (!activeItem) {
         setPillStyle((prev) => ({ ...prev, opacity: 0 }));
         return;
@@ -192,9 +190,7 @@ function Sidebar() {
     lockSpy(targetId);
     setActiveLink(targetId);
 
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobile = window.matchMedia('(max-width: 860px)').matches;
     const targetTop =
       target.getBoundingClientRect().top -
@@ -240,8 +236,7 @@ function Sidebar() {
     const distance = finalTop - start;
     const duration = 900;
     const startTime = performance.now();
-    const easeInOutCubic = (t) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
     if (animationRef.current) {
       window.cancelAnimationFrame(animationRef.current);
@@ -265,7 +260,7 @@ function Sidebar() {
 
   return (
     <>
-      <div className='menuToggle'>
+      <div className="menuToggle">
         <Hamburger
           toggled={isOpen}
           toggle={setIsOpen}
@@ -273,40 +268,31 @@ function Sidebar() {
           rounded
           duration={0.35}
           size={22}
-          color='#f3f5f8'
+          color="#f3f5f8"
         />
       </div>
 
       {isOpen && (
         <button
-          type='button'
-          className='sidebarBackdrop'
-          aria-label='Close menu overlay'
+          type="button"
+          className="sidebarBackdrop"
+          aria-label="Close menu overlay"
           onClick={() => setIsOpen(false)}
         />
       )}
 
       <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
-        <div className='brand'>
-          <span
-            className='corner cornerTop'
-            aria-hidden='true'
-          />
-          <div className='logo'>
+        <div className="brand">
+          <span className="corner cornerTop" aria-hidden="true" />
+          <div className="logo">
             Borin <span>project</span>
           </div>
-          <span
-            className='corner cornerBottom'
-            aria-hidden='true'
-          />
+          <span className="corner cornerBottom" aria-hidden="true" />
         </div>
 
-        <nav
-          className='nav'
-          aria-label='Main navigation'
-        >
+        <nav className="nav" aria-label="Main navigation">
           <div
-            className='sidebarGooeyShell'
+            className="sidebarGooeyShell"
             ref={gooeyShellRef}
             style={{
               '--pill-top': `${pillStyle.top}px`,
@@ -314,12 +300,9 @@ function Sidebar() {
               '--pill-opacity': pillStyle.opacity,
             }}
           >
-            <span
-              className='sidebarActivePill'
-              aria-hidden='true'
-            />
+            <span className="sidebarActivePill" aria-hidden="true" />
             <GooeyNav
-              className='sidebarGooeyNav'
+              className="sidebarGooeyNav"
               vertical
               items={navLinks.map((link) => ({
                 label: link.label,
