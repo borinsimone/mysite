@@ -5,9 +5,14 @@ import SpecularButton from '../components/specular-button/SpecularButton';
 import Lightfall from '../components/lightfall/Lightfall';
 import GlassSurface from '../components/glass-surface/GlassSurface';
 import Antigravity from '../components/antigravitybg/Antigravity';
+import CardSwap, { Card } from '../components/card-swap/CardSwap';
 const SERVICE_TAGS = [
   {
+    eyebrow: 'UI / UX DESIGN',
     label: 'Web Design',
+    title: 'Esperienze digitali su misura',
+    description: 'Struttura e gerarchia visiva chiare, orientate agli obiettivi del brand.',
+    chips: ['UX Research', 'UI Design', 'Prototype'],
     icon: (
       <svg
         width="14"
@@ -26,7 +31,11 @@ const SERVICE_TAGS = [
     ),
   },
   {
+    eyebrow: 'WEB DEVELOPMENT',
     label: 'Frontend Development',
+    title: 'Siti web veloci e performanti',
+    description: 'Interfacce moderne e mantenibili, costruite con attenzione a UX e scalabilita.',
+    chips: ['React', 'Next.js', 'TypeScript'],
     icon: (
       <svg
         width="14"
@@ -44,7 +53,11 @@ const SERVICE_TAGS = [
     ),
   },
   {
+    eyebrow: 'PERFORMANCE',
     label: 'Performance',
+    title: 'Caricamenti rapidi e fluidi',
+    description: 'Ottimizzazione caricamento e rendering per un sito rapido e reattivo.',
+    chips: ['Core Web Vitals', 'Caching', 'Image Opt'],
     icon: (
       <svg
         width="14"
@@ -61,7 +74,11 @@ const SERVICE_TAGS = [
     ),
   },
   {
+    eyebrow: 'SEO',
     label: 'SEO Base',
+    title: 'Fondamenta SEO solide',
+    description: 'Fondamenta tecniche e contenutistiche per migliorare la visibilita organica.',
+    chips: ['Metadata', 'Schema', 'Struttura'],
     icon: (
       <svg
         width="14"
@@ -79,7 +96,11 @@ const SERVICE_TAGS = [
     ),
   },
   {
+    eyebrow: 'MOTION',
     label: 'Motion',
+    title: 'Movimenti che guidano l attenzione',
+    description: 'Micro-animazioni e transizioni che guidano l attenzione senza distrarre.',
+    chips: ['Microinteraction', 'Transition', 'Reveal'],
     icon: (
       <svg
         width="14"
@@ -219,17 +240,72 @@ function Home() {
           </SpecularButton>
         </div>
       </div>
-      <div className={styles.servicesTags}>
-        {SERVICE_TAGS.map((item, i, arr) => (
-          <React.Fragment key={item.label}>
-            <span className={styles.servicesTag}>
-              <span className={styles.servicesTagIcon}>{item.icon}</span>
-              {item.label}
-            </span>
-            {i < arr.length - 1 && <span className={styles.servicesDivider} />}
-          </React.Fragment>
-        ))}
-      </div>{' '}
+      <div className={styles.servicesCardsSwap}>
+        <CardSwap
+          width="min(86vw, 460px)"
+          height="clamp(200px, 40vw, 340px)"
+          cardDistance={44}
+          verticalDistance={48}
+          delay={3200}
+          pauseOnHover={false}
+        >
+          {SERVICE_TAGS.map((item, index) => (
+            <Card key={item.label} customClass={styles.serviceSwapCard}>
+              <div className={styles.serviceSwapCardTop}>
+                <span className={styles.serviceSwapEyebrow}>{item.eyebrow}</span>
+                {/* <div className={styles.serviceSwapDots} aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </div> */}
+              </div>
+
+              <div className={styles.serviceSwapBody}>
+                <div className={styles.serviceSwapMeta}>
+                  <span className={styles.serviceSwapIndex}>0{index + 1}</span>
+                  <span className={styles.serviceSwapLabel}>{item.label}</span>
+                </div>
+                <h3 className={styles.serviceSwapTitle}>{item.title}</h3>
+                <p className={styles.serviceSwapDescription}>{item.description}</p>
+              </div>
+
+              <div className={styles.serviceSwapBottom}>
+                <div className={styles.serviceSwapChips}>
+                  {item.chips.map((chip) => (
+                    <span key={chip} className={styles.serviceSwapChip}>
+                      {chip}
+                    </span>
+                  ))}
+                </div>
+                <span className={styles.serviceSwapArrow} aria-hidden="true">
+                  ↗
+                </span>
+              </div>
+            </Card>
+          ))}
+        </CardSwap>
+
+        {/* <CardSwap
+          width="min(92vw, 520px)"
+          height={220}
+          cardDistance={22}
+          verticalDistance={16}
+          delay={3200}
+          pauseOnHover
+          skewAmount={2}
+          easing="elastic"
+        >
+          {SERVICE_TAGS.map((item) => (
+            <article key={item.label} className={styles.serviceCard}>
+              <div className={styles.serviceCardHead}>
+                <span className={styles.serviceCardIcon}>{item.icon}</span>
+                <h3 className={styles.serviceCardTitle}>{item.label}</h3>
+              </div>
+              <p className={styles.serviceCardDescription}>{item.description}</p>
+            </article>
+          ))}
+        </CardSwap> */}
+      </div>
     </div>
   );
 }

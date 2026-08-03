@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import './Navbar.css';
-
+import OptionWheel from '../optionwheel/OptionWheel';
 const NAV_LINKS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'Chi Sono' },
@@ -12,6 +12,8 @@ const NAV_LINKS = [
 ];
 
 function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const onSectionClick = (event: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     event.preventDefault();
 
@@ -26,6 +28,12 @@ function Navbar() {
       top: Math.max(target.offsetTop - topOffset, 0),
       behavior: 'smooth',
     });
+
+    setIsMobileMenuOpen(false);
+  };
+
+  const onToggleMobileMenu = () => {
+    setIsMobileMenuOpen((prevState) => !prevState);
   };
 
   return (
@@ -40,8 +48,45 @@ function Navbar() {
             SB
           </a>
 
-          <nav className="navbar-links" aria-label="Navigazione principale">
-            {NAV_LINKS.map((item) => (
+          <button
+            type="button"
+            className={`navbar-toggle ${isMobileMenuOpen ? 'is-open' : ''}`}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="navbar-mobile-links"
+            aria-label="Apri o chiudi menu di navigazione"
+            onClick={onToggleMobileMenu}
+          >
+            <span className="navbar-toggle-line" />
+            <span className="navbar-toggle-line" />
+            <span className="navbar-toggle-line" />
+          </button>
+
+          <nav
+            id="navbar-mobile-links"
+            className={`navbar-links ${isMobileMenuOpen ? 'is-open' : ''}`}
+            aria-label="Navigazione principale"
+          >
+            <OptionWheel
+              items={NAV_LINKS.map((item) => item.label)}
+              defaultSelected={0}
+              textColor="#a6a6a6"
+              activeColor="#ffffff"
+              side="left"
+              fontSize={3}
+              spacing={1.4}
+              curve={1}
+              tilt={6}
+              blur={2}
+              fade={0.25}
+              smoothing={200}
+              inset={80}
+              loop={false}
+              draggable
+              soundUrl="/assets/sounds/click-soft.mp3"
+              soundVolume={0.5}
+              onChange={(index, item) => console.log(index, item)}
+            />
+            {/* {NAV_LINKS.map((item) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
@@ -50,7 +95,7 @@ function Navbar() {
               >
                 {item.label}
               </a>
-            ))}
+            ))} */}
           </nav>
         </div>
       </div>
