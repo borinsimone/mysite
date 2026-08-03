@@ -4,6 +4,98 @@ import styles from './home.module.scss';
 import SpecularButton from '../components/specular-button/SpecularButton';
 import Lightfall from '../components/lightfall/Lightfall';
 import GlassSurface from '../components/glass-surface/GlassSurface';
+import Antigravity from '../components/antigravitybg/Antigravity';
+const SERVICE_TAGS = [
+  {
+    label: 'Web Design',
+    icon: (
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <rect x="2" y="3" width="20" height="14" rx="2" />
+        <line x1="8" y1="21" x2="16" y2="21" />
+        <line x1="12" y1="17" x2="12" y2="21" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Frontend Development',
+    icon: (
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <polyline points="16 18 22 12 16 6" />
+        <polyline points="8 6 2 12 8 18" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Performance',
+    icon: (
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+      </svg>
+    ),
+  },
+  {
+    label: 'SEO Base',
+    icon: (
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Motion',
+    icon: (
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M2 12 Q6 6 12 12 Q18 18 22 12" />
+      </svg>
+    ),
+  },
+];
 
 function GlassSpecularButton({ children }: { children: React.ReactNode }) {
   return (
@@ -52,7 +144,7 @@ function Home() {
 
   return (
     <div className={styles.home} id="home">
-      <Lightfall
+      {/* <Lightfall
         className={styles.lightfallBg}
         colors={['#1a0b12', '#4a1121', '#ff2d55']}
         backgroundColor="#09060a"
@@ -69,7 +161,26 @@ function Home() {
         mouseInteraction
         mouseStrength={0.5}
         mouseRadius={1}
-      />
+      /> */}
+      <div className={styles.lightfallBg}>
+        <Antigravity
+          count={900}
+          magnetRadius={6}
+          ringRadius={7}
+          waveSpeed={0.4}
+          waveAmplitude={1}
+          particleSize={0.3}
+          lerpSpeed={0.05}
+          color="#EF4444"
+          autoAnimate
+          particleVariance={1}
+          rotationSpeed={0}
+          depthFactor={1}
+          pulseSpeed={3}
+          particleShape="tetrahedron"
+          fieldStrength={10}
+        />
+      </div>
       <div className={styles.heroContent}>
         <p className={styles.kicker}>Siti web su misura, pensati per crescere</p>
 
@@ -108,6 +219,17 @@ function Home() {
           </SpecularButton>
         </div>
       </div>
+      <div className={styles.servicesTags}>
+        {SERVICE_TAGS.map((item, i, arr) => (
+          <React.Fragment key={item.label}>
+            <span className={styles.servicesTag}>
+              <span className={styles.servicesTagIcon}>{item.icon}</span>
+              {item.label}
+            </span>
+            {i < arr.length - 1 && <span className={styles.servicesDivider} />}
+          </React.Fragment>
+        ))}
+      </div>{' '}
     </div>
   );
 }

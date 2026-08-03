@@ -2,7 +2,6 @@
 
 import React from 'react';
 import './Navbar.css';
-import GlassSurface from '../glass-surface/GlassSurface';
 
 const NAV_LINKS = [
   { id: 'home', label: 'Home' },
@@ -31,20 +30,7 @@ function Navbar() {
 
   return (
     <header className="navbar-shell">
-      <GlassSurface
-        className="navbar-container"
-        width="90%"
-        displace={0.5}
-        distortionScale={-180}
-        redOffset={0}
-        greenOffset={0}
-        blueOffset={0}
-        brightness={100}
-        opacity={0.1}
-        mixBlendMode="screen"
-
-        borderRadius={50}
-      >
+      <div className="navbar-container">
         <div className="navbar-inner">
           <a
             href="#home"
@@ -67,7 +53,7 @@ function Navbar() {
             ))}
           </nav>
         </div>
-      </GlassSurface>
+      </div>
     </header>
   );
 }

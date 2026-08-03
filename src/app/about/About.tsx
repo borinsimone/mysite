@@ -1,73 +1,47 @@
 import React from 'react';
 import styles from './about.module.scss';
 
+const stats = [
+  { value: '6+', label: 'Anni di esperienza' },
+  { value: '80+', label: 'Progetti completati' },
+  { value: '40+', label: 'Clienti soddisfatti' },
+  { value: '100%', label: 'Focus sui risultati' },
+];
+
 function About() {
   return (
     <section id="about" className={styles.about}>
-      <div
-        className={styles.header}
-        data-reveal="true"
-        style={{ ['--reveal-delay' as string]: '0ms' }}
-      >
-        
-        <h2>Costruisco esperienze digitali affidabili e orientate ai risultati</h2>
-      </div>
+      <div className={styles['section-container']}>
+        <div className={styles.inner}>
+          {/* Left column */}
+          <div className={styles.content}>
+            <p className={styles.kicker}>Chi sono</p>
 
-      <div
-        className={styles.grid}
-        data-reveal="true"
-        style={{ ['--reveal-delay' as string]: '90ms' }}
-      >
-        <article className={styles.story}>
-          <p>
-            Sono Simone, frontend developer freelance. Mi occupo di progettare interfacce moderne
-            con attenzione a performance, usabilita e manutenibilita del codice.
-          </p>
-          <p>
-            Lavoro con clienti che vogliono una presenza online professionale: sito vetrina, landing
-            page o dashboard, sempre con un approccio pragmatico e orientato al business.
-          </p>
-          <p>
-            Ogni progetto parte da obiettivi chiari e si chiude con consegne pulite, documentate e
-            pronte per evolvere.
-          </p>
-        </article>
+            <h2 className={styles.title}>
+              Design pulito.
+              <br />
+              Codice solido.
+              <br />
+              <span>Risultati concreti.</span>
+            </h2>
 
-        <aside className={styles.metrics}>
-          <div className={styles.metricCard}>
-            <strong>40+</strong>
-            <span>Progetti realizzati</span>
+            <p className={styles.lead}>
+              Sono Simone Borin, web designer e developer freelance. Creo siti web che unissono
+              estetica, usabilità e performance per trasformare idee in esperienze digitali
+              efficaci.
+            </p>
           </div>
-          <div className={styles.metricCard}>
-            <strong>5+</strong>
-            <span>Anni di esperienza</span>
-          </div>
-          <div className={styles.metricCard}>
-            <strong>95%</strong>
-            <span>Clienti soddisfatti</span>
-          </div>
-        </aside>
-      </div>
 
-      <div
-        className={styles.footer}
-        data-reveal="true"
-        style={{ ['--reveal-delay' as string]: '170ms' }}
-      >
-        <div className={styles.stack}>
-          <h3>Stack preferito</h3>
-          <ul>
-            <li>React</li>
-            <li>Next.js</li>
-            <li>TypeScript</li>
-            <li>SCSS</li>
-            <li>Node.js</li>
-          </ul>
-        </div>
-
-        <div className={styles.ctaBox}>
-          <p>Hai un progetto in mente? Partiamo da una call di 20 minuti.</p>
-          <a href="mailto:hello@simone.dev">Prenota una call</a>
+          {/* Right column – photo card */}
+          <div className={styles.photoCard}>
+            <div className={styles.avatar}>SB</div>
+            {/* Replace div below with: <img src="/photo.jpg" alt="Simone Borin" className={styles.photo} /> */}
+            <div className={styles.photoPlaceholder} />
+            <div className={styles.focusBar}>
+              <span className={styles.focusLabel}>Focus</span>
+              <p>Qualità, comunicazione, attenzione ai dettagli.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

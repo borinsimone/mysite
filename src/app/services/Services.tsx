@@ -1,92 +1,163 @@
 'use client';
 import React from 'react';
 import styles from './services.module.scss';
-import MagicBento from '../components/bento/MagicBento';
-const services = [
+
+const serviceCards = [
   {
-    label: 'Build',
-    title: 'Web Development',
+    title: 'Siti vetrina',
     description:
-      'Siti vetrina, landing page e web app performanti. Codice pulito, SEO-ready e ottimizzato per la conversione.',
-    color: '#120f17',
+      'Siti professionali, veloci e facili da gestire, ideali per presentare la tua attività e attirare nuovi clienti.',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2" />
+        <line x1="8" y1="21" x2="16" y2="21" />
+        <line x1="12" y1="17" x2="12" y2="21" />
+      </svg>
+    ),
   },
   {
-    label: 'Automate',
-    title: 'AI & Automazioni',
+    title: 'Landing page',
     description:
-      'Integro modelli AI e automazioni su misura per eliminare attività ripetitive e far scalare il tuo business.',
-    color: '#130f1b',
+      'Pagine ad alto impatto pensate per convertire, promuovere un servizio o lanciare un prodotto.',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+        <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+        <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+        <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+      </svg>
+    ),
   },
   {
-    label: 'Growth',
-    title: 'SEO & Traffico',
+    title: 'Web app / gestionali',
     description:
-      'Strategia SEO tecnica e on-page per portare traffico qualificato e migliorare il posizionamento organico.',
-    color: '#121019',
+      'Soluzioni web personalizzate per automatizzare processi e semplificare la gestione della tua attività.',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <ellipse cx="12" cy="5" rx="9" ry="3" />
+        <path d="M3 5v6c0 1.66 4.03 3 9 3s9-1.34 9-3V5" />
+        <path d="M3 11v6c0 1.66 4.03 3 9 3s9-1.34 9-3v-6" />
+      </svg>
+    ),
   },
   {
-    label: 'Design',
-    title: 'UI/UX Design',
+    title: 'Restyling e ottimizzazione',
     description:
-      "Interfacce intuitive progettate attorno all'utente. Dal wireframe al prodotto finito, con un occhio al dettaglio.",
-    color: '#150f17',
+      'Rinnovo l\'aspetto e miglioro le performance di siti esistenti per renderli moderni ed efficaci.',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+        <path d="M3 3v5h5" />
+      </svg>
+    ),
+  },
+];
+
+const steps = [
+  {
+    number: '01',
+    title: 'Ascolto',
+    description:
+      'Conosco i tuoi obiettivi, analizzo il contesto e definisco le priorità del progetto.',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        <line x1="9" y1="10" x2="15" y2="10" />
+        <line x1="12" y1="7" x2="12" y2="13" />
+      </svg>
+    ),
   },
   {
-    label: 'Insights',
-    title: 'Dashboard',
+    number: '02',
+    title: 'Strategia',
     description:
-      'Dashboard interattive per monitorare KPI, dati e analytics in tempo reale. Chiare, veloci e personalizzate.',
-    color: '#121018',
+      'Creo la struttura, definisco contenuti e funzionalità per ottenere risultati concreti.',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="12" r="6" />
+        <circle cx="12" cy="12" r="2" />
+      </svg>
+    ),
   },
   {
-    label: 'Ops',
-    title: 'Gestionali',
+    number: '03',
+    title: 'Design',
     description:
-      'Applicativi custom per gestire clienti, ordini, prodotti e processi interni. Scalabili e su misura.',
-    color: '#10121a',
+      "Progetto un'interfaccia chiara, coerente e intuitiva, centrata sull'utente.",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+      </svg>
+    ),
+  },
+  {
+    number: '04',
+    title: 'Sviluppo',
+    description:
+      'Sviluppo con codice pulito, performante e scalabile. Testo, ottimizzo e pubblico.',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="16 18 22 12 16 6" />
+        <polyline points="8 6 2 12 8 18" />
+      </svg>
+    ),
   },
 ];
 
 function Services() {
   return (
     <section id="services" className={styles.services}>
-      <div
-        className={styles.header}
-        data-reveal="true"
-        style={{ ['--reveal-delay' as string]: '0ms' }}
-      >
-        <p className={styles.kicker}>What I do</p>
-        <h2>Soluzioni digitali per ogni&nbsp;esigenza</h2>
-      </div>
+      <div className={styles['section-container']}>
 
-      <div
-        className={styles.bentoWrap}
-        data-reveal="true"
-        style={{ ['--reveal-delay' as string]: '90ms' }}
-      >
-        <MagicBento
-          items={services}
-          layout="uniform"
-          textAutoHide={false}
-          enableStars
-          enableSpotlight
-          enableBorderGlow
-          enableTilt
-          enableMagnetism
-          clickEffect
-          glowColor="255, 45, 85"
-          spotlightRadius={280}
-          particleCount={10}
-        />
-      </div>
+        {/* --- Services grid --- */}
+        <div className={styles.header}>
+          <p className={styles.kicker}>Servizi</p>
+          <h2>Soluzioni digitali su misura</h2>
+          <p className={styles.lead}>
+            Ogni progetto è pensato per rispondere a obiettivi reali,<br />
+            con un approccio strategico e orientato ai risultati.
+          </p>
+        </div>
 
-      <div
-        className={styles.cta}
-        data-reveal="true"
-        style={{ ['--reveal-delay' as string]: '170ms' }}
-      >
-        <p>Hai un progetto in mente o vuoi sapere come posso aiutarti?</p>
-        <a href="mailto:hello@simone.dev">Parliamone</a>
+        <div className={styles.cards}>
+          {serviceCards.map((card) => (
+            <article key={card.title} className={styles.card}>
+              <span className={styles.cardIcon}>{card.icon}</span>
+              <h3 className={styles.cardTitle}>{card.title}</h3>
+              <p className={styles.cardDesc}>{card.description}</p>
+              <a href="#contact" className={styles.cardLink}>
+                Scopri di più <span aria-hidden>→</span>
+              </a>
+            </article>
+          ))}
+        </div>
+
+        {/* --- Process timeline --- */}
+        <div className={styles.process}>
+          <div className={styles.processHeader}>
+            <p className={styles.kicker}>Come lavoro</p>
+            <h2>Un processo chiaro, passo dopo passo.</h2>
+          </div>
+
+          <div className={styles.steps}>
+            {steps.map((step, i) => (
+              <React.Fragment key={step.number}>
+                <div className={styles.step}>
+                  <div className={styles.stepTop}>
+                    <span className={styles.stepNumber}>{step.number}</span>
+                    {i < steps.length - 1 && <span className={styles.stepLine} />}
+                  </div>
+                  <span className={styles.stepIcon}>{step.icon}</span>
+                  <h4 className={styles.stepTitle}>{step.title}</h4>
+                  <p className={styles.stepDesc}>{step.description}</p>
+                </div>
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );
