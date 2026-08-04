@@ -1,17 +1,20 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './home.module.scss';
 import SpecularButton from '../components/specular-button/SpecularButton';
 import Lightfall from '../components/lightfall/Lightfall';
 import GlassSurface from '../components/glass-surface/GlassSurface';
 import Antigravity from '../components/antigravitybg/Antigravity';
 import CardSwap, { Card } from '../components/card-swap/CardSwap';
+import Galaxy from '../components/galaxybg/Galaxy';
+import BorderGlow from '../components/borderGlow/BorderGlow';
 const SERVICE_TAGS = [
   {
     eyebrow: 'UI / UX DESIGN',
     label: 'Web Design',
     title: 'Esperienze digitali su misura',
     description: 'Struttura e gerarchia visiva chiare, orientate agli obiettivi del brand.',
+    modalDescription: `Un sito efficace non deve soltanto essere bello: deve aiutare le persone a capire subito chi sei, cosa offri e quale azione compiere. Una struttura chiara, una gerarchia visiva precisa e un'interfaccia coerente rendono la navigazione più semplice e naturale. Il risultato è un'esperienza progettata intorno ai tuoi obiettivi e alle reali esigenze dei tuoi utenti.`,
     chips: ['UX Research', 'UI Design', 'Prototype'],
     icon: (
       <svg
@@ -35,6 +38,7 @@ const SERVICE_TAGS = [
     label: 'Frontend Development',
     title: 'Siti web veloci e performanti',
     description: 'Interfacce moderne e mantenibili, costruite con attenzione a UX e scalabilita.',
+    modalDescription: `Un buon design ha bisogno di una base tecnica solida. Sviluppo interfacce moderne, responsive e affidabili, pensate per funzionare correttamente su ogni dispositivo. Un codice ordinato e mantenibile rende il sito più stabile, facilita gli aggiornamenti futuri e permette al progetto di crescere senza dover essere ricostruito da zero.`,
     chips: ['React', 'Next.js', 'TypeScript'],
     icon: (
       <svg
@@ -57,6 +61,7 @@ const SERVICE_TAGS = [
     label: 'Performance',
     title: 'Caricamenti rapidi e fluidi',
     description: 'Ottimizzazione caricamento e rendering per un sito rapido e reattivo.',
+    modalDescription: `La velocità influenza direttamente l'esperienza dell'utente. Un sito lento può far perdere attenzione, credibilità e potenziali clienti ancora prima che abbiano visto i contenuti. Ottimizzo immagini, risorse e rendering per ridurre i tempi di caricamento e garantire una navigazione fluida, reattiva e piacevole anche da smartphone.`,
     chips: ['Core Web Vitals', 'Caching', 'Image Opt'],
     icon: (
       <svg
@@ -78,6 +83,7 @@ const SERVICE_TAGS = [
     label: 'SEO Base',
     title: 'Fondamenta SEO solide',
     description: 'Fondamenta tecniche e contenutistiche per migliorare la visibilita organica.',
+    modalDescription: `Un sito ben realizzato deve poter essere compreso anche dai motori di ricerca. Una struttura corretta, contenuti organizzati, metadata e dati strutturati aiutano Google a interpretare le pagine e a mostrarle alle persone giuste. La SEO tecnica di base non garantisce automaticamente le prime posizioni, ma crea fondamenta solide per migliorare la visibilità nel tempo.`,
     chips: ['Metadata', 'Schema', 'Struttura'],
     icon: (
       <svg
@@ -100,6 +106,7 @@ const SERVICE_TAGS = [
     label: 'Motion',
     title: 'Movimenti che guidano l attenzione',
     description: 'Micro-animazioni e transizioni che guidano l attenzione senza distrarre.',
+    modalDescription: `Le animazioni non devono essere semplici decorazioni. Quando sono progettate correttamente, aiutano a evidenziare le informazioni importanti, rendono più chiare le interazioni e accompagnano l'utente durante la navigazione. Micro-interazioni e transizioni coerenti danno personalità al sito senza rallentarlo o distrarre dai contenuti.`,
     chips: ['Microinteraction', 'Transition', 'Reveal'],
     icon: (
       <svg
@@ -149,6 +156,8 @@ function GlassSpecularButton({ children }: { children: React.ReactNode }) {
 }
 
 function Home() {
+  const [selectedCard, setSelectedCard] = useState<(typeof SERVICE_TAGS)[0] | null>(null);
+
   const scrollToContact = () => {
     const target = document.getElementById('contact');
     const scrollContainer = document.getElementById('main-scroll-container');
@@ -184,7 +193,7 @@ function Home() {
         mouseRadius={1}
       /> */}
       <div className={styles.lightfallBg}>
-        <Antigravity
+        {/* <Antigravity
           count={900}
           magnetRadius={6}
           ringRadius={7}
@@ -200,6 +209,20 @@ function Home() {
           pulseSpeed={3}
           particleShape="tetrahedron"
           fieldStrength={10}
+        /> */}
+        <Galaxy
+          mouseRepulsion
+          mouseInteraction
+          density={1}
+          glowIntensity={0.5}
+          saturation={0}
+          hueShift={140}
+          twinkleIntensity={0.3}
+          rotationSpeed={0.1}
+          repulsionStrength={2}
+          autoCenterRepulsion={0}
+          starSpeed={0.5}
+          speed={1}
         />
       </div>
       <div className={styles.heroContent}>
@@ -248,6 +271,7 @@ function Home() {
           verticalDistance={48}
           delay={3200}
           pauseOnHover={false}
+          onCardClick={(idx) => setSelectedCard(SERVICE_TAGS[idx])}
         >
           {SERVICE_TAGS.map((item, index) => (
             <Card key={item.label} customClass={styles.serviceSwapCard}>
@@ -257,7 +281,7 @@ function Home() {
                   <span />
                   <span />
                   <span />
-                </div> */}
+                  </div> */}
               </div>
 
               <div className={styles.serviceSwapBody}>
@@ -305,6 +329,45 @@ function Home() {
             </article>
           ))}
         </CardSwap> */}
+      </div>
+      {selectedCard && (
+        <div className={styles.modalOverlay} onClick={() => setSelectedCard(null)}>
+          <BorderGlow
+            edgeSensitivity={30}
+            glowColor="255 45 85"
+            backgroundColor="#120F17"
+            borderRadius={28}
+            glowRadius={400}
+            glowIntensity={10}
+            coneSpread={25}
+            animated={false}
+            colors={['#ff2d55', '#ff6b8a', '#ff0033']}
+          >
+            <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+              <button
+                className={styles.modalClose}
+                onClick={() => setSelectedCard(null)}
+                aria-label="Chiudi"
+              >
+                ×
+              </button>
+              <span className={styles.modalEyebrow}>{selectedCard.eyebrow}</span>
+              <h2 className={styles.modalTitle}>{selectedCard.title}</h2>
+              <p className={styles.modalDescription}>{selectedCard.modalDescription}</p>
+              <div className={styles.modalChips}>
+                {selectedCard.chips.map((chip) => (
+                  <span key={chip} className={styles.serviceSwapChip}>
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </BorderGlow>
+        </div>
+      )}
+      <div className={styles.cardsHint} aria-hidden="true">
+        <span className={styles.cardsHintDot} />
+        Clicca sulle card per capire che funziona un sito
       </div>
     </div>
   );

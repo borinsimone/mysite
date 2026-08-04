@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './about.module.scss';
+import profilePhoto from './image.png';
 
 const stats = [
   { value: '6+', label: 'Anni di esperienza' },
@@ -32,15 +33,8 @@ function About() {
             </p>
           </div>
 
-          {/* Right column – photo card */}
-          <div className={styles.photoCard}>
-            <div className={styles.avatar}>SB</div>
-            {/* Replace div below with: <img src="/photo.jpg" alt="Simone Borin" className={styles.photo} /> */}
-            <div className={styles.photoPlaceholder} />
-            <div className={styles.focusBar}>
-              <span className={styles.focusLabel}>Focus</span>
-              <p>Qualità, comunicazione, attenzione ai dettagli.</p>
-            </div>
+          <div className={styles.photoWrap}>
+            <img src={profilePhoto.src} alt="Simone Borin" className={styles.photo} />
           </div>
         </div>
       </div>
