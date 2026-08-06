@@ -174,7 +174,8 @@ function Home() {
 
   return (
     <div className={styles.home} id="home">
-      {/* <Lightfall
+      <div className={styles.lightfallBg}>
+        {/* <Lightfall
         className={styles.lightfallBg}
         colors={['#1a0b12', '#4a1121', '#ff2d55']}
         backgroundColor="#09060a"
@@ -192,8 +193,7 @@ function Home() {
         mouseStrength={0.5}
         mouseRadius={1}
       /> */}
-      <div className={styles.lightfallBg}>
-        {/* <Antigravity
+        <Antigravity
           count={900}
           magnetRadius={6}
           ringRadius={7}
@@ -209,21 +209,21 @@ function Home() {
           pulseSpeed={3}
           particleShape="tetrahedron"
           fieldStrength={10}
-        /> */}
-        <Galaxy
+        />
+        {/* <Galaxy
           mouseRepulsion
           mouseInteraction
           density={1}
-          glowIntensity={0.5}
+          glowIntensity={0.1}
           saturation={0}
           hueShift={140}
           twinkleIntensity={0.3}
           rotationSpeed={0.1}
-          repulsionStrength={2}
+          repulsionStrength={1}
           autoCenterRepulsion={0}
           starSpeed={0.5}
           speed={1}
-        />
+        /> */}
       </div>
       <div className={styles.heroContent}>
         <p className={styles.kicker}>Siti web su misura, pensati per crescere</p>
