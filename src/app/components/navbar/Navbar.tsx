@@ -10,6 +10,8 @@ const NAV_LINKS = [
   { id: 'contact', label: 'Contatti' },
 ];
 
+const CTA_LINK = { id: 'contact', label: 'Iniziamo' };
+
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -61,7 +63,11 @@ function Navbar() {
             className="navbar-brand"
             onClick={(event) => onSectionClick(event, 'home')}
           >
-            SB
+            <span className="navbar-brand-mark" aria-hidden="true">
+              <span />
+              <span />
+            </span>
+            <span className="navbar-brand-text">Simone Borin</span>
           </a>
 
           <button
@@ -92,7 +98,23 @@ function Navbar() {
                 {item.label}
               </a>
             ))}
+
+            <a
+              href={`#${CTA_LINK.id}`}
+              className="navbar-cta navbar-cta-mobile"
+              onClick={(event) => onSectionClick(event, CTA_LINK.id)}
+            >
+              {CTA_LINK.label}
+            </a>
           </nav>
+
+          <a
+            href={`#${CTA_LINK.id}`}
+            className="navbar-cta navbar-cta-desktop"
+            onClick={(event) => onSectionClick(event, CTA_LINK.id)}
+          >
+            {CTA_LINK.label}
+          </a>
         </div>
       </div>
     </header>
