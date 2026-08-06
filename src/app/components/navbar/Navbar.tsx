@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Navbar.css';
-import OptionWheel from '../optionwheel/OptionWheel';
 const NAV_LINKS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'Chi Sono' },
@@ -14,6 +13,22 @@ const NAV_LINKS = [
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsMobileMenuOpen(false);
+    };
+    const closeOnDesktop = () => {
+      if (window.innerWidth > 860) setIsMobileMenuOpen(false);
+    };
+
+    window.addEventListener('keydown', closeOnEscape);
+    window.addEventListener('resize', closeOnDesktop);
+    return () => {
+      window.removeEventListener('keydown', closeOnEscape);
+      window.removeEventListener('resize', closeOnDesktop);
+    };
+  }, []);
+
   const onSectionClick = (event: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     event.preventDefault();
 
@@ -22,18 +37,19 @@ function Navbar() {
 
     if (!target || !scrollContainer) return;
 
-    const topOffset = 96;
+    const topOffset = window.innerWidth <= 860 ? 16 : 96;
+    const targetTop =
+      target.getBoundingClientRect().top -
+      scrollContainer.getBoundingClientRect().top +
+      scrollContainer.scrollTop;
 
     scrollContainer.scrollTo({
-      top: Math.max(target.offsetTop - topOffset, 0),
+      top: Math.max(targetTop - topOffset, 0),
       behavior: 'smooth',
     });
 
+    window.history.replaceState(null, '', `#${sectionId}`);
     setIsMobileMenuOpen(false);
-  };
-
-  const onToggleMobileMenu = () => {
-    setIsMobileMenuOpen((prevState) => !prevState);
   };
 
   return (
@@ -54,7 +70,7 @@ function Navbar() {
             aria-expanded={isMobileMenuOpen}
             aria-controls="navbar-mobile-links"
             aria-label="Apri o chiudi menu di navigazione"
-            onClick={onToggleMobileMenu}
+            onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
           >
             <span className="navbar-toggle-line" />
             <span className="navbar-toggle-line" />
@@ -66,27 +82,7 @@ function Navbar() {
             className={`navbar-links ${isMobileMenuOpen ? 'is-open' : ''}`}
             aria-label="Navigazione principale"
           >
-            <OptionWheel
-              items={NAV_LINKS.map((item) => item.label)}
-              defaultSelected={0}
-              textColor="#a6a6a6"
-              activeColor="#ffffff"
-              side="left"
-              fontSize={3}
-              spacing={1.4}
-              curve={1}
-              tilt={6}
-              blur={2}
-              fade={0.25}
-              smoothing={200}
-              inset={80}
-              loop={false}
-              draggable
-              soundUrl="/assets/sounds/click-soft.mp3"
-              soundVolume={0.5}
-              onChange={(index, item) => console.log(index, item)}
-            />
-            {/* {NAV_LINKS.map((item) => (
+            {NAV_LINKS.map((item) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
@@ -95,7 +91,7 @@ function Navbar() {
               >
                 {item.label}
               </a>
-            ))} */}
+            ))}
           </nav>
         </div>
       </div>

@@ -1,7 +1,9 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import styles from './services.module.scss';
 import BorderGlow from '../components/borderGlow/BorderGlow';
+import processImg from './serviceImgNobg.png';
 const serviceCards = [
   {
     title: 'Siti vetrina',
@@ -215,17 +217,18 @@ function Services() {
         <div className={styles.cards}>
           {serviceCards.map((card) => (
             <BorderGlow
+              key={card.title}
               edgeSensitivity={30}
               glowColor="255 45 85"
               backgroundColor="#120F17"
-              borderRadius={28}
-              glowRadius={400}
-              glowIntensity={10}
+              borderRadius={16}
+              glowRadius={40}
+              glowIntensity={2}
               coneSpread={25}
               animated={false}
               colors={['#ff2d55', '#ff6b8a', '#ff0033']}
             >
-              <article key={card.title} className={styles.card}>
+              <article className={styles.card}>
                 <span className={styles.cardIcon}>{card.icon}</span>
                 <h3 className={styles.cardTitle}>{card.title}</h3>
                 <p className={styles.cardDesc}>{card.description}</p>
@@ -250,40 +253,51 @@ function Services() {
               Un metodo collaudato per trasformare le tue idee in un sito web efficace.
             </p>
           </div>
-
-          <div className={styles.steps}>
-            {steps.map((step, i) => (
-              <div key={step.number} className={styles.stepRow}>
-                <div className={styles.stepLeft}>
-                  <div className={styles.stepCircle}>{step.number}</div>
-                  {i < steps.length - 1 && <span className={styles.stepConnector} />}
-                </div>
-                <BorderGlow
-                  edgeSensitivity={30}
-                  glowColor="255 45 85"
-                  backgroundColor="#120F17"
-                  borderRadius={28}
-                  glowRadius={40}
-                  glowIntensity={1}
-                  coneSpread={25}
-                  animated={false}
-                  colors={['#ff2d55', '#ff6b8a', '#ff0033']}
-                >
-                  <div className={styles.stepCard}>
-                    <div className={styles.stepCardInner}>
-                      <span className={styles.stepIcon}>{step.icon}</span>
-                      <div className={styles.stepContent}>
-                        <h4 className={styles.stepTitle}>{step.title}</h4>
-                        <p className={styles.stepDesc}>{step.description}</p>
-                      </div>
-                    </div>
-                    <button className={styles.stepArrow} aria-label={`Dettagli ${step.title}`}>
-                      ↗
-                    </button>
+          <div className={styles.processContent}>
+            <div className={styles.steps}>
+              {steps.map((step, i) => (
+                <div key={step.number} className={styles.stepRow}>
+                  <div className={styles.stepLeft}>
+                    <div className={styles.stepCircle}>{step.number}</div>
+                    {i < steps.length - 1 && <span className={styles.stepConnector} />}
                   </div>
-                </BorderGlow>
-              </div>
-            ))}
+                  <BorderGlow
+                    edgeSensitivity={30}
+                    glowColor="255 45 85"
+                    backgroundColor="#120F17"
+                    borderRadius={28}
+                    glowRadius={40}
+                    glowIntensity={1}
+                    coneSpread={25}
+                    animated={false}
+                    colors={['#ff2d55', '#ff6b8a', '#ff0033']}
+                  >
+                    <div className={styles.stepCard}>
+                      <div className={styles.stepCardInner}>
+                        <span className={styles.stepIcon}>{step.icon}</span>
+                        <div className={styles.stepContent}>
+                          <h4 className={styles.stepTitle}>{step.title}</h4>
+                          <p className={styles.stepDesc}>{step.description}</p>
+                        </div>
+                      </div>
+                      <button className={styles.stepArrow} aria-label={`Dettagli ${step.title}`}>
+                        ↗
+                      </button>
+                    </div>
+                  </BorderGlow>
+                </div>
+              ))}
+            </div>
+            <div className={styles.processVisual} aria-hidden="true">
+              <span className={styles.visualGlow} />
+              <Image
+                src={processImg}
+                alt=""
+                className={styles.processImage}
+                sizes="(max-width: 860px) 280px, 520px"
+                priority={false}
+              />
+            </div>
           </div>
         </div>
       </div>

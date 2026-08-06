@@ -7,11 +7,11 @@
   flex-direction: column;
   gap: 52px;
   color: #eef2fb;
-  background-color: #090c13;
-  background:
-    radial-gradient(circle at 70% 80%, rgba(255, 45, 85, 0.1) 0, rgba(255, 45, 85, 0) 42%),
-    radial-gradient(circle at 15% 20%, rgba(77, 140, 255, 0.06) 0, rgba(77, 140, 255, 0) 40%),
-    linear-gradient(180deg, #090c13 0%, #0a0d14 50%, #090c13 100%);
+  // background-color: #090c13;
+  // background:
+  //   radial-gradient(circle at 70% 80%, rgba(255, 45, 85, 0.1) 0, rgba(255, 45, 85, 0) 42%),
+  //   radial-gradient(circle at 15% 20%, rgba(77, 140, 255, 0.06) 0, rgba(77, 140, 255, 0) 40%),
+  //   linear-gradient(180deg, #090c13 0%, #0a0d14 50%, #090c13 100%);
 
   > * {
     position: relative;

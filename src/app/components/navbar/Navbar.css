@@ -67,6 +67,7 @@
   gap: 4px;
   flex-direction: column;
   cursor: pointer;
+  z-index: 140;
 }
 
 .navbar-toggle-line {

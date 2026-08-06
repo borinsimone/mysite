@@ -6,43 +6,72 @@
   flex-direction: column;
   gap: 32px;
   color: #eef2fb;
-  background-color: #090c13;
-  background:
-    radial-gradient(circle at 88% 18%, rgba(255, 45, 85, 0.1) 0, rgba(255, 45, 85, 0) 36%),
-    radial-gradient(circle at 8% 74%, rgba(79, 126, 255, 0.08) 0, rgba(79, 126, 255, 0) 35%),
-    linear-gradient(180deg, #090c13 0%, #0a0d14 44%, #0b0d14 100%);
+  // background-color: #05070d;
+  // background:
+  //   radial-gradient(circle at 88% 28%, rgba(255, 45, 85, 0.075), transparent 42%),
+  //   radial-gradient(circle at 8% 72%, rgba(79, 126, 255, 0.05), transparent 42%),
+  //   linear-gradient(180deg, #05070d 0%, #060810 18%, #080b12 58%, #090c13 100%);
+  // background-repeat: no-repeat;
 
   > * {
     position: relative;
     z-index: 1;
   }
 }
+.section-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.driftWallWrap {
+  position: relative;
+  width: 100%;
+  height: min(72vh, 680px);
+  min-height: 520px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 45, 85, 0.12), transparent 52%),
+    rgba(5, 7, 13, 0.72);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.32);
+}
 
 .header {
   max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .kicker {
-  font-size: 18px;
+  font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: #ff5576;
-  font-weight: 700;
-  margin-bottom: 10px;
+  letter-spacing: 0.32em;
+  color: #ff2d55;
+  font-weight: 600;
 }
 
 .header h2 {
-  font-size: clamp(32px, 4vw, 52px);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  font-weight: 800;
   color: #f7f8fc;
-  margin-bottom: 14px;
+}
+
+.accent {
+  color: #ff2d55;
 }
 
 .sub {
-  font-size: 18px;
-  line-height: 1.62;
-  color: #a8b0c4;
+  font-size: clamp(0.88rem, 1.3vw, 0.98rem);
+  line-height: 1.7;
+  color: rgba(238, 242, 251, 0.6);
   max-width: 62ch;
 }
 
@@ -211,17 +240,27 @@
   }
 
   .kicker {
-    font-size: 14px;
+    font-size: 0.72rem;
   }
 
   .sub {
-    font-size: 16px;
+    font-size: 0.9rem;
+  }
+
+  .section-container {
+    gap: 36px;
   }
 
   .masonryWrap {
     min-height: 420px;
     height: 62vh;
     padding: 8px;
+  }
+
+  .driftWallWrap {
+    height: 62vh;
+    min-height: 440px;
+    border-radius: 18px;
   }
 
   .caseCard h3 {

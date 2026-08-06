@@ -22,6 +22,27 @@ export default function Home() {
           <Services />
           <Project />
           <Contact />
+
+          <div
+            className={`${styles.radialDecoration} ${styles.radialDecorationPink}`}
+            aria-hidden="true"
+          />
+          <div
+            className={`${styles.radialDecoration} ${styles.radialDecorationViolet}`}
+            aria-hidden="true"
+          />
+          <div
+            className={`${styles.radialDecoration} ${styles.radialDecorationBlue}`}
+            aria-hidden="true"
+          />
+          <div
+            className={`${styles.radialDecoration} ${styles.radialDecorationCoral}`}
+            aria-hidden="true"
+          />
+          <div
+            className={`${styles.radialDecoration} ${styles.radialDecorationDeep}`}
+            aria-hidden="true"
+          />
         </div>
       </div>
     </>
