@@ -7,7 +7,12 @@
 
   perspective: 900px;
   overflow: visible;
+  transition: transform 0.3s ease-in-out;
 }
+.card-swap-container:hover {
+  transform: translate(-5%, 20%) scale(1.2);
+}
+/* da mettere in primo piacno cambiando index del genitore */
 
 .card {
   position: absolute;
