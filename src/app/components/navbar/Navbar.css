@@ -322,6 +322,7 @@
 
   .navbar-container {
     border-radius: 22px;
+    overflow: visible;
   }
 
   .navbar-inner {
@@ -340,10 +341,10 @@
   }
 
   .navbar-links {
-    position: fixed;
-    top: 92px;
-    left: 16px;
-    right: 16px;
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+    right: 0;
     z-index: 140;
     flex-direction: column;
     align-items: stretch;
@@ -420,8 +421,6 @@
   }
 
   .navbar-links {
-    top: 84px;
-    left: 12px;
-    right: 12px;
+    top: calc(100% + 10px);
   }
 }
