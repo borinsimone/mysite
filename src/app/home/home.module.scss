@@ -11,6 +11,17 @@
   overflow: clip;
   // padding-bottom: 10dvh;
   background-color: #030508;
+  .meImage {
+    position: absolute;
+    bottom: -100%;
+    right: 0;
+    width: min(40vw, 400px);
+    width: 1400px;
+    // max-width: 400px;
+    height: auto;
+    z-index: 1;
+    display: none;
+  }
   .lightfallBg {
     position: absolute;
     inset: 0;
@@ -70,10 +81,10 @@
   .servicesCardsSwap {
     position: absolute;
     // bottom: clamp(-320px, calc((100vw - 1280px) * 0.08 - 48px), -48px);
-    bottom: clamp(-120px, calc((100vw - 1280px) * 0.08 - 48px), -48px);
+    bottom: clamp(-120px, calc((100vw - 1280px) * 0.08 - 48px), -108px);
 
-    right: 10vw;
-    z-index: 3;
+    right: 0vw;
+    z-index: 0;
     width: min(90vw, 560px);
 
     display: flex;
@@ -402,7 +413,8 @@
     width: 100%;
     max-width: 400px;
     margin-top: 6px;
-    bottom: clamp(-120px, calc((100vw - 1280px) * 0.08 - 48px), -48px);
+    bottom: clamp(-420px, calc((100vw - 1280px) * 0.08 - 48px), -48px);
+    // display: none !important;
   }
 
   .serviceSwapCard {

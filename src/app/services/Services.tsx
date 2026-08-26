@@ -4,11 +4,16 @@ import Image from 'next/image';
 import styles from './services.module.scss';
 import BorderGlow from '../components/borderGlow/BorderGlow';
 import processImg from './serviceImgNobg.png';
+import MagicBento, { BentoCardProps } from '../components/magicBento/MagicBento';
+import * as motion from 'motion/react-client';
+import type { Variants } from 'motion/react';
 const serviceCards = [
   {
+    label: 'Presenza online',
     title: 'Siti vetrina',
     description:
       'Siti professionali, veloci e facili da gestire, ideali per presentare la tua attività e attirare nuovi clienti.',
+    color: '#120f17',
     icon: (
       <svg
         width="28"
@@ -27,9 +32,11 @@ const serviceCards = [
     ),
   },
   {
+    label: 'Conversione',
     title: 'Landing page',
     description:
       'Pagine ad alto impatto pensate per convertire, promuovere un servizio o lanciare un prodotto.',
+    color: '#120f17',
     icon: (
       <svg
         width="28"
@@ -49,9 +56,11 @@ const serviceCards = [
     ),
   },
   {
+    label: 'Prodotto digitale',
     title: 'Web app / gestionali',
     description:
       'Soluzioni web personalizzate per automatizzare processi e semplificare la gestione della tua attività.',
+    color: '#120f17',
     icon: (
       <svg
         width="28"
@@ -70,9 +79,11 @@ const serviceCards = [
     ),
   },
   {
+    label: 'Ottimizzazione',
     title: 'Restyling e ottimizzazione',
     description:
       "Rinnovo l'aspetto e miglioro le performance di siti esistenti per renderli moderni ed efficaci.",
+    color: '#120f17',
     icon: (
       <svg
         width="28"
@@ -90,6 +101,14 @@ const serviceCards = [
     ),
   },
 ];
+
+const bentoServiceCards: BentoCardProps[] = serviceCards.map((card) => ({
+  label: card.label,
+  title: card.title,
+  description: card.description,
+  color: card.color,
+  icon: card.icon,
+}));
 
 const steps = [
   {
@@ -214,32 +233,21 @@ function Services() {
           </p>
         </div>
 
-        <div className={styles.cards}>
-          {serviceCards.map((card) => (
-            <BorderGlow
-              key={card.title}
-              edgeSensitivity={30}
-              glowColor="255 45 85"
-              backgroundColor="#120F17"
-              borderRadius={16}
-              glowRadius={40}
-              glowIntensity={2}
-              coneSpread={25}
-              animated={false}
-              colors={['#ff2d55', '#ff6b8a', '#ff0033']}
-            >
-              <article className={styles.card}>
-                <span className={styles.cardIcon}>{card.icon}</span>
-                <h3 className={styles.cardTitle}>{card.title}</h3>
-                <p className={styles.cardDesc}>{card.description}</p>
-                <a href="#contact" className={styles.cardLink}>
-                  Scopri di più <span aria-hidden>→</span>
-                </a>
-              </article>
-            </BorderGlow>
-          ))}
-        </div>
-
+        <MagicBento
+          items={bentoServiceCards}
+          layout="uniform"
+          textAutoHide={true}
+          enableStars
+          enableSpotlight
+          enableBorderGlow={true}
+          enableTilt={false}
+          enableMagnetism={true}
+          clickEffect
+          spotlightRadius={400}
+          particleCount={12}
+          glowColor="255, 45, 85"
+          disableAnimations={false}
+        />
         {/* --- Process timeline --- */}
         <div className={styles.process}>
           <div className={styles.processHeader}>

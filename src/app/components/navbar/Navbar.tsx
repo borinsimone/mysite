@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import './Navbar.css';
+import GlassSurface from '../glass-surface/GlassSurface';
 const NAV_LINKS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'Chi Sono' },
@@ -14,6 +15,7 @@ const CTA_LINK = { id: 'contact', label: 'Iniziamo' };
 
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
@@ -28,6 +30,37 @@ function Navbar() {
     return () => {
       window.removeEventListener('keydown', closeOnEscape);
       window.removeEventListener('resize', closeOnDesktop);
+    };
+  }, []);
+
+  useEffect(() => {
+    const scrollContainer = document.getElementById('main-scroll-container');
+
+    if (!scrollContainer) return;
+
+    let lastScrollTop = scrollContainer.scrollTop;
+
+    const readScrollDirection = () => {
+      const currentScrollTop = scrollContainer.scrollTop;
+      const isScrollingDown = currentScrollTop > lastScrollTop;
+      const hasPassedThreshold = currentScrollTop > 24;
+
+      if (!hasPassedThreshold) {
+        setIsScrolled(false);
+      } else if (isScrollingDown) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+
+      lastScrollTop = currentScrollTop;
+    };
+
+    scrollContainer.addEventListener('scroll', readScrollDirection, { passive: true });
+    readScrollDirection();
+
+    return () => {
+      scrollContainer.removeEventListener('scroll', readScrollDirection);
     };
   }, []);
 
@@ -55,7 +88,19 @@ function Navbar() {
   };
 
   return (
-    <header className="navbar-shell">
+    <header className={`navbar-shell ${isScrolled ? 'is-scrolled' : ''}`}>
+      {/* <GlassSurface
+        displace={0.5}
+        distortionScale={-180}
+        redOffset={0}
+        greenOffset={10}
+        blueOffset={20}
+        brightness={50}
+        opacity={0.93}
+        mixBlendMode="screen"
+      >
+        <span>Advanced Glass Distortion</span>
+      </GlassSurface> */}
       <div className="navbar-container">
         <div className="navbar-inner">
           <a

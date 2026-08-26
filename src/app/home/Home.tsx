@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import Image from 'next/image';
 import styles from './home.module.scss';
 import SpecularButton from '../components/specular-button/SpecularButton';
 import Lightfall from '../components/lightfall/Lightfall';
@@ -8,6 +9,7 @@ import Antigravity from '../components/antigravitybg/Antigravity';
 import CardSwap, { Card } from '../components/card-swap/CardSwap';
 import Galaxy from '../components/galaxybg/Galaxy';
 import BorderGlow from '../components/borderGlow/BorderGlow';
+import me from './me.png';
 const SERVICE_TAGS = [
   {
     eyebrow: 'UI / UX DESIGN',
@@ -225,6 +227,8 @@ function Home() {
           speed={1}
         /> */}
       </div>
+
+      <Image src={me} alt="Simone Borin" className={styles.meImage} />
       <div className={styles.heroContent}>
         <p className={styles.kicker}>Siti web su misura, pensati per crescere</p>
 
