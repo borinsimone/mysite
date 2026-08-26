@@ -17,6 +17,8 @@ function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const isMobileViewport = () => window.innerWidth <= 860;
+
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setIsMobileMenuOpen(false);
@@ -35,13 +37,12 @@ function Navbar() {
 
   useEffect(() => {
     const scrollContainer = document.getElementById('main-scroll-container');
-
-    if (!scrollContainer) return;
-
-    let lastScrollTop = scrollContainer.scrollTop;
+    const useWindowScroll = isMobileViewport() || !scrollContainer;
+    const scrollTarget: Window | HTMLElement = useWindowScroll ? window : scrollContainer;
+    let lastScrollTop = useWindowScroll ? window.scrollY : scrollContainer.scrollTop;
 
     const readScrollDirection = () => {
-      const currentScrollTop = scrollContainer.scrollTop;
+      const currentScrollTop = useWindowScroll ? window.scrollY : scrollContainer.scrollTop;
       const isScrollingDown = currentScrollTop > lastScrollTop;
       const hasPassedThreshold = currentScrollTop > 24;
 
@@ -56,11 +57,11 @@ function Navbar() {
       lastScrollTop = currentScrollTop;
     };
 
-    scrollContainer.addEventListener('scroll', readScrollDirection, { passive: true });
+    scrollTarget.addEventListener('scroll', readScrollDirection, { passive: true });
     readScrollDirection();
 
     return () => {
-      scrollContainer.removeEventListener('scroll', readScrollDirection);
+      scrollTarget.removeEventListener('scroll', readScrollDirection);
     };
   }, []);
 
@@ -70,7 +71,21 @@ function Navbar() {
     const target = document.getElementById(sectionId);
     const scrollContainer = document.getElementById('main-scroll-container');
 
-    if (!target || !scrollContainer) return;
+    if (!target) return;
+
+    if (isMobileViewport() || !scrollContainer) {
+      const topOffset = 88;
+      const targetTop = target.getBoundingClientRect().top + window.scrollY;
+
+      window.scrollTo({
+        top: Math.max(targetTop - topOffset, 0),
+        behavior: 'smooth',
+      });
+
+      window.history.replaceState(null, '', `#${sectionId}`);
+      setIsMobileMenuOpen(false);
+      return;
+    }
 
     const topOffset = window.innerWidth <= 860 ? 16 : 96;
     const targetTop =

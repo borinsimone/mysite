@@ -26,6 +26,12 @@
     position: absolute;
     inset: 0;
     z-index: 0;
+    pointer-events: none;
+
+    canvas {
+      pointer-events: none;
+      touch-action: auto;
+    }
   }
 
   .heroContent {
@@ -473,6 +479,9 @@
   .secondaryCta {
     flex: 1;
     min-width: 0;
+  }
+  .cardsHint {
+    display: none !important;
   }
 }
 

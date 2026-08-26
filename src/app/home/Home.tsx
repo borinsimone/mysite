@@ -164,7 +164,18 @@ function Home() {
     const target = document.getElementById('contact');
     const scrollContainer = document.getElementById('main-scroll-container');
 
-    if (!target || !scrollContainer) return;
+    if (!target) return;
+
+    if (window.innerWidth <= 860 || !scrollContainer) {
+      const topOffset = 88;
+      const targetTop = target.getBoundingClientRect().top + window.scrollY;
+
+      window.scrollTo({
+        top: Math.max(targetTop - topOffset, 0),
+        behavior: 'smooth',
+      });
+      return;
+    }
 
     const topOffset = 96;
 

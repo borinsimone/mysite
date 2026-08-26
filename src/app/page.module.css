@@ -183,6 +183,20 @@ a.secondary {
   scrollbar-color: #ff4066 rgba(255, 255, 255, 0.08);
 }
 
+@media (max-width: 860px) {
+  .page {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .section-container {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+}
+
 .radialDecoration {
   --radial-x: 28px;
   --radial-y: 24px;
@@ -334,22 +348,18 @@ a.secondary {
   .page {
     flex-direction: column;
     width: 100%;
-    height: 100vh;
-    height: 100dvh;
-    overflow: hidden;
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
   }
 
   .section-container {
     flex: 1 1 auto;
-    height: 100%;
-    min-height: 0;
+    height: auto;
+    min-height: 100dvh;
     margin-left: 0;
     width: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    overscroll-behavior-y: contain;
-    -webkit-overflow-scrolling: touch;
-    touch-action: pan-y;
+    overflow: visible;
     scrollbar-width: thin;
     position: relative;
   }

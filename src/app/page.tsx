@@ -19,8 +19,10 @@ export default function Home() {
           <ScrollReveal />
           <HomePage />
           <About />
+
           <Services />
-          <Project />
+          {/* sezione di dimostrazione componenti o spiegazione del funzionamento di un sito web */}
+          {/* <Project /> */}
           <Contact />
 
           <div

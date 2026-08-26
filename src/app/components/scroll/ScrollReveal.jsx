@@ -7,11 +7,15 @@ const REVEAL_SELECTOR = '[data-reveal]';
 function ScrollReveal() {
   useEffect(() => {
     const container = document.getElementById('main-scroll-container');
-    if (!container) {
+    const isMobile = window.matchMedia('(max-width: 860px)').matches;
+    const observerRoot = isMobile ? null : container;
+    const revealScope = container ?? document;
+
+    if (!revealScope) {
       return;
     }
 
-    const revealNodes = Array.from(container.querySelectorAll(REVEAL_SELECTOR));
+    const revealNodes = Array.from(revealScope.querySelectorAll(REVEAL_SELECTOR));
 
     if (!revealNodes.length) {
       return;
@@ -35,7 +39,7 @@ function ScrollReveal() {
         });
       },
       {
-        root: container,
+        root: observerRoot,
         rootMargin: '0px 0px -8% 0px',
         threshold: 0.12,
       },
