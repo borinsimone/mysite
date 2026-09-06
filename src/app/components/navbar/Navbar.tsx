@@ -145,7 +145,7 @@ function Navbar() {
 
           <nav
             id="navbar-mobile-links"
-            className={`navbar-links is-open ${isMobileMenuOpen ? 'is-open' : ''}`}
+            className={`navbar-links ${isMobileMenuOpen ? 'is-open' : ''}`}
             aria-label="Navigazione principale"
           >
             {NAV_LINKS.map((item) => (
