@@ -144,3 +144,34 @@
     padding: 22px 18px;
   }
 }
+
+.contact-dialog button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+.contact-send-status[data-state='sending'] {
+  color: #b9adba;
+}
+.contact-success {
+  padding-top: 30px;
+}
+.contact-success-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  color: #ff6487;
+  background: #ff285818;
+  font-size: 24px;
+}
+.contact-success h3 {
+  font-size: 24px;
+}
+.contact-success p {
+  margin: 16px 0 24px;
+  color: #b9adba;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
