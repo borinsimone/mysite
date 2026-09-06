@@ -132,7 +132,7 @@ function Navbar() {
 
           <button
             type="button"
-            className={`navbar-toggle ${isMobileMenuOpen ? 'is-open' : ''}`}
+            className={`navbar-toggle  ${isMobileMenuOpen ? 'is-open' : ''}`}
             aria-expanded={isMobileMenuOpen}
             aria-controls="navbar-mobile-links"
             aria-label="Apri o chiudi menu di navigazione"
@@ -145,7 +145,7 @@ function Navbar() {
 
           <nav
             id="navbar-mobile-links"
-            className={`navbar-links ${isMobileMenuOpen ? 'is-open' : ''}`}
+            className={`navbar-links is-open ${isMobileMenuOpen ? 'is-open' : ''}`}
             aria-label="Navigazione principale"
           >
             {NAV_LINKS.map((item) => (
