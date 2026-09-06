@@ -1,0 +1,146 @@
+.contact-dialog {
+  width: min(560px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 30px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  color: #f5f5f7;
+  background: radial-gradient(ellipse at top right, #ff285810, transparent 65%), #0a0c10;
+  border: 1px solid #35202a;
+  border-radius: 22px;
+  box-shadow: 0 24px 100px #0009;
+}
+.contact-dialog::backdrop {
+  background: #030509cc;
+  backdrop-filter: blur(8px);
+}
+.contact-dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+.contact-dialog-header .eyebrow {
+  margin-bottom: 10px;
+}
+.contact-dialog-header h2 {
+  font-size: clamp(24px, 5vw, 30px);
+  line-height: 1.15;
+}
+.contact-dialog-header h2 span {
+  color: #ff2858;
+}
+.contact-dialog-close {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #ffffff25;
+  border-radius: 50%;
+  background: #ffffff06;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+.contact-dialog .rb-outer-container {
+  min-height: 0;
+  padding: 0;
+  aspect-ratio: auto;
+}
+.contact-dialog .rb-step-circle-container {
+  max-width: none;
+  border: 0 !important;
+  border-radius: 0;
+  box-shadow: none;
+}
+.contact-dialog .rb-step-indicator-row {
+  padding: 28px 0;
+}
+.contact-dialog .rb-step-indicator {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: default;
+}
+.contact-dialog .rb-step-default {
+  padding: 4px;
+}
+.contact-dialog .rb-footer-container {
+  padding: 0 4px 4px;
+}
+.contact-dialog .rb-footer-nav {
+  gap: 16px;
+  margin-top: 28px;
+}
+.contact-dialog .rb-next-button {
+  min-height: 44px;
+  padding: 12px 20px;
+  border: 1px solid #ff2858;
+  background: #ff2858;
+  color: white;
+}
+.contact-dialog .rb-back-button {
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  color: #c8bfca;
+}
+.contact-step-heading {
+  margin-bottom: 24px;
+}
+.contact-step-heading p {
+  color: #ff6487;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.contact-step-heading h3 {
+  font-size: 21px;
+}
+.contact-step-fields {
+  display: grid;
+  gap: 20px;
+}
+.contact-review {
+  padding: 20px;
+  border: 1px solid #ffffff12;
+  border-radius: 12px;
+  background: #ffffff03;
+  margin: 0;
+  display: grid;
+  gap: 16px;
+}
+.contact-review dt {
+  color: #a79aa6;
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+.contact-review dd {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.contact-review > div:last-child dd {
+  max-height: 180px;
+  overflow-y: auto;
+}
+.contact-email-note {
+  margin-top: 22px;
+  font-size: 12px;
+  color: #a79aa6;
+  line-height: 1.6;
+}
+.contact-send-status:not(:empty) {
+  margin-top: 14px;
+  color: #ff9ab2;
+  font-size: 12px;
+  line-height: 1.6;
+}
+@media (max-width: 600px) {
+  .contact-dialog {
+    padding: 22px 18px;
+  }
+}

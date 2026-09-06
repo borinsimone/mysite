@@ -1,184 +1,112 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Navbar.css';
-import GlassSurface from '../glass-surface/GlassSurface';
-const NAV_LINKS = [
+
+const links = [
   { id: 'home', label: 'Home' },
-  { id: 'about', label: 'Chi Sono' },
+  { id: 'about', label: 'Chi sono' },
   { id: 'services', label: 'Servizi' },
+  { id: 'method', label: 'Metodo' },
   { id: 'portfolio', label: 'Progetti' },
   { id: 'contact', label: 'Contatti' },
 ];
 
-const CTA_LINK = { id: 'contact', label: 'Iniziamo' };
-
-function Navbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  const isMobileViewport = () => window.innerWidth <= 860;
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [active, setActive] = useState('home');
+  const header = useRef<HTMLElement>(null);
+  const toggle = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setIsMobileMenuOpen(false);
+      if (event.key === 'Escape' && isOpen) {
+        setIsOpen(false);
+        toggle.current?.focus();
+      }
+    };
+    const closeOutside = (event: PointerEvent) => {
+      if (!header.current?.contains(event.target as Node)) setIsOpen(false);
     };
     const closeOnDesktop = () => {
-      if (window.innerWidth > 860) setIsMobileMenuOpen(false);
+      if (window.innerWidth > 860) setIsOpen(false);
     };
-
-    window.addEventListener('keydown', closeOnEscape);
+    document.addEventListener('keydown', closeOnEscape);
+    document.addEventListener('pointerdown', closeOutside);
     window.addEventListener('resize', closeOnDesktop);
     return () => {
-      window.removeEventListener('keydown', closeOnEscape);
+      document.removeEventListener('keydown', closeOnEscape);
+      document.removeEventListener('pointerdown', closeOutside);
       window.removeEventListener('resize', closeOnDesktop);
     };
-  }, []);
+  }, [isOpen]);
 
   useEffect(() => {
-    const scrollContainer = document.getElementById('main-scroll-container');
-    const useWindowScroll = isMobileViewport() || !scrollContainer;
-    const scrollTarget: Window | HTMLElement = useWindowScroll ? window : scrollContainer;
-    let lastScrollTop = useWindowScroll ? window.scrollY : scrollContainer.scrollTop;
-
-    const readScrollDirection = () => {
-      const currentScrollTop = useWindowScroll ? window.scrollY : scrollContainer.scrollTop;
-      const isScrollingDown = currentScrollTop > lastScrollTop;
-      const hasPassedThreshold = currentScrollTop > 24;
-
-      if (!hasPassedThreshold) {
-        setIsScrolled(false);
-      } else if (isScrollingDown) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-
-      lastScrollTop = currentScrollTop;
-    };
-
-    scrollTarget.addEventListener('scroll', readScrollDirection, { passive: true });
-    readScrollDirection();
-
-    return () => {
-      scrollTarget.removeEventListener('scroll', readScrollDirection);
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        }
+      },
+      { rootMargin: '-15% 0px -55% 0px', threshold: 0 },
+    );
+    links.forEach(({ id }) => {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+    return () => observer.disconnect();
   }, []);
 
-  const onSectionClick = (event: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
-    event.preventDefault();
-
-    const target = document.getElementById(sectionId);
-    const scrollContainer = document.getElementById('main-scroll-container');
-
-    if (!target) return;
-
-    if (isMobileViewport() || !scrollContainer) {
-      const topOffset = 88;
-      const targetTop = target.getBoundingClientRect().top + window.scrollY;
-
-      window.scrollTo({
-        top: Math.max(targetTop - topOffset, 0),
-        behavior: 'smooth',
-      });
-
-      window.history.replaceState(null, '', `#${sectionId}`);
-      setIsMobileMenuOpen(false);
-      return;
-    }
-
-    const topOffset = window.innerWidth <= 860 ? 16 : 96;
-    const targetTop =
-      target.getBoundingClientRect().top -
-      scrollContainer.getBoundingClientRect().top +
-      scrollContainer.scrollTop;
-
-    scrollContainer.scrollTo({
-      top: Math.max(targetTop - topOffset, 0),
-      behavior: 'smooth',
-    });
-
-    window.history.replaceState(null, '', `#${sectionId}`);
-    setIsMobileMenuOpen(false);
-  };
-
   return (
-    <header className={`navbar-shell ${isScrolled ? 'is-scrolled' : ''}`}>
-      {/* <GlassSurface
-        displace={0.5}
-        distortionScale={-180}
-        redOffset={0}
-        greenOffset={10}
-        blueOffset={20}
-        brightness={50}
-        opacity={0.93}
-        mixBlendMode="screen"
-      >
-        <span>Advanced Glass Distortion</span>
-      </GlassSurface> */}
-      <div className="navbar-container">
-        <div className="navbar-inner">
-          <a
-            href="#home"
-            className="navbar-brand"
-            onClick={(event) => onSectionClick(event, 'home')}
-          >
-            <span className="navbar-brand-mark" aria-hidden="true">
-              <span />
-              <span />
-            </span>
-            <span className="navbar-brand-text">Simone Borin</span>
-          </a>
-
-          <button
-            type="button"
-            className={`navbar-toggle  ${isMobileMenuOpen ? 'is-open' : ''}`}
-            aria-expanded={isMobileMenuOpen}
-            aria-controls="navbar-mobile-links"
-            aria-label="Apri o chiudi menu di navigazione"
-            onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
-          >
-            <span className="navbar-toggle-line" />
-            <span className="navbar-toggle-line" />
-            <span className="navbar-toggle-line" />
-          </button>
-
-          <nav
-            id="navbar-mobile-links"
-            className={`navbar-links ${isMobileMenuOpen ? 'is-open' : ''}`}
-            aria-label="Navigazione principale"
-          >
-            {NAV_LINKS.map((item) => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                className="navbar-link"
-                onClick={(event) => onSectionClick(event, item.id)}
-              >
-                {item.label}
-              </a>
-            ))}
-
+    <header className="navbar-shell" ref={header}>
+      <div className="site-width navbar-inner">
+        <a
+          className="monogram"
+          href="#home"
+          aria-label="Simone Borin, home"
+          onClick={() => setIsOpen(false)}
+        >
+          SB
+        </a>
+        <button
+          ref={toggle}
+          type="button"
+          className={`navbar-toggle ${isOpen ? 'is-open' : ''}`}
+          aria-expanded={isOpen}
+          aria-controls="navbar-mobile-links"
+          aria-label={isOpen ? 'Chiudi menu' : 'Apri menu'}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <nav
+          id="navbar-mobile-links"
+          className={`navbar-links ${isOpen ? 'is-open' : ''}`}
+          aria-label="Navigazione principale"
+          onBlur={(event) => {
+            if (!header.current?.contains(event.relatedTarget)) setIsOpen(false);
+          }}
+        >
+          {links.map(({ id, label }) => (
             <a
-              href={`#${CTA_LINK.id}`}
-              className="navbar-cta navbar-cta-mobile"
-              onClick={(event) => onSectionClick(event, CTA_LINK.id)}
+              key={id}
+              href={`#${id}`}
+              aria-current={active === id ? 'location' : undefined}
+              onClick={() => {
+                setIsOpen(false);
+                setActive(id);
+              }}
             >
-              {CTA_LINK.label}
+              {label}
             </a>
-          </nav>
-
-          <a
-            href={`#${CTA_LINK.id}`}
-            className="navbar-cta navbar-cta-desktop"
-            onClick={(event) => onSectionClick(event, CTA_LINK.id)}
-          >
-            {CTA_LINK.label}
-          </a>
-        </div>
+          ))}
+        </nav>
+        <a className="pill small navbar-cta" href="#contact" onClick={() => setIsOpen(false)}>
+          Parliamone <span aria-hidden="true">→</span>
+        </a>
       </div>
     </header>
   );
 }
-
-export default Navbar;
