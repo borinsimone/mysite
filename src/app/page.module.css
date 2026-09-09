@@ -11,7 +11,7 @@
   position: relative;
   display: flex;
   flex: 1;
-  height: 100dvh;
+
   overflow: hidden;
 
   align-items: start;
@@ -175,7 +175,6 @@ a.secondary {
 .section-container {
   position: relative;
   flex: 1;
-  height: 100dvh;
 
   overflow-y: auto;
   overflow-x: hidden;

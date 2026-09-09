@@ -131,7 +131,6 @@
 .hero {
   position: relative;
   isolation: isolate;
-  height: 100dvh;
 }
 .hero-background {
   position: absolute;
@@ -143,6 +142,15 @@
 .hero-background img {
   object-fit: cover;
   object-position: center;
+}
+.hero-parallax-layer {
+  position: absolute;
+  inset: -20% 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-parallax-layer {
+    transform: none !important;
+  }
 }
 .hero-accent-glow {
   display: none;
