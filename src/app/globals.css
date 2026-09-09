@@ -50,3 +50,25 @@ summary {
     scroll-behavior: auto;
   }
 }
+
+.reveal-card {
+  display: grid;
+  min-width: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+@media print {
+  .fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+.fade-in:focus-within {
+  opacity: 1 !important;
+  transform: none !important;
+}

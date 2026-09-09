@@ -1,4 +1,5 @@
 'use client';
+import FadeIn from '../components/scroll/FadeIn';
 import ArrowIcon from '../components/arrow-icon/ArrowIcon';
 import { useEffect, useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
@@ -9,7 +10,7 @@ export default function Contact() {
   const [open, setOpen] = useState(false);
   return (
     <section className="contact-section site-width" id="contact" aria-labelledby="contact-title">
-      <div className="contact-banner">
+      <FadeIn className="contact-banner">
         <div>
           <p className="eyebrow">Contatti</p>
           <h2 id="contact-title">
@@ -39,7 +40,7 @@ export default function Contact() {
             <br />A WEBSITE.
           </small>
         </div>
-      </div>
+      </FadeIn>
       {open && <ContactStepper onClose={() => setOpen(false)} />}
     </section>
   );

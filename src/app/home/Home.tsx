@@ -12,9 +12,9 @@ export default function Home() {
           <h1 id="hero-title">
             Il tuo valore.
             <br />
-            Un sito che fa
+            Un sito lo rende
             <br />
-            <span>la differenza.</span>
+            <span>evidente.</span>
           </h1>
           <p className="lead">
             Progetto interfacce veloci e curate che comunicano con chiarezza e mettono in risalto il

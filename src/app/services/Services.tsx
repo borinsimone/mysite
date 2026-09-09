@@ -1,3 +1,4 @@
+import FadeIn from '../components/scroll/FadeIn';
 import ArrowIcon from '../components/arrow-icon/ArrowIcon';
 import BorderGlow from '../components/borderGlow/BorderGlow';
 import { serviceCards, steps } from '../site-content';
@@ -6,7 +7,7 @@ export function Process() {
   return (
     <section className="site-section section-line" id="method" aria-labelledby="method-title">
       <div className="site-width process-layout">
-        <div>
+        <FadeIn>
           <p className="eyebrow">Come lavoro</p>
           <h2 id="method-title">
             Un processo chiaro,
@@ -27,8 +28,8 @@ export function Process() {
               </li>
             ))}
           </ol>
-        </div>
-        <div className="process-art" aria-hidden="true">
+        </FadeIn>
+        <FadeIn className="process-art" aria-hidden="true">
           <div className="process-grid" />
           <div className="process-stack">
             {['IDEA', 'STRATEGY', 'DESIGN', 'DEVELOP', 'LAUNCH'].map((label, index) => (
@@ -48,7 +49,7 @@ export function Process() {
             IMPACT
             <i />
           </span>
-        </div>
+        </FadeIn>
       </div>
     </section>
   );
@@ -58,7 +59,7 @@ export default function Services() {
   return (
     <section className="site-section section-line" id="services" aria-labelledby="services-title">
       <div className="site-width">
-        <div className="section-heading">
+        <FadeIn className="section-heading">
           <div>
             <p className="eyebrow">Servizi</p>
             <h2 id="services-title">
@@ -76,34 +77,35 @@ export default function Services() {
               Parliamo del tuo progetto <ArrowIcon />
             </a>
           </div>
-        </div>
+        </FadeIn>
         <div className="services-grid">
           {serviceCards.map((card, index) => (
-            <BorderGlow
-              key={card.title}
-              className="service-glow"
-              glowColor="346 100 75"
-              backgroundColor="#080b0e"
-              borderRadius={11}
-              glowRadius={30}
-              colors={['#ff2858', '#f472b6', '#ff436e']}
-              fillOpacity={0}
-            >
-              <a href="#contact" className="service-card">
-                <div className="service-top">
-                  <span className="service-icon" aria-hidden="true">
-                    {card.icon}
+            <FadeIn key={card.title} delay={index * 0.08} className="reveal-card">
+              <BorderGlow
+                className="service-glow"
+                glowColor="346 100 75"
+                backgroundColor="#080b0e"
+                borderRadius={11}
+                glowRadius={30}
+                colors={['#ff2858', '#f472b6', '#ff436e']}
+                fillOpacity={0}
+              >
+                <a href="#contact" className="service-card">
+                  <div className="service-top">
+                    <span className="service-icon" aria-hidden="true">
+                      {card.icon}
+                    </span>
+                    <span className="card-number">0{index + 1}</span>
+                  </div>
+                  <p className="card-label">{card.label}</p>
+                  <h3>{card.title}</h3>
+                  <p>{card.description}</p>
+                  <span className="circle-link" aria-hidden="true">
+                    <ArrowIcon />
                   </span>
-                  <span className="card-number">0{index + 1}</span>
-                </div>
-                <p className="card-label">{card.label}</p>
-                <h3>{card.title}</h3>
-                <p>{card.description}</p>
-                <span className="circle-link" aria-hidden="true">
-                  <ArrowIcon />
-                </span>
-              </a>
-            </BorderGlow>
+                </a>
+              </BorderGlow>
+            </FadeIn>
           ))}
         </div>
       </div>

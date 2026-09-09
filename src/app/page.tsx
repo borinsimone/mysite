@@ -1,3 +1,4 @@
+import FadeIn from './components/scroll/FadeIn';
 import ArrowIcon from './components/arrow-icon/ArrowIcon';
 import Navbar from './components/navbar/Navbar';
 import Home from './home/Home';
@@ -16,15 +17,15 @@ export default function Page() {
       <Navbar />
       <main id="main-content">
         <Home />
+        <Project />
         <Process />
         <Services />
         {/* <Expertise /> */}
         <About />
-        <Project />
         <Contact />
       </main>
       <footer className="site-footer">
-        <div className="site-width footer-main">
+        <FadeIn className="site-width footer-main">
           <a className="footer-brand" href="#home" aria-label="Simone Borin, torna all’inizio">
             <span className="monogram">SB</span>
             <span>
@@ -32,10 +33,10 @@ export default function Page() {
             </span>
           </a>
           <nav aria-label="Navigazione footer">
-            <a href="#about">Chi sono</a>
-            <a href="#services">Servizi</a>
-            <a href="#method">Metodo</a>
             <a href="#portfolio">Progetti</a>
+            <a href="#method">Metodo</a>
+            <a href="#services">Servizi</a>
+            <a href="#about">Chi sono</a>
             <a href="#contact">Contatti</a>
           </nav>
           <div className="footer-socials">
@@ -49,7 +50,7 @@ export default function Page() {
               Torna su <ArrowIcon direction="up" />
             </a>
           </div>
-        </div>
+        </FadeIn>
         {/* <div className="site-width footer-bottom">
           <p>© {new Date().getFullYear()} Simone Borin. Tutti i diritti riservati.</p>
           <p>Siti migliori per idee più grandi.</p>

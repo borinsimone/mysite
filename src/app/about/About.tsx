@@ -1,9 +1,10 @@
+import FadeIn from '../components/scroll/FadeIn';
 import ArrowIcon from '../components/arrow-icon/ArrowIcon';
 export default function About() {
   return (
     <section className="site-section" id="about" aria-labelledby="about-title">
       <div className="site-width about-layout">
-        <div className="about-mark" aria-hidden="true">
+        <FadeIn className="about-mark" aria-hidden="true">
           <span>
             SB<span>.</span>
           </span>
@@ -12,8 +13,8 @@ export default function About() {
             <br />
             DEVELOPER SOUL.
           </small>
-        </div>
-        <div className="about-copy">
+        </FadeIn>
+        <FadeIn className="about-copy">
           <p className="eyebrow">Chi sono</p>
           <h2 id="about-title">
             Design pulito.
@@ -29,8 +30,8 @@ export default function About() {
           <a className="pill small" href="#contact">
             Conosciamoci <ArrowIcon />
           </a>
-        </div>
-        <div className="about-values">
+        </FadeIn>
+        <FadeIn className="about-values">
           <div>
             <h3>Obiettivi al centro</h3>
             <p>Focus sui risultati</p>
@@ -43,7 +44,7 @@ export default function About() {
             <h3>Sempre in evoluzione</h3>
             <p>Idee e strumenti per crescere</p>
           </div>
-        </div>
+        </FadeIn>
       </div>
     </section>
   );

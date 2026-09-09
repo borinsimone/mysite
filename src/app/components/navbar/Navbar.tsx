@@ -6,10 +6,10 @@ import './Navbar.css';
 
 const links = [
   { id: 'home', label: 'Home' },
+  { id: 'portfolio', label: 'Progetti' },
   { id: 'method', label: 'Metodo' },
   { id: 'services', label: 'Servizi' },
   { id: 'about', label: 'Chi sono' },
-  { id: 'portfolio', label: 'Progetti' },
   { id: 'contact', label: 'Contatti' },
 ];
 

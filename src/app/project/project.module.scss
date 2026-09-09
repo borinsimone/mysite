@@ -46,8 +46,8 @@
 }
 .previewCbTech {
   background:
-    repeating-linear-gradient(135deg, transparent 0 26px, #729fbd0b 26px 27px),
-    radial-gradient(ellipse at top right, #24435d, transparent 75%), #080e16;
+    linear-gradient(rgba(5, 7, 12, 0.65), rgba(5, 7, 12, 0.75)),
+    url('./cbtech.png') center top / cover no-repeat;
 
   .signature {
     font-family: inherit;
@@ -59,8 +59,8 @@
 }
 .previewMolino {
   background:
-    radial-gradient(ellipse at bottom left, #65502c66, transparent 70%),
-    linear-gradient(135deg, #23251c, #0d110d);
+    linear-gradient(rgba(5, 7, 12, 0.65), rgba(5, 7, 12, 0.75)),
+    url('./molinoborra.png') center top / cover no-repeat;
 
   .signature {
     font-size: clamp(30px, 3.5vw, 44px);
