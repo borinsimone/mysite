@@ -1,3 +1,4 @@
+import ArrowIcon from '../components/arrow-icon/ArrowIcon';
 export default function About() {
   return (
     <section className="site-section" id="about" aria-labelledby="about-title">
@@ -26,7 +27,7 @@ export default function About() {
             estetica, usabilità e performance per trasformare idee in esperienze digitali efficaci.
           </p>
           <a className="pill small" href="#contact">
-            Conosciamoci <span aria-hidden="true">→</span>
+            Conosciamoci <ArrowIcon />
           </a>
         </div>
         <div className="about-values">

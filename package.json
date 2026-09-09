@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@fortawesome/free-solid-svg-icons": "^7.3.1",
     "@react-three/fiber": "^9.7.0",
     "gsap": "^3.15.0",
     "hamburger-react": "^2.5.2",

@@ -1,3 +1,4 @@
+import ArrowIcon from '../components/arrow-icon/ArrowIcon';
 import styles from './project.module.scss';
 import BorderGlow from '../components/borderGlow/BorderGlow';
 const projects = [
@@ -8,6 +9,25 @@ const projects = [
     href: 'https://borinsimone.github.io/portfolio-perooartist/',
     signature: 'Peroò',
     subtitle: 'ARTIST / PORTFOLIO',
+    previewClass: styles.previewPeroo,
+  },
+  {
+    title: 'CB TECH',
+    category: 'Sito aziendale',
+    description: 'Il sito di CB TECH, specializzata in cablaggi elettrici per l’industria.',
+    href: 'https://www.cb-tech.it/',
+    signature: 'CB TECH',
+    subtitle: 'INDUSTRIA / CABLAGGI',
+    previewClass: styles.previewCbTech,
+  },
+  {
+    title: 'Molino Borra',
+    category: 'Sito aziendale e shop',
+    description: 'Il sito di Molino Borra: cereali, prodotti artigianali e vendita online.',
+    href: 'https://www.molinoborra.it/',
+    signature: 'Molino Borra',
+    subtitle: 'TERRITORIO / ARTIGIANALITÀ',
+    previewClass: styles.previewMolino,
   },
 ];
 
@@ -30,7 +50,7 @@ export default function Project() {
               ai dettagli.
             </p>
             <a className="pill small" href="#project-list">
-              Esplora i progetti <span aria-hidden="true">↓</span>
+              Esplora i progetti <ArrowIcon direction="down" />
             </a>
           </div>
         </div>
@@ -59,7 +79,7 @@ export default function Project() {
                 rel="noopener noreferrer"
                 aria-label={`${project.title}: visita il sito (si apre in una nuova scheda)`}
               >
-                <div className={styles.preview} aria-hidden="true">
+                <div className={`${styles.preview} ${project.previewClass}`} aria-hidden="true">
                   <span className={styles.index}>
                     PROGETTO / {String(index + 1).padStart(2, '0')}
                   </span>
@@ -80,7 +100,7 @@ export default function Project() {
                     <p className={styles.description}>{project.description}</p>
                   </div>
                   <span className="circle-link" aria-hidden="true">
-                    ↗
+                    <ArrowIcon direction="up-right" />
                   </span>
                 </div>
               </a>

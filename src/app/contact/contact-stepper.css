@@ -175,3 +175,11 @@
   line-height: 1.7;
   overflow-wrap: anywhere;
 }
+
+.contact-dialog .rb-next-button,
+.contact-dialog .rb-back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}

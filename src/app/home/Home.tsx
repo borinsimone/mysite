@@ -1,3 +1,4 @@
+import ArrowIcon from '../components/arrow-icon/ArrowIcon';
 import HeroBackground from './HeroBackground';
 import { expertise } from '../site-content';
 
@@ -21,10 +22,10 @@ export default function Home() {
           </p>
           <div className="button-row">
             <a className="pill primary" href="#contact">
-              Inizia il tuo progetto <span aria-hidden="true">→</span>
+              Inizia il tuo progetto <ArrowIcon />
             </a>
             <a className="pill" href="#method">
-              Scopri di più <span aria-hidden="true">↓</span>
+              Scopri di più <ArrowIcon direction="down" />
             </a>
           </div>
           <div className="hero-values">

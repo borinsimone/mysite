@@ -1,3 +1,4 @@
+import ArrowIcon from '../components/arrow-icon/ArrowIcon';
 import BorderGlow from '../components/borderGlow/BorderGlow';
 import { serviceCards, steps } from '../site-content';
 
@@ -34,7 +35,6 @@ export function Process() {
               <div className="glass-step" key={label}>
                 <span>0{index + 1}</span>
                 <strong>{label}</strong>
-                <i>↗</i>
               </div>
             ))}
           </div>
@@ -73,7 +73,7 @@ export default function Services() {
               e orientato ai risultati.
             </p>
             <a className="pill small" href="#contact">
-              Parliamo del tuo progetto <span aria-hidden="true">→</span>
+              Parliamo del tuo progetto <ArrowIcon />
             </a>
           </div>
         </div>
@@ -100,7 +100,7 @@ export default function Services() {
                 <h3>{card.title}</h3>
                 <p>{card.description}</p>
                 <span className="circle-link" aria-hidden="true">
-                  ↗
+                  <ArrowIcon />
                 </span>
               </a>
             </BorderGlow>

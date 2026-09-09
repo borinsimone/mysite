@@ -1,13 +1,14 @@
 'use client';
+import ArrowIcon from '../arrow-icon/ArrowIcon';
 
 import { useEffect, useRef, useState } from 'react';
 import './Navbar.css';
 
 const links = [
   { id: 'home', label: 'Home' },
-  { id: 'about', label: 'Chi sono' },
-  { id: 'services', label: 'Servizi' },
   { id: 'method', label: 'Metodo' },
+  { id: 'services', label: 'Servizi' },
+  { id: 'about', label: 'Chi sono' },
   { id: 'portfolio', label: 'Progetti' },
   { id: 'contact', label: 'Contatti' },
 ];
@@ -104,7 +105,7 @@ export default function Navbar() {
           ))}
         </nav>
         <a className="pill small navbar-cta" href="#contact" onClick={() => setIsOpen(false)}>
-          Parliamone <span aria-hidden="true">→</span>
+          Parliamone <ArrowIcon />
         </a>
       </div>
     </header>

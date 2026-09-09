@@ -1,3 +1,4 @@
+import ArrowIcon from './components/arrow-icon/ArrowIcon';
 import Navbar from './components/navbar/Navbar';
 import Home from './home/Home';
 import Services, { Process } from './services/Services';
@@ -18,8 +19,8 @@ export default function Page() {
         <Process />
         <Services />
         {/* <Expertise /> */}
-        <Project />
         <About />
+        <Project />
         <Contact />
       </main>
       <footer className="site-footer">
@@ -39,20 +40,20 @@ export default function Page() {
           </nav>
           <div className="footer-socials">
             <a href="https://github.com/simoneborin" target="_blank" rel="noopener noreferrer">
-              GitHub ↗
+              GitHub <ArrowIcon direction="up-right" />
             </a>
             <a href="https://linkedin.com/in/simoneborin" target="_blank" rel="noopener noreferrer">
-              LinkedIn ↗
+              LinkedIn <ArrowIcon direction="up-right" />
             </a>
-            <a className="circle-link" href="#home" aria-label="Torna all’inizio">
-              ↑
+            <a href="#home" aria-label="Torna all’inizio">
+              Torna su <ArrowIcon direction="up" />
             </a>
           </div>
         </div>
-        <div className="site-width footer-bottom">
+        {/* <div className="site-width footer-bottom">
           <p>© {new Date().getFullYear()} Simone Borin. Tutti i diritti riservati.</p>
           <p>Siti migliori per idee più grandi.</p>
-        </div>
+        </div> */}
       </footer>
     </div>
   );

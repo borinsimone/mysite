@@ -1,4 +1,5 @@
 'use client';
+import ArrowIcon from '../components/arrow-icon/ArrowIcon';
 import { useEffect, useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import Stepper, { Step } from '../components/stepper/Stepper';
@@ -24,7 +25,7 @@ export default function Contact() {
             onClick={() => setOpen(true)}
             aria-haspopup="dialog"
           >
-            Iniziamo <span aria-hidden="true">→</span>
+            Iniziamo <ArrowIcon />
           </button>
         </div>
         <div className="contact-art" aria-hidden="true">
@@ -199,9 +200,25 @@ function ContactStepper({ onClose }: { onClose: () => void }) {
               step === 3 ? { onClick: handleSendMessage, disabled: sendState === 'sending' } : {}
             }
             backButtonProps={{ disabled: sendState === 'sending' }}
-            backButtonText="Indietro"
-            nextButtonText="Continua →"
-            completeButtonText={sendState === 'sending' ? 'Invio in corso…' : 'Invia messaggio ↗'}
+            backButtonText={
+              <>
+                <ArrowIcon direction="left" /> Indietro
+              </>
+            }
+            nextButtonText={
+              <>
+                Continua <ArrowIcon />
+              </>
+            }
+            completeButtonText={
+              sendState === 'sending' ? (
+                'Invio in corso…'
+              ) : (
+                <>
+                  Invia messaggio <ArrowIcon />
+                </>
+              )
+            }
           >
             <Step>
               <div className="contact-step-heading" aria-live="polite">

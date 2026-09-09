@@ -18,7 +18,7 @@ interface StepperProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   initialStep?: number;
   beforeStepChange?: (step: number) => boolean;
-  completeButtonText?: string;
+  completeButtonText?: ReactNode;
   onStepChange?: (step: number) => void;
   onFinalStepCompleted?: () => void;
   stepCircleContainerClassName?: string;
@@ -27,8 +27,8 @@ interface StepperProps extends HTMLAttributes<HTMLDivElement> {
   footerClassName?: string;
   backButtonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
   nextButtonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
-  backButtonText?: string;
-  nextButtonText?: string;
+  backButtonText?: ReactNode;
+  nextButtonText?: ReactNode;
   disableStepIndicators?: boolean;
   renderStepIndicator?: (props: RenderStepIndicatorProps) => ReactNode;
 }
