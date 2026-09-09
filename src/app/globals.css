@@ -57,19 +57,22 @@ summary {
   min-width: 0;
 }
 @media (prefers-reduced-motion: reduce) {
-  .fade-in {
+  .fade-in,
+  .scale-in {
     opacity: 1 !important;
     transform: none !important;
   }
 }
 @media print {
-  .fade-in {
+  .fade-in,
+  .scale-in {
     opacity: 1 !important;
     transform: none !important;
   }
 }
 
-.fade-in:focus-within {
+.fade-in:focus-within,
+.scale-in:focus-within {
   opacity: 1 !important;
   transform: none !important;
 }

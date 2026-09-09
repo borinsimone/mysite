@@ -7,21 +7,28 @@ type FadeInProps = Omit<
   'initial' | 'animate' | 'whileInView' | 'transition'
 > & {
   delay?: number;
+  reverse?: boolean;
 };
 
-export default function FadeIn({ children, delay = 0, ...props }: FadeInProps) {
+export default function FadeIn({
+  children,
+  delay = 0,
+  reverse = true,
+  viewport,
+  ...props
+}: FadeInProps) {
   const reducedMotion = useReducedMotion();
 
   return (
     <motion.div
       {...props}
       initial={{ opacity: 0, y: 18 }}
-      animate={reducedMotion ? { opacity: 1, y: 0 } : undefined}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
+      animate={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0, transition: { delay: reducedMotion ? 0 : delay } }}
+      viewport={{ amount: 0.55, once: !reverse, ...viewport }}
       transition={{
-        duration: reducedMotion ? 0 : 0.55,
-        delay: reducedMotion ? 0 : delay,
+        duration: reducedMotion ? 0 : 0.8,
+        delay: 0,
         ease: [0.22, 1, 0.36, 1],
       }}
       className={`fade-in ${props.className ?? ''}`}

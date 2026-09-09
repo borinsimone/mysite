@@ -88,7 +88,7 @@ export default function RootLayout({
     <html lang="it" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
         <noscript>
-          <style>{`.fade-in { opacity: 1 !important; transform: none !important; }`}</style>
+          <style>{`.fade-in, .scale-in { opacity: 1 !important; transform: none !important; }`}</style>
         </noscript>
         {children}
       </body>

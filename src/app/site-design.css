@@ -131,6 +131,7 @@
 .hero {
   position: relative;
   isolation: isolate;
+  height: 100dvh;
 }
 .hero-background {
   position: absolute;

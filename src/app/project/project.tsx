@@ -1,4 +1,5 @@
 import FadeIn from '../components/scroll/FadeIn';
+import ScaleIn from '../components/scroll/ScaleIn';
 import ArrowIcon from '../components/arrow-icon/ArrowIcon';
 import styles from './project.module.scss';
 import BorderGlow from '../components/borderGlow/BorderGlow';
@@ -57,7 +58,7 @@ export default function Project() {
         </FadeIn>
         <div className={styles.grid} id="project-list">
           {projects.map((project, index) => (
-            <FadeIn key={project.href} delay={index * 0.08} className="reveal-card">
+            <ScaleIn key={project.href} delay={index * 0.08} className="reveal-card">
               <BorderGlow
                 className={styles.glowCard}
                 edgeSensitivity={30}
@@ -106,7 +107,7 @@ export default function Project() {
                   </div>
                 </a>
               </BorderGlow>
-            </FadeIn>
+            </ScaleIn>
           ))}
         </div>
       </div>

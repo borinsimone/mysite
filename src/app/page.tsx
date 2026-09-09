@@ -1,3 +1,4 @@
+import Nfc from './nfc/Nfc';
 import SiteGlowCursor from './components/glow-cursor/SiteGlowCursor';
 import FadeIn from './components/scroll/FadeIn';
 import ArrowIcon from './components/arrow-icon/ArrowIcon';
@@ -22,6 +23,7 @@ export default function Page() {
         <Project />
         <Process />
         <Services />
+        <Nfc />
         {/* <Expertise /> */}
         <About />
         <Contact />

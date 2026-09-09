@@ -1,0 +1,376 @@
+.section {
+  position: relative;
+  background: radial-gradient(ellipse at 82% 35%, #ff28580a, transparent 50%);
+}
+.layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 26px;
+}
+.copy {
+  position: relative;
+  z-index: 1;
+}
+.copy h2 {
+  font-size: clamp(32px, 3.7vw, 52px);
+}
+.intro {
+  max-width: 480px;
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.textLink {
+  padding-block: 12px;
+  border-bottom: 1px solid #ff285870;
+  font-size: 12px;
+  transition: color 0.2s;
+  &:hover {
+    color: var(--accent);
+  }
+}
+.features {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 40px;
+}
+.featureIcon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #ff285838;
+  border-radius: 8px;
+  color: var(--accent);
+  margin-bottom: 14px;
+  svg {
+    width: 17px;
+    height: 17px;
+  }
+}
+.feature h3 {
+  font-size: 10px;
+  font-weight: 550;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.5;
+}
+.feature p {
+  margin-top: 8px;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.art {
+  position: relative;
+  min-height: 480px;
+  perspective: 1100px;
+  isolation: isolate;
+}
+.orbit {
+  position: absolute;
+  top: 10%;
+  left: 7%;
+  width: 85%;
+  aspect-ratio: 1;
+  border: 1px solid #ff28582d;
+  border-radius: 50%;
+  transform: rotateX(30deg) rotateY(-15deg);
+  box-shadow: 0 0 65px #ff28580b;
+}
+.artLabel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #be778b;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 8px;
+  line-height: 2;
+}
+.card {
+  position: absolute;
+  width: 43%;
+  aspect-ratio: 0.63;
+  border: 1px solid #9c5369;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #28232c, #0a0c11 45%, #07090d);
+  box-shadow:
+    -3px -2px 14px #ff28581a,
+    16px 28px 35px #0009,
+    inset 0 0 20px #ffffff03;
+  small {
+    font-size: 7px;
+    letter-spacing: 2px;
+  }
+}
+.frontCard {
+  z-index: 3;
+  top: 4%;
+  left: 13%;
+  transform: rotate(19deg) rotateY(-18deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #f3dae4;
+  small {
+    position: absolute;
+    bottom: 10%;
+  }
+}
+.nfcSymbol {
+  position: absolute;
+  top: 8%;
+  right: 12%;
+  transform: rotate(90deg);
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+.monogram {
+  font-size: clamp(38px, 5vw, 66px);
+  font-weight: 500;
+  letter-spacing: -6px;
+  span {
+    color: var(--accent);
+  }
+}
+.middleCard {
+  z-index: 2;
+  left: 42%;
+  top: 21%;
+  transform: rotate(8deg) rotateY(-20deg);
+  background:
+    repeating-radial-gradient(
+      ellipse at 110% 30%,
+      transparent 0 14px,
+      #ff28582a 15px 15.5px,
+      transparent 16px 25px
+    ),
+    #0a0c11;
+  display: grid;
+  place-items: center;
+  span {
+    text-align: center;
+    font-size: 12px;
+    line-height: 2.5;
+    letter-spacing: 4px;
+    color: #c9889d;
+  }
+}
+.backCard {
+  z-index: 1;
+  left: 59%;
+  top: 37%;
+  width: 37%;
+  transform: rotate(22deg) rotateY(-18deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  color: #c9889d;
+  svg {
+    width: 50px;
+    height: 50px;
+  }
+  small {
+    font-size: 6px;
+  }
+}
+.pedestal {
+  position: absolute;
+  bottom: 9%;
+  left: 4%;
+  right: -2%;
+  height: 55px;
+  z-index: -1;
+  border-radius: 50%;
+  background: #ff28581a;
+  filter: blur(26px);
+}
+.artCaption {
+  position: absolute;
+  left: 20%;
+  bottom: -12px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 8px;
+  color: #db9caf;
+  span {
+    display: block;
+    font-size: 7px;
+    color: #7f6872;
+    margin-top: 10px;
+    letter-spacing: 2px;
+  }
+}
+.examples {
+  margin-top: 60px;
+  scroll-margin-top: 110px;
+}
+.examplesHeading {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 22px;
+  p {
+    margin-bottom: 0;
+  }
+  > span {
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(90deg, #ff285838, transparent);
+  }
+}
+.examplesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+.exampleWrap {
+  display: grid;
+  min-width: 0;
+}
+.example {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  border: 1px solid #ff285825;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #ff285805, #080b0e80);
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+  h3 {
+    font-size: 16px;
+  }
+  p {
+    font-size: 12px;
+    line-height: 1.7;
+    margin-top: 9px;
+    color: var(--muted);
+  }
+  &:hover {
+    border-color: #ff285880;
+    background: #ff285809;
+  }
+}
+.exampleIcon {
+  color: var(--accent);
+  margin-bottom: 20px;
+  svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+.exampleArrow {
+  align-self: flex-end;
+  margin-top: auto;
+  padding-top: 12px;
+  color: #c998a7;
+}
+@media (max-width: 1000px) {
+  .layout {
+    gap: 8px;
+  }
+  .features {
+    gap: 12px;
+  }
+  .art {
+    min-height: 400px;
+  }
+  .example {
+    padding: 18px;
+  }
+}
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .intro {
+    max-width: 560px;
+  }
+  .art {
+    width: min(470px, 100%);
+    min-height: 470px;
+    justify-self: center;
+  }
+  .features {
+    max-width: 600px;
+  }
+  .examplesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .examples {
+    margin-top: 44px;
+  }
+}
+@media (max-width: 480px) {
+  .features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .actions {
+    gap: 12px 20px;
+  }
+  .intro {
+    font-size: 14px;
+  }
+  .art {
+    min-height: 360px;
+  }
+  .card {
+    border-radius: 11px;
+  }
+  .middleCard span {
+    font-size: 9px;
+    letter-spacing: 3px;
+  }
+  .card small {
+    font-size: 5px;
+    letter-spacing: 1px;
+  }
+  .backCard svg {
+    width: 36px;
+    height: 36px;
+  }
+  .artCaption {
+    left: 8%;
+    bottom: 0;
+    letter-spacing: 2px;
+  }
+  .examplesHeading {
+    gap: 12px;
+    p {
+      font-size: 8px;
+      letter-spacing: 2px;
+    }
+  }
+  .examplesGrid {
+    gap: 12px;
+  }
+  .example {
+    padding: 16px;
+    h3 {
+      font-size: 14px;
+    }
+    p {
+      font-size: 11px;
+    }
+  }
+}
