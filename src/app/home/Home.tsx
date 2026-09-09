@@ -1,50 +1,71 @@
 import ArrowIcon from '../components/arrow-icon/ArrowIcon';
 import HeroBackground from './HeroBackground';
 import { expertise } from '../site-content';
+import * as motion from 'motion/react-client';
+
+function reveal(delay: number) {
+  return {
+    initial: { opacity: 0 },
+    whileInView: { opacity: 1, transition: { delay } },
+    viewport: { amount: 0.1 },
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const },
+  };
+}
 
 export default function Home() {
   return (
     <section className="hero section-line" id="home" aria-labelledby="hero-title">
-      <HeroBackground />
+      <motion.div
+        className="fade-in"
+        style={{ position: 'absolute', inset: 0, zIndex: -1 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ amount: 0.1 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <HeroBackground />
+      </motion.div>
       <div className="site-width hero-layout">
         <div className="hero-copy">
-          <p className="eyebrow">Siti web su misura, pensati per crescere</p>
-          <h1 id="hero-title">
+          <motion.p className="eyebrow fade-in" {...reveal(0.08)}>
+            Siti web su misura, pensati per crescere
+          </motion.p>
+          <motion.h1 id="hero-title" className="fade-in" {...reveal(0.16)}>
             Il tuo valore.
             <br />
             Un sito lo rende
             <br />
             <span>evidente.</span>
-          </h1>
-          <p className="lead">
+          </motion.h1>
+          <motion.p className="lead fade-in" {...reveal(0.24)}>
             Progetto interfacce veloci e curate che comunicano con chiarezza e mettono in risalto il
             valore di ciò che fai.
-          </p>
+          </motion.p>
           <div className="button-row">
-            <a className="pill primary" href="#contact">
+            <motion.a className="pill primary fade-in" href="#contact" {...reveal(0.32)}>
               Inizia il tuo progetto <ArrowIcon />
-            </a>
-            <a className="pill" href="#method">
+            </motion.a>
+            <motion.a className="pill fade-in" href="#method" {...reveal(0.4)}>
               Scopri di più <ArrowIcon direction="down" />
-            </a>
+            </motion.a>
           </div>
           <div className="hero-values">
-            <div>
+            <motion.div className="fade-in" {...reveal(0.48)}>
               <strong>Design</strong>
               <span>Chiaro e su misura</span>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div className="fade-in" {...reveal(0.56)}>
               <strong>Codice</strong>
               <span>Solido e performante</span>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div className="fade-in" {...reveal(0.64)}>
               <strong>Obiettivi</strong>
               <span>Al centro del progetto</span>
-            </div>
+            </motion.div>
           </div>
         </div>
         <div className="hero-art" aria-hidden="true">
-          <span className="art-caption">
+          <motion.span className="art-caption fade-in" {...reveal(0.35)}>
             IDEAS
             <br />
             DESIGN
@@ -53,7 +74,7 @@ export default function Home() {
             <br />
             GROW
             <i />
-          </span>
+          </motion.span>
         </div>
       </div>
     </section>

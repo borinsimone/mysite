@@ -21,10 +21,10 @@ export default function Page() {
       <main id="main-content">
         <Home />
         <Project />
+        <Nfc />
         <Process />
         <Services />
-        <Nfc />
-        {/* <Expertise /> */}
+
         <About />
         <Contact />
       </main>
