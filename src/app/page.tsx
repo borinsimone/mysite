@@ -1,3 +1,4 @@
+import SiteGlowCursor from './components/glow-cursor/SiteGlowCursor';
 import FadeIn from './components/scroll/FadeIn';
 import ArrowIcon from './components/arrow-icon/ArrowIcon';
 import Navbar from './components/navbar/Navbar';
@@ -15,6 +16,7 @@ export default function Page() {
         Vai al contenuto
       </a>
       <Navbar />
+      <SiteGlowCursor />
       <main id="main-content">
         <Home />
         <Project />

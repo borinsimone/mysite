@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef, type HTMLAttributes, type ReactNode } from 'react';
 import { Mesh, Program, Renderer, Triangle } from 'ogl';
 import './GlowCursor.css';
@@ -7,6 +9,7 @@ const MAX_POINTS = 64;
 type BlendMode = 'normal' | 'screen' | 'plus-lighter';
 
 export interface GlowCursorProps extends Omit<HTMLAttributes<HTMLDivElement>, 'color'> {
+  fullscreen?: boolean;
   color?: string;
   secondaryColor?: string;
   trailLength?: number;
@@ -172,6 +175,7 @@ const hexToRgb = (hex: string): [number, number, number] => {
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
 const GlowCursor = ({
+  fullscreen = false,
   color = '#67E8F9',
   secondaryColor = '#A78BFA',
   trailLength = 40,
@@ -200,7 +204,29 @@ const GlowCursor = ({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const propsRef = useRef<GlowCursorConfig>({} as GlowCursorConfig);
 
-  propsRef.current = {
+  useEffect(() => {
+    propsRef.current = {
+      color,
+      secondaryColor,
+      trailLength,
+      trailWidth,
+      trailTaper,
+      followSpeed,
+      glowIntensity,
+      glowSpread,
+      hotspot,
+      brightness,
+      opacity,
+      pulseSpeed,
+      noiseStrength,
+      idleFade,
+      idleTimeout,
+      fadeDuration,
+      maxDevicePixelRatio,
+      blendMode,
+      enabled,
+    };
+  }, [
     color,
     secondaryColor,
     trailLength,
@@ -220,19 +246,25 @@ const GlowCursor = ({
     maxDevicePixelRatio,
     blendMode,
     enabled,
-  };
+  ]);
 
   useEffect(() => {
     const container = containerRef.current;
     const canvas = canvasRef.current;
-    if (!container || !canvas) return;
+    if (!container || !canvas || !enabled) return;
 
     const initialConfig = propsRef.current;
-    const renderer = new Renderer({
-      canvas,
-      alpha: true,
-      dpr: Math.min(window.devicePixelRatio || 1, initialConfig.maxDevicePixelRatio),
-    });
+    let renderer: Renderer;
+    try {
+      renderer = new Renderer({
+        canvas,
+        alpha: true,
+        dpr: Math.min(window.devicePixelRatio || 1, initialConfig.maxDevicePixelRatio),
+      });
+    } catch {
+      // The decorative effect is optional when WebGL is unavailable.
+      return;
+    }
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
 
@@ -300,6 +332,7 @@ const GlowCursor = ({
     };
 
     const updatePointer = (event: PointerEvent) => {
+      if (event.pointerType === 'touch') return;
       const rect = container.getBoundingClientRect();
       const x = clamp(event.clientX - rect.left, 0, rect.width);
       const y = clamp(rect.height - (event.clientY - rect.top), 0, rect.height);
@@ -363,15 +396,20 @@ const GlowCursor = ({
       program.uniforms.uTime.value = now * 0.001;
       program.uniforms.uFade.value = fade;
 
-      renderer.render({ scene: mesh });
+      if (fade > 0.001) {
+        renderer.render({ scene: mesh });
+      } else {
+        gl.clear(gl.COLOR_BUFFER_BIT);
+      }
       if (!destroyed) raf = requestAnimationFrame(render);
     };
 
+    const pointerTarget = fullscreen ? document.documentElement : container;
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(container);
-    container.addEventListener('pointermove', updatePointer);
-    container.addEventListener('pointerenter', updatePointer);
-    container.addEventListener('pointerleave', onPointerLeave);
+    pointerTarget.addEventListener('pointermove', updatePointer);
+    pointerTarget.addEventListener('pointerenter', updatePointer);
+    pointerTarget.addEventListener('pointerleave', onPointerLeave);
     resize();
     raf = requestAnimationFrame(render);
 
@@ -379,18 +417,19 @@ const GlowCursor = ({
       destroyed = true;
       cancelAnimationFrame(raf);
       resizeObserver.disconnect();
-      container.removeEventListener('pointermove', updatePointer);
-      container.removeEventListener('pointerenter', updatePointer);
-      container.removeEventListener('pointerleave', onPointerLeave);
+      pointerTarget.removeEventListener('pointermove', updatePointer);
+      pointerTarget.removeEventListener('pointerenter', updatePointer);
+      pointerTarget.removeEventListener('pointerleave', onPointerLeave);
       mesh.geometry.remove();
       program.remove();
+      gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, [maxDevicePixelRatio]);
+  }, [maxDevicePixelRatio, enabled, fullscreen]);
 
   return (
     <div
       ref={containerRef}
-      className={`glow-cursor${className ? ` ${className}` : ''}`}
+      className={`glow-cursor${fullscreen ? ' glow-cursor--fullscreen' : ''}${className ? ` ${className}` : ''}`}
       style={style}
       {...rest}
     >
