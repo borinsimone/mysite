@@ -222,9 +222,14 @@ function SlideTransition({ children, direction, onHeightReady }: SlideTransition
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useLayoutEffect(() => {
-    if (containerRef.current) {
-      onHeightReady(containerRef.current.offsetHeight);
-    }
+    const container = containerRef.current;
+    if (!container) return;
+    const updateHeight = () => onHeightReady(container.offsetHeight);
+    updateHeight();
+    // A dialog can still be hidden during the first layout measurement.
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(container);
+    return () => observer.disconnect();
   }, [children, onHeightReady]);
 
   return (

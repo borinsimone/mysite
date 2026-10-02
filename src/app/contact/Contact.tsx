@@ -1,16 +1,20 @@
 'use client';
 import FadeIn from '../components/scroll/FadeIn';
+import styles from './contact.module.scss';
 import ArrowIcon from '../components/arrow-icon/ArrowIcon';
 import { useEffect, useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import Stepper, { Step } from '../components/stepper/Stepper';
-import './contact-stepper.css';
 
 export default function Contact() {
   const [open, setOpen] = useState(false);
   return (
-    <section className="contact-section site-width" id="contact" aria-labelledby="contact-title">
-      <FadeIn className="contact-banner">
+    <section
+      className={`${styles.contactSection} site-width`}
+      id="contact"
+      aria-labelledby="contact-title"
+    >
+      <FadeIn className={styles.contactBanner}>
         <div>
           <p className="eyebrow">Contatti</p>
           <h2 id="contact-title">
@@ -29,7 +33,7 @@ export default function Contact() {
             Iniziamo <ArrowIcon />
           </button>
         </div>
-        <div className="contact-art" aria-hidden="true">
+        <div className={styles.contactArt} aria-hidden="true">
           <span />
           <span />
           <span />
@@ -128,7 +132,7 @@ function ContactStepper({ onClose }: { onClose: () => void }) {
   return (
     <dialog
       ref={dialogRef}
-      className="contact-dialog"
+      className={styles.contactDialog}
       aria-labelledby="contact-dialog-title"
       onCancel={(event) => {
         event.preventDefault();
@@ -146,7 +150,7 @@ function ContactStepper({ onClose }: { onClose: () => void }) {
           onClose();
       }}
     >
-      <header className="contact-dialog-header">
+      <header className={styles.contactDialogHeader}>
         <div>
           <p className="eyebrow">Iniziamo a parlare</p>
           <h2 id="contact-dialog-title">
@@ -155,7 +159,7 @@ function ContactStepper({ onClose }: { onClose: () => void }) {
         </div>
         <button
           type="button"
-          className="contact-dialog-close"
+          className={styles.contactDialogClose}
           onClick={onClose}
           aria-label="Chiudi modulo contatti"
           disabled={sendState === 'sending'}
@@ -164,8 +168,8 @@ function ContactStepper({ onClose }: { onClose: () => void }) {
         </button>
       </header>
       {sendState === 'success' ? (
-        <div className="contact-success">
-          <span className="contact-success-icon" aria-hidden="true">
+        <div className={styles.contactSuccess}>
+          <span className={styles.contactSuccessIcon} aria-hidden="true">
             ✓
           </span>
           <h3 ref={successTitleRef} tabIndex={-1}>
@@ -181,7 +185,7 @@ function ContactStepper({ onClose }: { onClose: () => void }) {
       ) : (
         <form
           ref={formRef}
-          className="contact-form"
+          className={styles.contactForm}
           noValidate
           aria-busy={sendState === 'sending'}
           onSubmit={(event) => {
@@ -222,13 +226,13 @@ function ContactStepper({ onClose }: { onClose: () => void }) {
             }
           >
             <Step>
-              <div className="contact-step-heading" aria-live="polite">
+              <div className={styles.contactStepHeading} aria-live="polite">
                 <p>01 / I tuoi contatti</p>
                 <h3 tabIndex={-1} data-step-heading>
                   Come posso contattarti?
                 </h3>
               </div>
-              <div className="contact-step-fields">
+              <div className={styles.contactStepFields}>
                 <label>
                   Nome
                   <input
@@ -263,7 +267,7 @@ function ContactStepper({ onClose }: { onClose: () => void }) {
               </div>
             </Step>
             <Step>
-              <div className="contact-step-heading" aria-live="polite">
+              <div className={styles.contactStepHeading} aria-live="polite">
                 <p>02 / Il tuo progetto</p>
                 <h3 tabIndex={-1} data-step-heading>
                   A cosa stai pensando?
@@ -286,13 +290,13 @@ function ContactStepper({ onClose }: { onClose: () => void }) {
               </label>
             </Step>
             <Step>
-              <div className="contact-step-heading" aria-live="polite">
+              <div className={styles.contactStepHeading} aria-live="polite">
                 <p>03 / Riepilogo</p>
                 <h3 tabIndex={-1} data-step-heading>
                   Tutto pronto per iniziare.
                 </h3>
               </div>
-              <dl className="contact-review">
+              <dl className={styles.contactReview}>
                 <div>
                   <dt>Nome</dt>
                   <dd>{details.name}</dd>
@@ -306,10 +310,10 @@ function ContactStepper({ onClose }: { onClose: () => void }) {
                   <dd>{details.message}</dd>
                 </div>
               </dl>
-              <p className="contact-email-note">
+              <p className={styles.contactEmailNote}>
                 Controlla i tuoi dati e il messaggio. Puoi tornare indietro per modificarli.
               </p>
-              <p className="contact-send-status" data-state={sendState} role="status">
+              <p className={styles.contactSendStatus} data-state={sendState} role="status">
                 {sendStatus}
               </p>
             </Step>

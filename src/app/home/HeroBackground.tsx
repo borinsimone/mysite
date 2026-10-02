@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import styles from './home.module.scss';
 import { useEffect, useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from 'motion/react';
 import heroBackground from './herobg-personal.png';
@@ -74,14 +75,14 @@ export default function HeroBackground() {
   }, []);
 
   return (
-    <div ref={background} className="hero-background" aria-hidden="true">
+    <div ref={background} className={styles.heroBackground} aria-hidden="true">
       <motion.div
         ref={imageLayer}
-        className="hero-parallax-layer"
+        className={styles.heroParallaxLayer}
         style={{ y: reducedMotion ? 0 : parallaxY, scale: reducedMotion ? 1 : parallaxScale }}
       >
         <Image src={heroBackground} alt="" fill sizes="100vw" priority />
-        <div className="hero-accent-glow">
+        <div className={styles.heroAccentGlow}>
           <Image src={heroBackground} alt="" fill sizes="100vw" />
         </div>
       </motion.div>

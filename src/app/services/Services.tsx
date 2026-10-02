@@ -1,4 +1,5 @@
 import FadeIn from '../components/scroll/FadeIn';
+import styles from './services.module.scss';
 import ArrowIcon from '../components/arrow-icon/ArrowIcon';
 import BorderGlow from '../components/borderGlow/BorderGlow';
 import { serviceCards, steps } from '../site-content';
@@ -6,7 +7,7 @@ import { serviceCards, steps } from '../site-content';
 export function Process() {
   return (
     <section className="site-section section-line" id="method" aria-labelledby="method-title">
-      <div className="site-width process-layout">
+      <div className={`site-width ${styles.processLayout}`}>
         <FadeIn>
           <p className="eyebrow">Come lavoro</p>
           <h2 id="method-title">
@@ -14,13 +15,13 @@ export function Process() {
             <br />
             passo dopo passo<span>.</span>
           </h2>
-          <p className="section-intro process-intro">
+          <p className={`section-intro ${styles.processIntro}`}>
             Un metodo collaudato per trasformare le tue idee in un sito web efficace.
           </p>
-          <ol className="process-steps">
+          <ol className={styles.processSteps}>
             {steps.map((step) => (
               <li key={step.number}>
-                <span className="step-number">{step.number}</span>
+                <span className={styles.stepNumber}>{step.number}</span>
                 <div>
                   <h3>{step.title}</h3>
                   <p>{step.description}</p>
@@ -29,11 +30,11 @@ export function Process() {
             ))}
           </ol>
         </FadeIn>
-        <FadeIn className="process-art" aria-hidden="true">
-          <div className="process-grid" />
-          <div className="process-stack">
+        <FadeIn className={styles.processArt} aria-hidden="true">
+          <div className={styles.processGrid} />
+          <div className={styles.processStack}>
             {['IDEA', 'STRATEGY', 'DESIGN', 'DEVELOP', 'LAUNCH'].map((label, index) => (
-              <div className="glass-step" key={label}>
+              <div className={styles.glassStep} key={label}>
                 <span>0{index + 1}</span>
                 <strong>{label}</strong>
               </div>
@@ -78,11 +79,11 @@ export default function Services() {
             </a>
           </div>
         </FadeIn>
-        <div className="services-grid">
+        <div className={styles.servicesGrid}>
           {serviceCards.map((card, index) => (
             <FadeIn key={card.title} delay={index * 0.08} className="reveal-card">
               <BorderGlow
-                className="service-glow"
+                className={styles.serviceGlow}
                 glowColor="346 100 75"
                 backgroundColor="#080b0e"
                 borderRadius={11}
@@ -90,14 +91,14 @@ export default function Services() {
                 colors={['#ff2858', '#f472b6', '#ff436e']}
                 fillOpacity={0}
               >
-                <a href="#contact" className="service-card">
-                  <div className="service-top">
+                <a href="#contact" className={styles.serviceCard}>
+                  <div className={styles.serviceTop}>
                     <span className="service-icon" aria-hidden="true">
                       {card.icon}
                     </span>
-                    <span className="card-number">0{index + 1}</span>
+                    <span className={styles.cardNumber}>0{index + 1}</span>
                   </div>
-                  <p className="card-label">{card.label}</p>
+                  <p className={styles.cardLabel}>{card.label}</p>
                   <h3>{card.title}</h3>
                   <p>{card.description}</p>
                   <span className="circle-link" aria-hidden="true">
