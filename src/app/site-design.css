@@ -1,6 +1,6 @@
 .portfolio-site {
   --accent: #ff2858;
-  --muted: #9b9ca5;
+  --muted: #b8bac4;
   --line: rgba(255, 255, 255, 0.075);
   background: radial-gradient(ellipse at 0 12%, #10151b55, transparent 28%), #050709;
   overflow: clip;
@@ -17,7 +17,7 @@
 }
 .eyebrow {
   color: var(--accent);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 650;
   letter-spacing: 3.3px;
   text-transform: uppercase;
@@ -51,7 +51,7 @@
   line-height: 1.7;
 }
 .section-intro {
-  font-size: 14px;
+  font-size: 16px;
   max-width: 440px;
 }
 .lead {
@@ -228,7 +228,7 @@
 .hero-values span {
   display: block;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 13px;
   margin-top: 5px;
 }
 .hero-art {
@@ -305,7 +305,7 @@
   margin: 3px 0 5px;
 }
 .process-steps p {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.6;
   color: var(--muted);
   max-width: 400px;
@@ -439,15 +439,15 @@
   stroke-width: 1.25;
 }
 .card-number {
-  color: #63515a;
-  font-size: 10px;
+  color: #a9a1ac;
+  font-size: 11px;
   letter-spacing: 2px;
 }
 .service-card .card-label {
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 1.8px;
   text-transform: uppercase;
-  color: #e64b70;
+  color: #ff7997;
   margin-bottom: 8px;
 }
 .service-card h3 {
@@ -456,7 +456,7 @@
 }
 .service-card p {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.6;
 }
 .service-card .circle-link {
@@ -564,7 +564,7 @@
 }
 .about-copy .section-intro {
   margin: 20px 0 24px;
-  font-size: 13px;
+  font-size: 16px;
 }
 .about-values {
   border-left: 1px solid #76243a;
@@ -589,7 +589,7 @@
   font-size: 17px;
 }
 .about-values p {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--muted);
   margin-top: 8px;
   line-height: 1.5;
@@ -785,7 +785,7 @@
 .footer-brand small {
   display: block;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 13px;
   margin-top: 6px;
 }
 .footer-main nav,
@@ -793,8 +793,8 @@
   display: flex;
   align-items: center;
   gap: 22px;
-  font-size: 10px;
-  color: #a6a2ac;
+  font-size: 13px;
+  color: var(--muted);
 }
 .footer-socials {
   gap: 16px;
@@ -811,8 +811,8 @@
   gap: 20px;
   border-top: 1px solid var(--line);
   padding-top: 20px;
-  font-size: 10px;
-  color: #8c8893;
+  font-size: 12px;
+  color: var(--muted);
 }
 .skip-link {
   position: fixed;
@@ -923,7 +923,7 @@
     padding-block: 52px;
   }
   .hero .eyebrow {
-    font-size: 9px;
+    font-size: 11px;
   }
   .hero-art {
     transform: scale(0.68);
@@ -936,7 +936,7 @@
     padding-right: 14px;
   }
   .hero-values span {
-    font-size: 10px;
+    font-size: 13px;
   }
   .process-layout {
     grid-template-columns: 1.15fr 0.85fr;
@@ -1015,7 +1015,7 @@
     font-size: clamp(30px, 7.5vw, 38px);
   }
   .eyebrow {
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 2.7px;
     margin-bottom: 14px;
   }
@@ -1070,7 +1070,7 @@
     font-size: 16px;
   }
   .hero-values span {
-    font-size: 9px;
+    font-size: 13px;
   }
   .process-layout {
     display: block;
@@ -1079,7 +1079,7 @@
     display: none;
   }
   .process-intro {
-    font-size: 13px;
+    font-size: 15px;
   }
   .process-steps {
     margin-top: 28px;
@@ -1092,7 +1092,7 @@
     font-size: 16px;
   }
   .process-steps p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .section-heading {
     grid-template-columns: 1fr;
@@ -1100,7 +1100,7 @@
     margin-bottom: 26px;
   }
   .section-intro {
-    font-size: 13px;
+    font-size: 16px;
   }
   .section-heading .pill {
     margin-top: 16px;
@@ -1119,10 +1119,10 @@
     font-size: 17px;
   }
   .service-card p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .service-card .card-label {
-    font-size: 7px;
+    font-size: 10px;
     letter-spacing: 1px;
   }
   .service-card .circle-link {
@@ -1227,7 +1227,7 @@
   .footer-bottom {
     flex-direction: column;
     gap: 12px;
-    font-size: 9px;
+    font-size: 12px;
   }
 }
 @media (max-width: 360px) {

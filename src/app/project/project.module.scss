@@ -72,7 +72,7 @@
   top: 20px;
   left: 26px;
   color: #a68a96;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 2px;
 }
 .signature {
@@ -88,7 +88,7 @@
 .subtitle {
   margin-top: 8px;
   color: #bd8e9e;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 3px;
 }
 .live {
@@ -98,7 +98,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 7px;
+  font-size: 10px;
   color: #bea1ab;
   letter-spacing: 1.5px;
   i {
@@ -120,15 +120,15 @@
   }
 }
 .category {
-  color: #ff416c;
-  font-size: 8px;
+  color: #ff7997;
+  font-size: 10px;
   letter-spacing: 1.7px;
   text-transform: uppercase;
   margin-bottom: 8px;
 }
 .description {
-  color: #9b9ca5;
-  font-size: 12px;
+  color: var(--muted);
+  font-size: 14px;
   line-height: 1.6;
 }
 @media (hover: hover) {
