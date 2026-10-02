@@ -2,16 +2,24 @@
 
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
-import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
-import heroBackground from './herobgmysite.png';
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from 'motion/react';
+import heroBackground from './herobg-personal.png';
 
 export default function HeroBackground() {
   const background = useRef<HTMLDivElement>(null);
   const imageLayer = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
-  const { scrollY } = useScroll();
-  const parallaxY = useTransform(scrollY, (value) => value * 0.5);
-  const parallaxScale = useTransform(scrollY, [0, 500], [1, 1.5]);
+  const { scrollYProgress } = useScroll({
+    target: background,
+    offset: ['start start', 'end start'],
+  });
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 180,
+    damping: 35,
+    mass: 0.4,
+  });
+  const parallaxY = useTransform(smoothProgress, [0, 1], ['0%', '8%']);
+  const parallaxScale = useTransform(smoothProgress, [0, 1], [1, 1.04]);
 
   useEffect(() => {
     const layer = imageLayer.current;

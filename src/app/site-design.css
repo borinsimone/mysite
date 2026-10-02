@@ -145,7 +145,8 @@
 }
 .hero-parallax-layer {
   position: absolute;
-  inset: -20% 0;
+  inset: -12% 0 -2%;
+  transform-origin: 75% 35%;
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-parallax-layer {
@@ -995,11 +996,11 @@
 }
 @media (max-width: 600px) {
   .hero-background img {
-    object-position: 65% center;
+    object-position: 78% center;
   }
   .hero-background::after {
     background:
-      linear-gradient(90deg, rgba(5, 7, 9, 0.86), rgba(5, 7, 9, 0.38)),
+      linear-gradient(90deg, rgba(5, 7, 9, 0.92), rgba(5, 7, 9, 0.58)),
       linear-gradient(0deg, #050709, transparent 30%);
   }
   .site-width {

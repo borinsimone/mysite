@@ -1,4 +1,5 @@
 import NfcExample from './NfcExample';
+import NfcArt from './NfcArt';
 import reviewsImage from './images/reviews.svg';
 import socialImage from './images/social.svg';
 import menuImage from './images/menu.svg';
@@ -163,7 +164,7 @@ export default function Nfc() {
               ))}
             </div>
           </FadeIn>
-          <FadeIn className={styles.art} delay={0.12} aria-hidden="true">
+          <NfcArt>
             <div className={styles.orbit} />
             <span className={styles.artLabel}>
               Real ideas.
@@ -195,7 +196,7 @@ export default function Nfc() {
             <p className={styles.artCaption}>
               Physical meets digital<span>Stessa identità. Nuove possibilità.</span>
             </p>
-          </FadeIn>
+          </NfcArt>
         </div>
         <div id="nfc-examples" className={styles.examples}>
           <FadeIn className={styles.examplesHeading}>

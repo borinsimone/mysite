@@ -201,6 +201,68 @@
   background: #ff28581a;
   filter: blur(26px);
 }
+@media (prefers-reduced-motion: no-preference) {
+  .art .card {
+    opacity: 0;
+  }
+  .frontCard {
+    --entry-x: -55px;
+    --entry-y: -35px;
+    --entry-angle: -12deg;
+    --float-y: -9px;
+    --float-angle: -1.5deg;
+    --entry-delay: 0.16s;
+    --float-duration: 6s;
+  }
+  .middleCard {
+    --entry-x: 10px;
+    --entry-y: 65px;
+    --entry-angle: 10deg;
+    --float-y: 8px;
+    --float-angle: 1.5deg;
+    --entry-delay: 0.08s;
+    --float-duration: 7s;
+  }
+  .backCard {
+    --entry-x: 65px;
+    --entry-y: 25px;
+    --entry-angle: 16deg;
+    --float-y: -7px;
+    --float-angle: 2deg;
+    --entry-delay: 0s;
+    --float-duration: 8s;
+  }
+  .art[data-entered='true'] .card {
+    animation:
+      cardAssemble 1.1s cubic-bezier(0.22, 1, 0.36, 1) var(--entry-delay) both,
+      cardFloat var(--float-duration) ease-in-out calc(1.1s + var(--entry-delay)) infinite;
+  }
+  .art[data-visible='false'] .card {
+    animation-play-state: paused;
+  }
+}
+@keyframes cardAssemble {
+  from {
+    opacity: 0;
+    translate: var(--entry-x) var(--entry-y);
+    rotate: var(--entry-angle);
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    rotate: 0deg;
+  }
+}
+@keyframes cardFloat {
+  0%, 100% {
+    translate: 0 0;
+    rotate: 0deg;
+  }
+  50% {
+    translate: 0 var(--float-y);
+    rotate: var(--float-angle);
+  }
+}
 .artCaption {
   position: absolute;
   left: 20%;
