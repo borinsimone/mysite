@@ -68,7 +68,9 @@
   border-radius: 50%;
   color: #ff91ab;
   background: #ff285822;
-  transition: transform 0.2s, background 0.2s;
+  transition:
+    transform 0.2s,
+    background 0.2s;
 }
 .navbar-shell .navbar-cta:focus-visible {
   outline: 2px solid #ff91ab;
@@ -318,7 +320,7 @@
 @media (max-width: 480px) {
   .mobile-menu {
     width: calc(100% - 32px);
-    border-radius: 20px;
+    border-radius: 0 20px 20px 0;
   }
 
   .mobile-menu-main {
