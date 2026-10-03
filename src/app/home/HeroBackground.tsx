@@ -4,7 +4,7 @@ import Image from 'next/image';
 import styles from './home.module.scss';
 import { useEffect, useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from 'motion/react';
-import heroBackground from './herobg-personal.png';
+import heroBackground from './herobg-personal.webp';
 
 export default function HeroBackground() {
   const background = useRef<HTMLDivElement>(null);
@@ -81,7 +81,7 @@ export default function HeroBackground() {
         className={styles.heroParallaxLayer}
         style={{ y: reducedMotion ? 0 : parallaxY, scale: reducedMotion ? 1 : parallaxScale }}
       >
-        <Image src={heroBackground} alt="" fill sizes="100vw" priority />
+        <Image src={heroBackground} alt="" fill sizes="100vw" fetchpriority="high" />
         <div className={styles.heroAccentGlow}>
           <Image src={heroBackground} alt="" fill sizes="100vw" />
         </div>

@@ -51,9 +51,6 @@ export default function Project() {
               Progetti che raccontano il mio approccio: design curato, sviluppo solido e attenzione
               ai dettagli.
             </p>
-            <a className="pill small" href="#project-list">
-              Esplora i progetti <ArrowIcon direction="down" />
-            </a>
           </div>
         </FadeIn>
         <div className={styles.grid} id="project-list">
