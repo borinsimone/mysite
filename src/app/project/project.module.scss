@@ -42,12 +42,12 @@
 .previewPeroo {
   background:
     linear-gradient(rgba(5, 7, 12, 0.65), rgba(5, 7, 12, 0.75)),
-    url('./perooartist.png') center top / cover no-repeat;
+    url('./perooartist.webp') center top / cover no-repeat;
 }
 .previewCbTech {
   background:
     linear-gradient(rgba(5, 7, 12, 0.65), rgba(5, 7, 12, 0.75)),
-    url('./cbtech.png') center top / cover no-repeat;
+    url('./cbtech.webp') center top / cover no-repeat;
 
   .signature {
     font-family: inherit;
@@ -60,7 +60,7 @@
 .previewMolino {
   background:
     linear-gradient(rgba(5, 7, 12, 0.65), rgba(5, 7, 12, 0.75)),
-    url('./molinoborra.png') center top / cover no-repeat;
+    url('./molinoborra.webp') center top / cover no-repeat;
 
   .signature {
     font-size: clamp(30px, 3.5vw, 44px);
