@@ -7,7 +7,8 @@ const projects = [
   {
     title: 'Peroò Artist',
     category: 'Portfolio artistico',
-    description: 'Il portfolio di Chiara, pittrice e artista del flusso.',
+    description:
+      'Portfolio artistico per Chiara: uno spazio digitale dedicato alla sua pittura e alla presentazione delle opere.',
     href: 'https://borinsimone.github.io/portfolio-perooartist/',
     signature: 'Peroò',
     subtitle: 'ARTIST / PORTFOLIO',
@@ -16,7 +17,8 @@ const projects = [
   {
     title: 'CB TECH',
     category: 'Sito aziendale',
-    description: 'Il sito di CB TECH, specializzata in cablaggi elettrici per l’industria.',
+    description:
+      'Sito aziendale per CB TECH: presentazione dell’attività e dei cablaggi elettrici destinati al settore industriale.',
     href: 'https://www.cb-tech.it/',
     signature: 'CB TECH',
     subtitle: 'INDUSTRIA / CABLAGGI',
@@ -25,7 +27,8 @@ const projects = [
   {
     title: 'Molino Borra',
     category: 'Sito aziendale e shop',
-    description: 'Il sito di Molino Borra: cereali, prodotti artigianali e vendita online.',
+    description:
+      'Sito aziendale e shop per Molino Borra: presentazione del mulino, dei cereali e dei prodotti artigianali con vendita online.',
     href: 'https://www.molinoborra.it/',
     signature: 'Molino Borra',
     subtitle: 'TERRITORIO / ARTIGIANALITÀ',

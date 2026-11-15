@@ -26,7 +26,12 @@ export default function Home() {
             <motion.p className="eyebrow fade-in" {...reveal(0.08)}>
               Siti web su misura, pensati per crescere
             </motion.p>
-            <motion.h1 id="hero-title" className="fade-in" {...reveal(0.16)}>
+            <motion.h1
+              id="hero-title"
+              className="fade-in"
+              aria-label="Il tuo valore. Un sito lo rende evidente."
+              {...reveal(0.16)}
+            >
               Il tuo valore.
               <br />
               Un sito lo rende

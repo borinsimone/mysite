@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
+import { siteDescription, siteTitle, siteUrl, socialImage } from './site-config';
+import StructuredData from './structured-data';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -13,32 +15,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://simone.dev'),
+  metadataBase: new URL(siteUrl),
   applicationName: 'Simone Borin Portfolio',
   title: {
-    default: 'Simone Borin | Sviluppatore Freelance',
+    default: siteTitle,
     template: '%s | Simone Borin',
   },
-  description:
-    'Portfolio di Simone Borin: sviluppo web, AI e automazioni, SEO, UI/UX, dashboard e gestionali su misura.',
-  keywords: [
-    'Simone Borin',
-    'sviluppatore freelance',
-    'web development',
-    'AI automazioni',
-    'SEO',
-    'UI UX',
-    'dashboard',
-    'gestionali',
-    'Next.js',
-    'React',
-  ],
-  authors: [{ name: 'Simone Borin', url: 'https://simone.dev' }],
+  description: siteDescription,
+  authors: [{ name: 'Simone Borin', url: siteUrl }],
   creator: 'Simone Borin',
   publisher: 'Simone Borin',
   category: 'technology',
   alternates: {
-    canonical: '/',
+    canonical: siteUrl,
   },
   formatDetection: {
     email: false,
@@ -48,17 +37,24 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'it_IT',
-    url: 'https://simone.dev',
+    url: siteUrl,
     siteName: 'Simone Borin Portfolio',
-    title: 'Simone Borin | Sviluppatore Freelance',
-    description:
-      'Sviluppo siti e web app moderne, automazioni AI, SEO e interfacce orientate ai risultati.',
+    title: siteTitle,
+    description: siteDescription,
+    images: [
+      {
+        url: socialImage,
+        width: 1200,
+        height: 630,
+        alt: 'Simone Borin — Siti web su misura, design e sviluppo',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Simone Borin | Sviluppatore Freelance',
-    description: 'Web development, AI/automazioni, SEO, UI/UX, dashboard e gestionali.',
-    creator: '@simoneborin',
+    title: siteTitle,
+    description: siteDescription,
+    images: [socialImage],
   },
   robots: {
     index: true,
@@ -87,8 +83,12 @@ export default function RootLayout({
   return (
     <html lang="it" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
+        <StructuredData />
         <noscript>
-          <style>{`.fade-in, .scale-in { opacity: 1 !important; transform: none !important; }`}</style>
+          <style>{`
+            .fade-in, .scale-in { opacity: 1 !important; transform: none !important; }
+            #hero-title [aria-hidden="true"] { visibility: visible !important; }
+          `}</style>
         </noscript>
         {children}
       </body>

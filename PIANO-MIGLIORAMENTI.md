@@ -34,10 +34,15 @@
 - Verificare tastiera, focus, validazione, errori e conferma senza inviare messaggi di prova reali.
 - Completamento: ogni azione produce lo stato previsto e le finestre restituiscono il focus.
 
-## 4. SEO e contenuti — da attuare
+## 4. SEO e contenuti — intervento locale applicato
 - Usare `seo` per metadata, anteprime social, canonical, sitemap e robots.
 - Rendere i casi studio concreti con problema, soluzione e risultati forniti dal proprietario.
 - Completamento: controlli tecnici superati e nessun risultato commerciale inventato.
+- Canonical e metadata allineati all'URL GitHub Pages verificato; rimosso il dominio non corrispondente e l'handle Twitter non verificato.
+- Title e description coerenti con i servizi visibili; immagine social 1200×630, JSON-LD Person/WebSite/WebPage, sitemap singola e robots compatibili con export statico.
+- Descrizioni dei tre progetti più specifiche; H1 con nome accessibile completo e fallback senza JavaScript per la parola animata.
+- Procedura di verifica e limiti di hosting documentati in SEO.md. Pubblicazione, Search Console e casi studio con risultati misurati restano da completare con account/dati del proprietario.
+- Build statica e controlli `node scripts/check-seo.cjs` superati: canonical, metadata, JSON-LD, un solo H1, sitemap, robots e dimensioni/asset dell'immagine social verificati sull'export.
 
 ## Evidenze performance
 - Baseline locale, Next dev, desktop, CPU 1x, rete senza limitazioni: LCP 2093 ms, CLS 0.
