@@ -1,42 +1,15 @@
 import NfcExample from './NfcExample';
-import NfcArt from './NfcArt';
+import NfcExperience from './NfcExperience';
 import reviewsImage from './images/reviews.svg';
 import socialImage from './images/social.svg';
 import menuImage from './images/menu.svg';
 import contactImage from './images/contact.svg';
 import { faGoogle, faInstagram } from '@fortawesome/free-brands-svg-icons';
-import {
-  faBolt,
-  faPen,
-  faLink,
-  faChartSimple,
-  faUtensils,
-  faAddressCard,
-  faWifi,
-  faQrcode,
-} from '@fortawesome/free-solid-svg-icons';
+import { faBolt, faUtensils, faAddressCard } from '@fortawesome/free-solid-svg-icons';
 import FadeIn from '../components/scroll/FadeIn';
 import ArrowIcon from '../components/arrow-icon/ArrowIcon';
 import styles from './nfc.module.scss';
 
-const features = [
-  { title: 'Tap immediato', text: 'Basta avvicinare uno smartphone compatibile.', icon: faBolt },
-  {
-    title: 'Design su misura',
-    text: 'Una grafica personalizzata per la tua attività.',
-    icon: faPen,
-  },
-  {
-    title: 'Tutto in un link',
-    text: 'Menu, social, recensioni, contatti e molto altro.',
-    icon: faLink,
-  },
-  {
-    title: 'Analytics',
-    text: 'Monitora le interazioni e aggiorna i tuoi contenuti.',
-    icon: faChartSimple,
-  },
-];
 const useCases = [
   {
     title: 'Recensioni Google',
@@ -132,72 +105,7 @@ export default function Nfc() {
       aria-labelledby="nfc-title"
     >
       <div className="site-width">
-        <div className={styles.layout}>
-          <FadeIn className={styles.copy}>
-            <p className="eyebrow">Connessioni, anche fuori dallo schermo</p>
-            <h2 id="nfc-title">
-              Un piccolo tap.
-              <br />
-              <span>Grandi connessioni.</span>
-            </h2>
-            <p className={styles.intro}>
-              Tessere NFC personalizzate che collegano i tuoi clienti al tuo mondo digitale.
-              Recensioni, social, menu, contatti e molto altro, con un semplice tap.
-            </p>
-            <div className={styles.actions}>
-              <a className="pill primary" href="#nfc-examples">
-                Scopri di più <ArrowIcon />
-              </a>
-              <a className={styles.textLink} href="#contact">
-                Richiedi informazioni
-              </a>
-            </div>
-            <div className={styles.features}>
-              {features.map(({ title, text, icon }) => (
-                <div key={title} className={styles.feature}>
-                  <span className={styles.featureIcon}>
-                    <Icon icon={icon} />
-                  </span>
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </div>
-              ))}
-            </div>
-          </FadeIn>
-          <NfcArt>
-            <div className={styles.orbit} />
-            <span className={styles.artLabel}>
-              Real ideas.
-              <br />
-              Real impact.
-            </span>
-            <div className={`${styles.card} ${styles.backCard}`}>
-              <Icon icon={faQrcode} />
-              <small>SCAN TO CONNECT</small>
-            </div>
-            <div className={`${styles.card} ${styles.middleCard}`}>
-              <span>
-                MORE
-                <br />
-                THAN A<br />
-                CARD.
-              </span>
-            </div>
-            <div className={`${styles.card} ${styles.frontCard}`}>
-              <span className={styles.nfcSymbol}>
-                <Icon icon={faWifi} />
-              </span>
-              <span className={styles.monogram}>
-                SB<span>.</span>
-              </span>
-              <small>TAP TO CONNECT</small>
-            </div>
-            <div className={styles.pedestal} />
-            <p className={styles.artCaption}>
-              Physical meets digital<span>Stessa identità. Nuove possibilità.</span>
-            </p>
-          </NfcArt>
-        </div>
+        <NfcExperience />
         <div id="nfc-examples" className={styles.examples}>
           <FadeIn className={styles.examplesHeading}>
             <p className="eyebrow">Alcuni esempi di utilizzo</p>
