@@ -81,7 +81,7 @@ export default function HeroBackground() {
         className={styles.heroParallaxLayer}
         style={{ y: reducedMotion ? 0 : parallaxY, scale: reducedMotion ? 1 : parallaxScale }}
       >
-        <Image src={heroBackground} alt="" fill sizes="100vw" fetchpriority="high" />
+        <Image src={heroBackground} alt="" fill sizes="100vw" loading="eager" fetchPriority="high" />
         <div className={styles.heroAccentGlow}>
           <Image src={heroBackground} alt="" fill sizes="100vw" />
         </div>

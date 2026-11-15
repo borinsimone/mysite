@@ -2,6 +2,7 @@
   --accent: #ff2858;
   --muted: #b8bac4;
   --line: rgba(255, 255, 255, 0.075);
+  --radius-card: 16px;
   background: radial-gradient(ellipse at 0 12%, #10151b55, transparent 28%), #050709;
   overflow: clip;
 }
@@ -10,7 +11,7 @@
   margin-inline: auto;
 }
 .site-section {
-  padding-block: 72px;
+  padding-block: clamp(64px, 6vw, 88px);
 }
 .section-line {
   border-bottom: 1px solid var(--line);
@@ -35,6 +36,7 @@
 }
 .portfolio-site h2 {
   font-size: clamp(32px, 3.2vw, 44px);
+  text-wrap: balance;
 }
 .portfolio-site h1 > span,
 .portfolio-site h2 > span {
@@ -44,11 +46,13 @@
   font-size: 18px;
   font-weight: 550;
   letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 .section-intro,
 .lead {
   color: var(--muted);
   line-height: 1.7;
+  text-wrap: pretty;
 }
 .section-intro {
   font-size: 16px;
@@ -88,7 +92,7 @@
   box-shadow: 0 5px 30px #ff285820;
 }
 .pill.small {
-  min-height: 36px;
+  min-height: 44px;
   padding: 7px 22px;
   font-size: 11px;
   border-color: #863047;
@@ -117,8 +121,8 @@
   background: radial-gradient(circle at 50% 100%, #65102760, #130b11 80%);
 }
 .circle-link {
-  height: 34px;
-  width: 34px;
+  height: 44px;
+  width: 44px;
   border-radius: 50%;
   border: 1px solid #773047;
   display: inline-flex;
@@ -146,9 +150,9 @@
 .section-heading {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  gap: clamp(32px, 6vw, 80px);
   align-items: end;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
 .section-heading .pill {
   margin-top: 18px;
@@ -175,6 +179,16 @@
 }
 .skip-link:focus {
   transform: none;
+}
+.pill:active:not(:disabled) {
+  transform: scale(0.98);
+}
+.pill:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+.portfolio-site section[id] {
+  scroll-margin-top: 12px;
 }
 @media (hover: hover) {
   .pill:hover {
@@ -204,7 +218,7 @@
     width: calc(100% - 48px);
   }
   .site-section {
-    padding-block: 56px;
+    padding-block: 64px;
   }
 }
 @media (max-width: 600px) {
@@ -212,7 +226,7 @@
     width: calc(100% - 40px);
   }
   .site-section {
-    padding-block: 44px;
+    padding-block: 52px;
   }
   .portfolio-site h1 {
     font-size: clamp(44px, 10.5vw, 62px);
@@ -232,7 +246,7 @@
   .pill {
     padding-inline: 18px;
     gap: 16px;
-    font-size: 11px;
+    font-size: 12px;
   }
   .section-heading {
     grid-template-columns: 1fr;

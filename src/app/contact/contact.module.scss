@@ -89,6 +89,15 @@
   border-radius: 8px;
   color: #f5f5f7;
   font-size: 16px;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+.contactForm input:focus-visible,
+.contactForm textarea:focus-visible {
+  border-color: #ff6487;
+  box-shadow: 0 0 0 3px #ff28581a;
+  outline: 0;
 }
 .contactForm textarea {
   resize: vertical;
@@ -169,14 +178,24 @@
 }
 .contactDialogClose {
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border: 1px solid #ffffff25;
   border-radius: 50%;
   background: #ffffff06;
   color: #fff;
   font-size: 24px;
   cursor: pointer;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+.contactDialogClose:hover {
+  background-color: #ff285818;
+  border-color: #ff6487;
 }
 .contactDialog :global(.rb-outer-container) {
   min-height: 0;

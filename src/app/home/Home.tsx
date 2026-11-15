@@ -17,16 +17,9 @@ function reveal(delay: number) {
 export default function Home() {
   return (
     <section className={`${styles.hero} section-line`} id="home" aria-labelledby="hero-title">
-      <motion.div
-        className="fade-in"
-        style={{ position: 'absolute', inset: 0, zIndex: -1 }}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ amount: 0.1 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      >
+      <div style={{ position: 'absolute', inset: 0, zIndex: -1 }}>
         <HeroBackground />
-      </motion.div>
+      </div>
       <div className={`site-width ${styles.heroLayout}`}>
         <div className={styles.heroCopy}>
           <div className={styles.heroMessage}>

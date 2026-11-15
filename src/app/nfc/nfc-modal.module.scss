@@ -32,8 +32,8 @@
   float: right;
   margin: 14px 14px -54px 0;
   z-index: 2;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   display: grid;
   place-items: center;
   border: 1px solid #ffffff30;
@@ -41,6 +41,9 @@
   background: #090c11e6;
   color: #fff;
   cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease;
   span {
     position: absolute;
     width: 17px;
@@ -51,6 +54,10 @@
       transform: rotate(-45deg);
     }
   }
+}
+.close:hover {
+  background-color: #211019;
+  border-color: #ff6487;
 }
 .layout {
   display: grid;
@@ -86,6 +93,7 @@
   h2 {
     font-size: clamp(26px, 3vw, 36px);
     line-height: 1.12;
+    text-wrap: balance;
   }
   > a {
     margin-top: 26px;
@@ -106,6 +114,7 @@
   font-size: 13px;
   color: #b3a9b3;
   line-height: 1.8;
+  text-wrap: pretty;
 }
 .service {
   margin-top: 20px;

@@ -1,7 +1,9 @@
 'use client';
 
 import { useSyncExternalStore } from 'react';
-import GlowCursor from './GlowCursor';
+import dynamic from 'next/dynamic';
+
+const GlowCursor = dynamic(() => import('./GlowCursor'), { ssr: false });
 
 const mediaQuery = '(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)';
 
@@ -17,6 +19,8 @@ export default function SiteGlowCursor() {
     () => window.matchMedia(mediaQuery).matches,
     () => false,
   );
+
+  if (!enabled) return null;
 
   return (
     <GlowCursor

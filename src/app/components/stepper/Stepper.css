@@ -68,7 +68,9 @@
 }
 
 .rb-back-button {
-  transition: all 350ms;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
   border-radius: 0.25rem;
   padding: 0.25rem 0.5rem;
   color: #a3a3a3;
@@ -86,7 +88,9 @@
 }
 
 .rb-next-button {
-  transition: all 350ms;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
   display: flex;
   align-items: center;
   justify-content: center;

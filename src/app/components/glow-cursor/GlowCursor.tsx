@@ -266,6 +266,7 @@ const GlowCursor = ({
       return;
     }
     const gl = renderer.gl;
+    if (!gl || gl.isContextLost()) return;
     gl.clearColor(0, 0, 0, 0);
 
     const pointData = Array(MAX_POINTS * 2).fill(0);
@@ -299,6 +300,11 @@ const GlowCursor = ({
       depthTest: false,
       depthWrite: false,
     });
+    // OGL leaves uniform/attribute locations unset when shader linking fails.
+    if (gl.isContextLost() || !gl.getProgramParameter(program.program, gl.LINK_STATUS)) {
+      program.remove();
+      return;
+    }
     const mesh = new Mesh(gl, { geometry: new Triangle(gl), program });
 
     let width = 1;
@@ -341,6 +347,7 @@ const GlowCursor = ({
       target.y = y;
       pointerInside = true;
       lastInputTime = performance.now();
+      wake();
     };
 
     const onPointerLeave = () => {
@@ -349,7 +356,8 @@ const GlowCursor = ({
     };
 
     const render = (now: number) => {
-      if (destroyed) return;
+      raf = 0;
+      if (destroyed || document.hidden || gl.isContextLost()) return;
       const config = propsRef.current;
       const delta = Math.min((now - lastFrameTime) / 16.667, 3);
       lastFrameTime = now;
@@ -401,7 +409,23 @@ const GlowCursor = ({
       } else {
         gl.clear(gl.COLOR_BUFFER_BIT);
       }
-      if (!destroyed) raf = requestAnimationFrame(render);
+      if (!destroyed && initialized && (fade > 0.001 || fadeTarget > 0)) {
+        raf = requestAnimationFrame(render);
+      }
+    };
+
+    const wake = () => {
+      if (raf || destroyed || document.hidden) return;
+      lastFrameTime = performance.now();
+      raf = requestAnimationFrame(render);
+    };
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      } else if (initialized) {
+        wake();
+      }
     };
 
     const pointerTarget = fullscreen ? document.documentElement : container;
@@ -411,18 +435,20 @@ const GlowCursor = ({
     pointerTarget.addEventListener('pointerenter', updatePointer);
     pointerTarget.addEventListener('pointerleave', onPointerLeave);
     resize();
-    raf = requestAnimationFrame(render);
+    document.addEventListener('visibilitychange', onVisibilityChange);
 
     return () => {
       destroyed = true;
       cancelAnimationFrame(raf);
       resizeObserver.disconnect();
+      document.removeEventListener('visibilitychange', onVisibilityChange);
       pointerTarget.removeEventListener('pointermove', updatePointer);
       pointerTarget.removeEventListener('pointerenter', updatePointer);
       pointerTarget.removeEventListener('pointerleave', onPointerLeave);
       mesh.geometry.remove();
       program.remove();
-      gl.getExtension('WEBGL_lose_context')?.loseContext();
+      // React Strict Mode reuses this canvas for the next effect setup.
+      // Release resources without invalidating its reusable WebGL context.
     };
   }, [maxDevicePixelRatio, enabled, fullscreen]);
 

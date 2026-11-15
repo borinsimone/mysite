@@ -34,6 +34,9 @@
   border-bottom: 1px solid #ff285870;
   font-size: 12px;
   transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   &:hover {
     color: var(--accent);
   }
@@ -254,7 +257,8 @@
   }
 }
 @keyframes cardFloat {
-  0%, 100% {
+  0%,
+  100% {
     translate: 0 0;
     rotate: 0deg;
   }
@@ -312,7 +316,7 @@
   flex-direction: column;
   padding: 22px;
   border: 1px solid #ff285825;
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   background: linear-gradient(145deg, #ff285805, #080b0e80);
   transition:
     border-color 0.2s,
@@ -325,6 +329,7 @@
     line-height: 1.7;
     margin-top: 9px;
     color: var(--muted);
+    text-wrap: pretty;
   }
   &:hover {
     border-color: #ff285880;
@@ -391,7 +396,7 @@
     gap: 12px 20px;
   }
   .intro {
-    font-size: 14px;
+    font-size: 15px;
   }
   .art {
     min-height: 360px;
@@ -429,7 +434,7 @@
   .example {
     padding: 16px;
     h3 {
-      font-size: 14px;
+      font-size: 16px;
     }
     p {
       font-size: 14px;
