@@ -3,7 +3,6 @@ import FadeIn from '../components/scroll/FadeIn';
 import styles from './contact.module.scss';
 import ArrowIcon from '../components/arrow-icon/ArrowIcon';
 import { useEffect, useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
 import Stepper, { Step } from '../components/stepper/Stepper';
 
 export default function Contact() {
@@ -79,29 +78,17 @@ function ContactStepper({ onClose }: { onClose: () => void }) {
 
   async function handleSendMessage() {
     if (sendingRef.current || sendState === 'success') return;
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-    if (!serviceId || !templateId || !publicKey) {
-      setSendState('error');
-      setSendStatus('Invio temporaneamente non disponibile. Riprova più avanti.');
-      return;
-    }
     sendingRef.current = true;
     setSendState('sending');
     setSendStatus('Invio del messaggio in corso…');
     try {
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          from_name: details.name.trim(),
-          from_email: details.email.trim(),
-          subject: `Nuovo progetto da ${details.name.trim()}`,
-          message: details.message.trim(),
-        },
-        { publicKey },
-      );
+      const response = await fetch('https://feedback-clienti.feedback-clienti.workers.dev/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(details),
+        signal: AbortSignal.timeout(15000),
+      });
+      if (!response.ok) throw new Error('Invio non riuscito');
       setSendState('success');
       setSendStatus('');
     } catch {
